@@ -15,16 +15,18 @@ nav {
 	margin-left: auto;
 	margin-right: auto;
 	max-height: 130px;
+		width: 100%;
 }
 .navbar-brand {
 	margin-left: auto;
 	margin-right: auto;
 
+
 }
 
 .card {
 	max-width: 700px;
-	min-width: 500px;
+	min-width: 200px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
