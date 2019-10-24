@@ -1,0 +1,98 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+    font-family: 'Quicksand', sans-serif;
+    min-width: 400px;
+}
+
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+
+}
+
+.zone {
+    color:black;
+    font-size:2em;
+    border-radius:4px;
+    border:1px solid #bbb;
+    transition: all 0.3s linear;
+}
+
+.zone:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+nav {
+  background: white;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+    background: white;
+
+}
+
+.logo {
+    text-align: center;
+
+}
+.about {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.button-text {
+    float: left;
+    margin-right: 2px;
+}
+.card {
+    max-width: 850px;
+    min-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+hr {
+    border-color: #adb5bd;
+    border-width: 3px;
+    max-width: 65px;
+}
+p {
+    margin-top: 10px;
+    color: black;
+    font-size: 14px;
+}
+.btn {
+    text-transform: uppercase;
+}
+.btn-lg {
+    animation-iteration-count: 1;
+    animation-duration: 3s;
+    animation-delay: 4s;
+}
+
+.footer{
+    background: #FFFFFF; 
+    display: flex;
+    justify-content: center;
+    font-size: 0.9em;
+    margin: auto auto 0 auto;
+}
+@media screen and (max-width: 600px) {
+  .button-text {
+    visibility: hidden;
+    display: none;
+}
+}
