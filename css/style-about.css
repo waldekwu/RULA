@@ -2,8 +2,14 @@
 	border: none;
 }
 .card-body {
-	padding-top: 0px;
+	padding: 0px;
+
 }
 .card-text {
 	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+div.col-md-4 {
+
 }
