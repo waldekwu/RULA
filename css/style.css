@@ -14,10 +14,12 @@ body {
     grid-template-columns: 100%;
 
 }
+.card-header {
+    font-size:2em;
+}
 
 .zone {
     color:black;
-    font-size:2em;
     border-radius:4px;
     border:1px solid #bbb;
     transition: all 0.3s linear;
@@ -55,6 +57,7 @@ nav {
 .button-text {
     float: left;
     margin-right: 2px;
+    text-transform: uppercase;
 }
 .card {
     max-width: 850px;
@@ -74,9 +77,13 @@ p {
     color: black;
     font-size: 14px;
 }
-.btn {
+
+.btn-success {
+    margin: 10px;
     text-transform: uppercase;
+    font-weight: bold;
 }
+
 .btn-lg {
     animation-iteration-count: 1;
     animation-duration: 3s;
