@@ -6,6 +6,7 @@ nextBtn.addEventListener('click', changeCard);
 let currentQuestionIndex;
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
+let totalArmsScore = 0;
 
 function startQuiz() {
 	console.log('started');
@@ -52,7 +53,6 @@ function showQuestion(question) {
 }
 
 function resetState() {
-	nextBtn.classList.remove('hide');
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
 	}
@@ -60,7 +60,7 @@ function resetState() {
 
 function selectAnswer(e) {
 	const selectedButton = e.target;
-	console.log(questions[0][armsScore]);
+	
 
 }
 
@@ -79,4 +79,11 @@ const questions = [
 	]
 }
 ]
-
+//accesses armsScore and adds it to total
+function setTotalArmsScore() {
+	
+	let setArmsScore = questions[0].answers[1]['armsScore'];
+	totalArmsScore += setArmsScore;
+	console.log(totalArmsScore);
+}
+setTotalArmsScore();
