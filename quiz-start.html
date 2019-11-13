@@ -10,6 +10,7 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/style-quiz.css">
 	<!-- Animate.css -->
 	<link rel="stylesheet" type="text/css" href="./css/animate.min.css">
 
@@ -18,7 +19,7 @@
 	<div class="zone navbar">
 		<div></div>
 		<div class="logo">
-			<a href="#">
+			<a href="./index.html">
 				<img src="https://www.ergonomics.co.uk/res/osmond_logo.svg" alt="Osmond Ergonomics Logo" width="150" height="80"></a>
 			</div>
 			<div class="about">
@@ -39,22 +40,32 @@
 			<div class="card text-center zone animated fadeInLeft">
 				<div class="card-header">
 					<strong>
-						RULA - Rapid Upper Limb Assessment
+						Pick your RULA assessment
 					</strong>
 				</div>
 				<div class="card-body">
+					<div class="container">
+						<div id="question-container" class="hide">
+							<div><h3 id="question">Question</h3></div>
+							<div id="answer-buttons" class="btn-grid">
+								<div class="btn quiz-zone z1">Answer 1</div>
+								<div class="btn quiz-zone z2">Answer 2</div>
+								<div class="btn quiz-zone z3">Answer 3</div>
+								<div class="btn quiz-zone z4">Answer 4</div>
+								<div class="btn quiz-zone z5">Answer 5</div>
+								<div class="btn quiz-zone z6 hide">Answer 6</div>
+							</div>
+						</div>
+						<div class="controls">
+							<button id="start-btn" class="start-btn btn btn-outline-success z6">Assessment 1</button>
 
-					<h5 class="card-title">A tool for assessing the risk of upper limb disorders</h5>
-					<p class="card-text">Choose one of the assessments, selecting the postures that most accurately reflect your working position
-					</p>
-					<img class="manikin" alt="manikin" src="media/manikin_logo.png">
-					<hr>
-					<p>*COMING SOON*</p>
-					<a href="./quiz-start.html" class="btn btn-success btn-lg animated bounce">Pick an assessment</a>
+							<button id="next-btn" class="next-btn btn-success btn z7 hide">Next</button> 
+						</div>
+					</div>
 				</div>
 				<div class="card-footer text-muted">
 					<p>
-						Osmond Group Limited (Osmond) have taken every care in preparing this resource, it must be used according to the guidelines based on the original article* by Prof E.N. Corlett and Dr L. McAtamney.<br><br> No responsibility will be taken by Osmond in the use of this software. <br><br>RULA provides a score of a snapshot of the activity as part of a rapid screening tool. The user should refer to the original article* to check the detail of the scoring and correct use of RULA scores. Further investigation and actions may be required. <br><br>For further information on methodology refer to our on-line guidance or: <br>McAtamney, L and Corlett, E.N. Reducing the risks of work related upper limb disorders - A guide and methods. Published by: Institute for Occupational Ergonomics, University of Nottingham, Nottingham NG7 2RD, UK. (1992). Tel: +44 (0)115 9514005 for details. <br><br>*McAtamney, L. and Corlett, E.N. "RULA -: A survey method for investigation of work-related upper limb disorders. Applied Ergonomics 1993, 24(2), 91-99
+						Text
 					</p>
 				</div>
 			</div>
