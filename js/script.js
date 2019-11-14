@@ -7,9 +7,9 @@ let currentQuestionIndex;
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 let totalArmsScore = 0;
+let allArmsScores = [];
 
 function startQuiz() {
-	console.log('started');
 	changeCard();
 	currentQuestionIndex = 0;
 	let armsScore = 0;
@@ -24,11 +24,15 @@ function changeCard() {
 	card.classList.remove('fadeInLeft');
 	card.classList.add('animated', 'fadeOutRight');
 	resetState();
-
+//if fadeOutRight animation is still there, do this
 	if ($('.fadeOutRight')[0]) {
+		//delay all actions
 		setTimeout(function() {
+			//remove animation
 			card.classList.remove('fadeOutRight');
+			//ad new animation
 			card.classList.add('animated','fadeInLeft');
+
 			startBtn.classList.add('hide');
 			nextBtn.classList.remove('hide');
 			questionContainerElement.classList.remove('hide');
@@ -40,15 +44,27 @@ function changeCard() {
 function setNextQuestion() {
 	
 }
+//generates questions using questions array
 function showQuestion(question) {
+	//sets the question
 	questionElement.innerText = question.question;
 	question.answers.forEach(answer => {
+		//creates buttons
 		const button = document.createElement('button');
+		//sets text to buttons
 		button.innerText = answer.text;
+		//adds classes to buttons
 		button.classList.add('btn', 'quiz-zone');
+		//adds id to buttons according to their armsScore
+		button.setAttribute("id", answer.armsScore);
+		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
+		//appends button to the 'answer-buttons' element
 		answerButtonsElement.appendChild(button);
-		console.log(answer.armsScore);
+
+		//saves scores to array - probably useless, did this just to check
+		/*allArmsScores.push(answer.armsScore);
+		console.log(allArmsScores);*/
 	})
 }
 
@@ -60,6 +76,9 @@ function resetState() {
 
 function selectAnswer(e) {
 	const selectedButton = e.target;
+	//
+	const scoreX = selectedButton.id;
+	console.log(scoreX);
 }
 
 const questions = [
@@ -78,10 +97,10 @@ const questions = [
 }
 ]
 //accesses armsScore and adds it to total
-function setTotalArmsScore() {
+// function setTotalArmsScore() {
 	
-	let setArmsScore = questions[0].answers[1]['armsScore'];
-	totalArmsScore += setArmsScore;
-	console.log(totalArmsScore);
-}
-setTotalArmsScore();
+// 	let setArmsScore = questions[0].answers[1]['armsScore'];
+// 	totalArmsScore += setArmsScore;
+// 	console.log(totalArmsScore);
+// }
+// setTotalArmsScore();
