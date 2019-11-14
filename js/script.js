@@ -95,8 +95,9 @@ const questions = [
 
 	]
 }
+ 
 ]
-//accesses armsScore and adds it to total
+//accesses armsScore and adds it to total - spent hours trying to access armsScore value lol
 // function setTotalArmsScore() {
 	
 // 	let setArmsScore = questions[0].answers[1]['armsScore'];
