@@ -33,7 +33,6 @@ function changeCard() {
 			nextBtn.classList.remove('hide');
 			questionContainerElement.classList.remove('hide');
 			showQuestion(questions[0]);
-			
 		}, delayInMilliseconds);
 	}
 }
@@ -49,6 +48,7 @@ function showQuestion(question) {
 		button.classList.add('btn', 'quiz-zone');
 		button.addEventListener('click' , selectAnswer);
 		answerButtonsElement.appendChild(button);
+		console.log(answer.armsScore);
 	})
 }
 
@@ -60,8 +60,6 @@ function resetState() {
 
 function selectAnswer(e) {
 	const selectedButton = e.target;
-	
-
 }
 
 const questions = [
@@ -69,12 +67,12 @@ const questions = [
 	question: 'Locate Upper Arm Position:',
 	answers: [
 
-	{ text: '20 to 20 degrees', armsScore: +1 },
-	{ text: '20 degrees in extension', armsScore: +2 },
-	{ text: '20 to 45 degress', armsScore: +2 },
-	{ text: '45 to 90 degrees', armsScore: +3 },
-	{ text: '90 degrees', armsScore: +4 },
-	{ text: 'Adjust', armsScore: +1 }
+	{ text: '20 to 20 degrees', armsScore: 1 },
+	{ text: '20 degrees in extension', armsScore: 2 },
+	{ text: '20 to 45 degress', armsScore: 2 },
+	{ text: '45 to 90 degrees', armsScore: 3 },
+	{ text: '90 degrees', armsScore: 4 },
+	{ text: 'Adjust', armsScore: 1 }
 
 	]
 }
