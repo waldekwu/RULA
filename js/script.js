@@ -1,15 +1,28 @@
 const startBtn = document.getElementById('start-btn');
-startBtn.addEventListener('click', startQuiz);
-const questionContainerElement = document.getElementById('question-container');
 const nextBtn = document.getElementById('next-btn');
-nextBtn.addEventListener('click', changeCard);
-let currentQuestionIndex;
+const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
+const titleElement = document.getElementById('title');
 const answerButtonsElement = document.getElementById('answer-buttons');
+const answerBoxesElement = document.getElementById('checkbox');
+
+let currentQuestionIndex;
 let totalArmsScore = 0;
 let allArmsScores = [];
 
+startBtn.addEventListener('click', startQuiz);
+// nextBtn.addEventListener('click', changeCard);
+
+
+nextBtn.addEventListener('click', () => {
+	currentQuestionIndex++;
+	setNextQuestion();
+	changeCard();
+
+})
+
 function startQuiz() {
+	setNextQuestion();
 	changeCard();
 	currentQuestionIndex = 0;
 	let armsScore = 0;
@@ -19,13 +32,14 @@ const card =  document.querySelector('.card');
 card.classList.add('animated', 'fadeInLeft');
 
 function changeCard() {
+
 	const card =  document.querySelector('.card');
 	var delayInMilliseconds = 500;
 	card.classList.remove('fadeInLeft');
 	card.classList.add('animated', 'fadeOutRight');
 	resetState();
 //if fadeOutRight animation is still there, do this
-	if ($('.fadeOutRight')[0]) {
+if ($('.fadeOutRight')[0]) {
 		//delay all actions
 		setTimeout(function() {
 			//remove animation
@@ -34,19 +48,22 @@ function changeCard() {
 			card.classList.add('animated','fadeInLeft');
 
 			startBtn.classList.add('hide');
-			nextBtn.classList.remove('hide');
+			// nextBtn.classList.remove('hide');
 			questionContainerElement.classList.remove('hide');
-			showQuestion(questions[0]);
+			showQuestion(questions[currentQuestionIndex]);
 		}, delayInMilliseconds);
 	}
 }
 
 function setNextQuestion() {
 	
+	resetState();
+	//showQuestion(currentQuestionIndex);
 }
 //generates questions using questions array
 function showQuestion(question) {
 	//sets the question
+	titleElement.innerText = question.title;
 	questionElement.innerText = question.question;
 	question.answers.forEach(answer => {
 		//creates buttons
@@ -69,21 +86,39 @@ function showQuestion(question) {
 }
 
 function resetState() {
+	nextBtn.classList.add('hide');
+	answerBoxesElement.classList.add('hide');
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
 	}
 }
 
 function selectAnswer(e) {
+	//which button user selected
 	const selectedButton = e.target;
-	//
+	//assigns id according to score
 	const scoreX = selectedButton.id;
 	console.log(scoreX);
+	//probably useless code?
+	const correct = selectedButton.dataset.correct;
+	//set body status class
+	// setStatusClass(document.body)
+	answerBoxesElement.classList.remove('hide');
+	answerBoxesElement.classList.add('animated', 'fadeIn');
+	nextBtn.classList.remove('hide');
+	nextBtn.classList.add('animated', 'fadeIn');
+	if (currentQuestionIndex.length > currentQuestionIndex) {
+		//end of questions
+		 nextBtn.classList.add('hide');
+	} else if (currentQuestionIndex >= 1) {
+		document.getElementById("checkbox").innerHTML = "";
+	}
 }
 
 const questions = [
 {
-	question: 'Locate Upper Arm Position:',
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '1. Locate Upper Arm Position:',
 	answers: [
 
 	{ text: '20 to 20 degrees', armsScore: 1 },
@@ -91,11 +126,35 @@ const questions = [
 	{ text: '20 to 45 degress', armsScore: 2 },
 	{ text: '45 to 90 degrees', armsScore: 3 },
 	{ text: '90 degrees', armsScore: 4 },
-	{ text: 'Adjust', armsScore: 1 }
+
+	]
+},
+
+{
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '2. Locate Lower Arm Position:',
+	answers: [
+
+	{ text: '60 to 100 degrees', armsScore: 10 },
+	{ text: '0 to 60 degrees', armsScore: 20 },
+	{ text: '100 degrees or more', armsScore: 20 },
+
+	]
+},
+
+{
+	title: 'Full Upper Body Assessment',
+	question: 'Locate Wrist Position:',
+	answers: [
+
+	{ text: '0 degrees', armsScore: 10 },
+	{ text: '-15 to 15 degrees', armsScore: 20 },
+	{ text: '15 degrees or more', armsScore: 20 },
+	{ text: '-15 degrees or more', armsScore: 30 },
 
 	]
 }
- 
+
 ]
 //accesses armsScore and adds it to total - spent hours trying to access armsScore value lol
 // function setTotalArmsScore() {

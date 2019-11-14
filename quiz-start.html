@@ -39,7 +39,7 @@
 			<!-- bootstrap card -->
 			<div class="card text-center zone animated fadeInLeft">
 				<div class="card-header">
-					<strong>
+					<strong id="title">
 						Pick your RULA assessment
 					</strong>
 				</div>
@@ -48,24 +48,39 @@
 						<div id="question-container" class="hide">
 							<div><h3 id="question">Question</h3></div>
 							<div id="answer-buttons" class="btn-grid">
-								<div class="btn quiz-zone z1">Answer 1</div>
-								<div class="btn quiz-zone z2">Answer 2</div>
-								<div class="btn quiz-zone z3">Answer 3</div>
-								<div class="btn quiz-zone z4">Answer 4</div>
-								<div class="btn quiz-zone z5">Answer 5</div>
-								<div class="btn quiz-zone z6 hide">Answer 6</div>
+								<div class="btn quiz-zone">Answer 1</div>
+								<div class="btn quiz-zone">Answer 2</div>
+								<div class="btn quiz-zone">Answer 3</div>
+								<div class="btn quiz-zone">Answer 4</div>
+								<div class="btn quiz-zone">Answer 5</div>
+							</div>
+							
+							<div id="checkbox" class="checkbox hide">
+								<h5>Also tick the following boxes if appropriate:</h5>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="customCheck1">
+									<label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="customCheck2">
+									<label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="customCheck3">
+									<label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>
+								</div>
 							</div>
 						</div>
 						<div class="controls">
-							<button id="start-btn" class="start-btn btn btn-outline-success z6">Assessment 1</button>
+							<div id="start-btn" class="start-btn btn btn-outline-success"><strong>Complete Assessment of Left & Right Sides</strong></div>
 
-							<button id="next-btn" class="next-btn btn-success btn z7 hide">Next</button> 
+							<button id="next-btn" class="next-btn btn-success btn hide">Next</button> 
 						</div>
 					</div>
 				</div>
 				<div class="card-footer text-muted">
 					<p>
-						Text
+
 					</p>
 				</div>
 			</div>
