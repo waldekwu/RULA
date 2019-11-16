@@ -6,13 +6,13 @@ const titleElement = document.getElementById('title');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const answerBoxesElement = document.getElementById('checkbox');
 
+
 let currentQuestionIndex;
-let totalArmsScore = 0;
-let allArmsScores = [];
+let score = 0;
+// let totalArmsScore = 0;
+// let allArmsScores = [];
 
 startBtn.addEventListener('click', startQuiz);
-// nextBtn.addEventListener('click', changeCard);
-
 
 nextBtn.addEventListener('click', () => {
 	currentQuestionIndex++;
@@ -72,15 +72,16 @@ function showQuestion(question) {
 		//sets text to buttons
 		button.innerHTML = answer.text;
 		//adds classes to buttons
-		button.classList.add('btn', 'quiz-zone');
+		button.classList.add('btn', 'quiz-zone', 'btn-group-toggle');
 		//adds id to buttons according to their armsScore
+		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
 		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
 		//appends button to the 'answer-buttons' element
 		answerButtonsElement.appendChild(button);
 
-		//saves scores to array - probably useless, did this just to check
+		//saves scores to array - probably useless, did this just to check - need to define out of scope
 		/*allArmsScores.push(answer.armsScore);
 		console.log(allArmsScores);*/
 	})
@@ -96,12 +97,13 @@ function resetState() {
 
 function selectAnswer(e) {
 	//which button user selected
-	const selectedButton = e.target;
+	const selectedArea = e.target;
 	//assigns id according to score
-	const scoreX = selectedButton.id;
-	console.log(scoreX);
+	score = selectedArea.id;
+
+	console.log(score);
 	//probably useless code?
-	const correct = selectedButton.dataset.correct;
+	// const correct = selectedButton.dataset.correct;
 	//set body status class
 	// setStatusClass(document.body)
 	answerBoxesElement.classList.remove('hide');
@@ -122,11 +124,11 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" height="150">', armsScore: 1 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" height="150">', armsScore: 3 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" height="150">', armsScore: 4 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150">', armsScore: 1 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 3 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 4 },
 
 	]
 },
