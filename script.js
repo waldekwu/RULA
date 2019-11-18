@@ -63,28 +63,29 @@ function setNextQuestion() {
 }
 //generates questions using questions array
 function showQuestion(question) {
+
+
 	//sets the question
 	titleElement.innerText = question.title;
 	questionElement.innerText = question.question;
 	question.answers.forEach(answer => {
+
 		//creates buttons
-		const button = document.createElement('button');
+		const button = document.createElement('span');
 		//sets text to buttons
 		button.innerHTML = answer.text;
 		//adds classes to buttons
-		button.classList.add('btn', 'quiz-zone', 'btn-group-toggle');
+		button.classList.add('btn', 'quiz-zone');
 		//adds id to buttons according to their armsScore
 		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
 
-
-		var input = document.createElement("input");
+		var input = document.createElement('input');
 		input.type = "radio";
 		input.name = "radio";
-		input.className = "css-class-name"; // set the CSS class
+		input.className = "radio"; // set the CSS class
 		button.appendChild(input);
-		button.onclick = selectRadio;
-
+		button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
 
 		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
@@ -97,18 +98,18 @@ function showQuestion(question) {
 	})
 }
 
-	function selectRadio() {
-		$('.css-class-name').attr('checked', true);	}
+function selectRadio() {
+	$('.css-class-name').attr('checked', true);	}
 
-function resetState() {
-	nextBtn.classList.add('hide');
-	answerBoxesElement.classList.add('hide');
-	while (answerButtonsElement.firstChild) {
-		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+	function resetState() {
+		nextBtn.classList.add('hide');
+		answerBoxesElement.classList.add('hide');
+		while (answerButtonsElement.firstChild) {
+			answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+		}
 	}
-}
 
-function selectAnswer(e) {
+	function selectAnswer(e) {
 	//which button user selected
 	const selectedArea = e.target;
 	//assigns id according to score

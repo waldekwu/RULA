@@ -6,12 +6,27 @@
 	margin: 2px;
 }
 
-/*.quiz-zone:hover {
+.quiz-zone:hover {
 	-webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	-moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	-o-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
-}*/
+}
+
+
+.radio {
+
+  height: 3vh;
+  width: 3vh;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+	  display: flex;
+  justify-content: flex-end;
+}
 
 .btn-grid {
 	display: grid;
@@ -28,9 +43,6 @@
 h5 {
 	margin-top: 10px;
 }
-
-
-
 /*
 .stretch box to two columns {
 	grid-column-start: 1;
