@@ -76,6 +76,16 @@ function showQuestion(question) {
 		//adds id to buttons according to their armsScore
 		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
+
+
+		var input = document.createElement("input");
+		input.type = "radio";
+		input.name = "radio";
+		input.className = "css-class-name"; // set the CSS class
+		button.appendChild(input);
+		button.onclick = selectRadio;
+
+
 		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
 		//appends button to the 'answer-buttons' element
@@ -86,6 +96,9 @@ function showQuestion(question) {
 		console.log(allArmsScores);*/
 	})
 }
+
+	function selectRadio() {
+		$('.css-class-name').attr('checked', true);	}
 
 function resetState() {
 	nextBtn.classList.add('hide');
@@ -112,7 +125,7 @@ function selectAnswer(e) {
 	nextBtn.classList.add('animated', 'fadeIn');
 	if (currentQuestionIndex.length > currentQuestionIndex) {
 		//end of questions
-		 nextBtn.classList.add('hide');
+		nextBtn.classList.add('hide');
 	} else if (currentQuestionIndex >= 1) {
 		document.getElementById("checkbox").innerHTML = "";
 	}
