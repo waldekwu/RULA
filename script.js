@@ -138,7 +138,7 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150">', armsScore: 1 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
 	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
 	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
 	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 3 },

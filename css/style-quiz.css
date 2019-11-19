@@ -14,19 +14,7 @@
 }
 
 
-.radio {
 
-  height: 3vh;
-  width: 3vh;
-  background-color: #eee;
-  display: flex;
-  justify-content: center;
-}
-
-.img {
-	  display: flex;
-  justify-content: flex-end;
-}
 
 .btn-grid {
 	display: grid;
@@ -42,6 +30,28 @@
 
 h5 {
 	margin-top: 10px;
+}
+
+.quiz-zone {
+	display: flex;
+	align-items: center;
+  justify-content: flex-start;
+	/*flex-direction: row-reverse;*/
+
+}
+
+.radio { 
+  	height: 3vh;
+  	width: 3vh;
+  	display: flex;
+  	order: 1;
+  	margin: 0 80px 0 20px;
+
+}
+.img {
+  	display: flex;
+  	order: 2;
+
 }
 /*
 .stretch box to two columns {
