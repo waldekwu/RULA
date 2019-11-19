@@ -8,7 +8,7 @@ const answerBoxesElement = document.getElementById('checkbox');
 
 
 let currentQuestionIndex;
-let score = 0;
+let checkId = 0;
 // let totalArmsScore = 0;
 // let allArmsScores = [];
 
@@ -64,7 +64,6 @@ function setNextQuestion() {
 //generates questions using questions array
 function showQuestion(question) {
 
-
 	//sets the question
 	titleElement.innerText = question.title;
 	questionElement.innerText = question.question;
@@ -91,15 +90,14 @@ function showQuestion(question) {
 		button.addEventListener('click' , selectAnswer);
 		//appends button to the 'answer-buttons' element
 		answerButtonsElement.appendChild(button);
-
+		// button.onclick = checkRadio();
 		//saves scores to array - probably useless, did this just to check - need to define out of scope
 		/*allArmsScores.push(answer.armsScore);
 		console.log(allArmsScores);*/
 	})
+	checkRadio();
+	
 }
-
-function selectRadio() {
-	$('.css-class-name').attr('checked', true);	}
 
 	function resetState() {
 		nextBtn.classList.add('hide');
@@ -113,9 +111,15 @@ function selectRadio() {
 	//which button user selected
 	const selectedArea = e.target;
 	//assigns id according to score
-	score = selectedArea.id;
+	checkId = selectedArea.id;
+	// const radioValue = document.getElementById(('radio')+score).value;
 
-	console.log(score);
+	// console.log(radioValue);
+	// console.log(score);
+
+	if (document.getElementById(('radio')+checkId).value === checkId) {
+		document.getElementById('radio'+checkId).setAttribute('checked', true);
+	}
 	//probably useless code?
 	// const correct = selectedButton.dataset.correct;
 	//set body status class
@@ -130,7 +134,17 @@ function selectRadio() {
 	} else if (currentQuestionIndex >= 1) {
 		document.getElementById("checkbox").innerHTML = "";
 	}
-}
+	}
+
+	function checkRadio() {
+		let inputClass = document.getElementsByClassName('radio');
+		for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
+			inputClass[i].setAttribute("id", "radio"+[i+1]);
+			inputClass[i].setAttribute("value", [i+1]);
+		}
+		// document.querySelector('.radio').setAttribute('checked', true);
+	}
+
 
 const questions = [
 {
@@ -140,9 +154,9 @@ const questions = [
 
 	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
 	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 3 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 4 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 3 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 4 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="5" class="img" height="150">', armsScore: 5 },
 
 	]
 },
