@@ -83,6 +83,7 @@ function showQuestion(question) {
 		input.type = "radio";
 		input.name = "radio";
 		input.className = "radio"; // set the CSS class
+		input.vaue = "0";
 		button.appendChild(input);
 		// button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
 
@@ -95,7 +96,7 @@ function showQuestion(question) {
 		/*allArmsScores.push(answer.armsScore);
 		console.log(allArmsScores);*/
 	})
-	checkRadio();
+	setRadioId();
 	
 }
 
@@ -116,10 +117,12 @@ function showQuestion(question) {
 
 	// console.log(radioValue);
 	// console.log(score);
-
+	try{
 	if (document.getElementById(('radio')+checkId).value === checkId) {
 		document.getElementById('radio'+checkId).setAttribute('checked', true);
-	}
+	} }catch(e){
+//tofix
+}
 	//probably useless code?
 	// const correct = selectedButton.dataset.correct;
 	//set body status class
@@ -136,13 +139,12 @@ function showQuestion(question) {
 	}
 	}
 
-	function checkRadio() {
+	function setRadioId() {
 		let inputClass = document.getElementsByClassName('radio');
 		for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
 			inputClass[i].setAttribute("id", "radio"+[i+1]);
 			inputClass[i].setAttribute("value", [i+1]);
-		}
-		// document.querySelector('.radio').setAttribute('checked', true);
+		}	
 	}
 
 
@@ -166,9 +168,9 @@ const questions = [
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">60 to 100 degrees</p>', armsScore: 10 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">0 to 60 degrees</p>', armsScore: 20 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">100 degrees or more</p>', armsScore: 20 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="1">60 to 100 degrees</p>', armsScore: 1 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="2">0 to 60 degrees</p>', armsScore: 2 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="3">100 degrees or more</p>', armsScore: 3 },
 
 	]
 },
