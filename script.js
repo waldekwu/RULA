@@ -164,10 +164,10 @@ const questions = [
 	question: 'Locate Wrist Position:',
 	answers: [
 
-	{ text: '0 degrees', armsScore: 10 },
-	{ text: '-15 to 15 degrees', armsScore: 20 },
-	{ text: '15 degrees or more', armsScore: 20 },
-	{ text: '-15 degrees or more', armsScore: 30 },
+	{ text: '<p class="questionTxt">0 degrees</p>', armsScore: 10 },
+	{ text: '<p class="questionTxt">-15 to 15 degrees</p>', armsScore: 20 },
+	{ text: '<p class="questionTxt">15 degrees or more</p>', armsScore: 20 },
+	{ text: '<p class="questionTxt">-15 degrees or more</p>', armsScore: 30 },
 
 	]
 }
