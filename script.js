@@ -85,7 +85,7 @@ function showQuestion(question) {
 		input.name = "radio";
 		input.className = "radio"; // set the CSS class
 		button.appendChild(input);
-		button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
+		// button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
 
 		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
