@@ -37,13 +37,11 @@ h5 {
 	display: flex;
 	align-items: center;
   justify-content: flex-start;
-	/*flex-direction: row-reverse;*/
-
 }
 
 .radio { 
-  	height: 3vh;
-  	width: 3vh;
+  	height: 2vh;
+  	width: 2vh;
   	display: flex;
   	order: 1;
   	margin: 0 80px 0 20px;
