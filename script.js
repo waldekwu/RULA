@@ -152,9 +152,9 @@ const questions = [
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
-	{ text: '60 to 100 degrees', armsScore: 10 },
-	{ text: '0 to 60 degrees', armsScore: 20 },
-	{ text: '100 degrees or more', armsScore: 20 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">60 to 100 degrees</p>', armsScore: 10 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">0 to 60 degrees</p>', armsScore: 20 },
+	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt">100 degrees or more</p>', armsScore: 20 },
 
 	]
 },

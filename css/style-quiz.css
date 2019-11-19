@@ -51,8 +51,14 @@ h5 {
 .img {
   	display: flex;
   	order: 2;
+  }
 
-}
+.questionTxt {
+ 	display: flex;
+  	order: 2;
+ }
+
+
 /*
 .stretch box to two columns {
 	grid-column-start: 1;
