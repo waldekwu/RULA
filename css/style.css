@@ -90,12 +90,15 @@ p {
     animation-delay: 4s;
 }
 
-.footer{
+.footer {
     background: #FFFFFF; 
     display: flex;
     justify-content: center;
     font-size: 0.9em;
     margin: auto auto 0 auto;
+}
+.footerTxt {
+    text-align: center;
 }
 @media screen and (max-width: 600px) {
   .button-text {
