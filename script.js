@@ -72,19 +72,28 @@ function showQuestion(question) {
 		//creates buttons
 		const button = document.createElement('span');
 		//sets text to buttons
-		button.innerHTML = answer.text;
+		// button.innerHTML = answer.text;
 		//adds classes to buttons
 		button.classList.add('btn', 'quiz-zone');
 		//adds id to buttons according to their armsScore
 		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
 
-		var input = document.createElement('input');
+		let input = document.createElement('input');
 		input.type = "radio";
 		input.name = "radio";
 		input.className = "radio"; // set the CSS class
-		input.vaue = "0";
+		input.setAttribute("value", answer.armsScore);
 		button.appendChild(input);
+
+		let label = document.createElement('label');
+		label.setAttribute("for", "radioImg");
+		label.classList.add('radioImg', 'img');
+		label.setAttribute("value", answer.armsScore);
+		
+		button.appendChild(label);
+		label.innerHTML = answer.text;
+
 		// button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
 
 		//adds click eventlistener to each button
@@ -97,32 +106,40 @@ function showQuestion(question) {
 		console.log(allArmsScores);*/
 	})
 	setRadioId();
-	
 }
 
-	function resetState() {
-		nextBtn.classList.add('hide');
-		answerBoxesElement.classList.add('hide');
-		while (answerButtonsElement.firstChild) {
-			answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-		}
+function resetState() {
+	nextBtn.classList.add('hide');
+	answerBoxesElement.classList.add('hide');
+	while (answerButtonsElement.firstChild) {
+		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
 	}
-
-	function selectAnswer(e) {
-	//which button user selected
-	const selectedArea = e.target;
-	//assigns id according to score
-	checkId = selectedArea.id;
-	// const radioValue = document.getElementById(('radio')+score).value;
-
-	// console.log(radioValue);
-	// console.log(score);
-	try{
-	if (document.getElementById(('radio')+checkId).value === checkId) {
-		document.getElementById('radio'+checkId).setAttribute('checked', true);
-	} }catch(e){
-//tofix
 }
+
+function selectAnswer(elem) {
+	//which button user selected
+	const selectedArea = elem.target;
+	//assigns id according to score
+	// checkId = selectedArea.value;
+	console.log(selectedArea.value);
+	// const radioValue = document.getElementById(('radio')+score).value;
+	// let radioValue = document.getElementById(('radio')+checkId).value;
+	// console.log(radioValue);
+	// console.log(checkId);
+
+	// if (document.getElementById(('radio')+checkId).value === checkId) {
+			 // for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
+			 // 	document.getElementById('radio'+[i+1]).setAttribute('checked', false);
+			 // }
+
+			//  for (var i = document.getElementById('answer-buttons').childNodes.length - 1; i >= 0; i--) {
+			//  	document.getElementById('radio'+[i+1]).setAttribute('checked', false);
+			//  }
+
+			// // console.log(document.getElementById('radio'+checkId));
+
+			//  document.getElementById('radio'+checkId).setAttribute('checked', true);
+			// } 
 	//probably useless code?
 	// const correct = selectedButton.dataset.correct;
 	//set body status class
@@ -135,17 +152,20 @@ function showQuestion(question) {
 		//end of questions
 		nextBtn.classList.add('hide');
 	} else if (currentQuestionIndex >= 1) {
+
 		document.getElementById("checkbox").innerHTML = "";
 	}
-	}
+}
 
-	function setRadioId() {
-		let inputClass = document.getElementsByClassName('radio');
-		for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
-			inputClass[i].setAttribute("id", "radio"+[i+1]);
-			inputClass[i].setAttribute("value", [i+1]);
-		}	
-	}
+function setRadioId() {
+	let inputClass = document.getElementsByClassName('radio');
+	let labelFor = document.getElementsByClassName('radioImg');
+	for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
+		inputClass[i].setAttribute("id", "radio"+[i+1]);
+		//inputClass[i].setAttribute("value", [i+1]);
+		labelFor[i].setAttribute("for", "radio"+[i+1]);
+	}	
+}
 
 
 const questions = [
@@ -154,11 +174,11 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 3 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 4 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="5" class="img" height="150">', armsScore: 5 },
+	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
+	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
+	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 2 },
+	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 3 },
+	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="5" class="img" height="150">', armsScore: 4 },
 
 	]
 },
