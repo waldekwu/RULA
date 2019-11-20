@@ -83,13 +83,13 @@ function showQuestion(question) {
 		input.type = "radio";
 		input.name = "radio";
 		input.className = "radio"; // set the CSS class
-		input.setAttribute("value", answer.armsScore);
+		input.setAttribute("value", answer.armsScore); 
 		button.appendChild(input);
 
 		let label = document.createElement('label');
 		label.setAttribute("for", "radioImg");
 		label.classList.add('radioImg', 'img');
-		label.setAttribute("value", answer.armsScore);
+		label.setAttribute("value", answer.armsScore); //if changed, radios will stop working
 		
 		button.appendChild(label);
 		label.innerHTML = answer.text;
@@ -126,7 +126,6 @@ function selectAnswer(elem) {
 	// let radioValue = document.getElementById(('radio')+checkId).value;
 	// console.log(radioValue);
 	// console.log(checkId);
-
 	// if (document.getElementById(('radio')+checkId).value === checkId) {
 			 // for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
 			 // 	document.getElementById('radio'+[i+1]).setAttribute('checked', false);
