@@ -95,6 +95,7 @@ function showQuestion(question) {
 		label.innerHTML = answer.text;
 
 		button.addEventListener('click' , selectAnswer);
+		answerBoxesElement.addEventListener('click' , selectCheckbox);
 		//appends button to the 'answer-buttons' element
 		answerButtonsElement.appendChild(button);
 
@@ -155,6 +156,11 @@ function selectAnswer(elem) {
 	}
 }
 }
+
+	function selectCheckbox(event) {
+	console.log(event.target.value);
+	}
+
 
 function setRadioId() {
 	let inputClass = document.getElementsByClassName('radio');
