@@ -116,8 +116,8 @@ function showQuestion(question) {
 
 function resetState() {
 	nextBtn.classList.add('hide');
-
 	answerBoxesElement.classList.add('hide');
+
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
 	}
@@ -157,19 +157,20 @@ function selectAnswer(elem) {
 	// const correct = selectedButton.dataset.correct;
 	//set body status class
 	// setStatusClass(document.body)
-	answerBoxesElement.classList.remove('hide');
+	if (isNaN(selectedAreaScore) === false && selectedAreaScore != 0) {
 	answerBoxesElement.classList.add('animated', 'fadeIn');
 	nextBtn.classList.remove('hide');
 	nextBtn.classList.add('animated', 'fadeIn');
-	
+
+
 	if (currentQuestionIndex.length < currentQuestionIndex) {
 		//end of questions
 		nextBtn.classList.add('hide');
 	} 
-	if (currentQuestionIndex >= 1) {
-
-		document.getElementById("checkbox").innerHTML = "";
+	if (currentQuestionIndex === 0) {
+		answerBoxesElement.classList.remove('hide');
 	}
+}
 }
 
 function setRadioId() {
