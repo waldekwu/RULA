@@ -5,7 +5,7 @@ const questionElement = document.getElementById('question');
 const titleElement = document.getElementById('title');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const answerBoxesElement = document.getElementById('checkbox');
-
+const optionalQuestionElement = document.getElementById('optional-question');
 
 let currentQuestionIndex;
 let checkId = 0;
@@ -51,15 +51,17 @@ if ($('.fadeOutRight')[0]) {
 			card.classList.add('animated','fadeInLeft');
 
 			startBtn.classList.add('hide');
+
 			// nextBtn.classList.remove('hide');
 			questionContainerElement.classList.remove('hide');
 			showQuestion(questions[currentQuestionIndex]);
+			showOptionalQuestion(questions[currentQuestionIndex]);
 		}, delayInMilliseconds);
 	}
 }
 
 function setNextQuestion() {
-	
+	startBtn.classList.add('hide');
 	resetState();
 	if (currentQuestionIndex >= 0) {
 		console.log(total += selectedAreaScore);
@@ -103,12 +105,38 @@ function showQuestion(question) {
 	setRadioId();
 }
 
+function showOptionalQuestion(optionalQuestion) {
+
+	if (optionalQuestion.optionalAnswers) {
+
+	optionalQuestionElement.innerText = optionalQuestion.optional;
+
+	optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+
+		const checkboxDiv = document.createElement('div');
+		checkboxDiv.classList.add('custom-control', 'custom-checkbox');
+		answerBoxesElement.appendChild(checkboxDiv);
+		checkboxDiv.innerHTML = optionalAnswer.field;
+	})
+} else {
+	optionalQuestionElement.innerText = "";
+} 
+}
+
+
+
+
 function resetState() {
 	nextBtn.classList.add('hide');
-	answerBoxesElement.classList.add('hide');
+	document.getElementById('optional-fields').classList.add('hide');
+	//answerBoxesElement.classList.add('hide');
 
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+	}
+	while (answerBoxesElement.firstChild) {
+		answerBoxesElement.removeChild(answerBoxesElement.firstChild);
+
 	}
 }
 
@@ -143,18 +171,20 @@ function selectAnswer(elem) {
 	// setStatusClass(document.body)
 	if (isNaN(selectedAreaScore) === false && selectedAreaScore != 0) {
 
-		answerBoxesElement.classList.add('animated', 'fadeIn');
+		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
 		nextBtn.classList.remove('hide');
+		document.getElementById('optional-fields').classList.remove('hide');
 		nextBtn.classList.add('animated', 'fadeIn');
 
-		if (currentQuestionIndex.length < currentQuestionIndex) {
+		 
+	// if (currentQuestionIndex === 0) {
+	// 	document.getElementById('optional-fields').classList.remove('hide');
+	// }
+}
+if (currentQuestionIndex.length > currentQuestionIndex) {
 		//end of questions
 		nextBtn.classList.add('hide');
-	} 
-	if (currentQuestionIndex === 0) {
-		answerBoxesElement.classList.remove('hide');
 	}
-}
 }
 
 	function selectCheckbox(event) {
@@ -177,13 +207,23 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
-	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 2 },
-	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 3 },
-	{ text: document.getElementsByClassName("radioImg").innerHTML='<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="5" class="img" height="150">', armsScore: 4 },
+	{ text: '<img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" id="1" class="img" height="150px">', armsScore: 1 },
+	{ text: '<img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" id="2" class="img" height="150">', armsScore: 2 },
+	{ text: '<img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" id="3" class="img" height="150">', armsScore: 2 },
+	{ text: '<img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" id="4" class="img" height="150">', armsScore: 3 },
+	{ text: '<img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" id="5" class="img" height="150">', armsScore: 4 },
+
+	],
+	optional: 'Also tick the following boxes if appropriate:',
+	optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raisedd.</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck3" value="-1"><label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>'},
+	
 
 	]
+	
 },
 
 {
@@ -191,9 +231,17 @@ const questions = [
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="1">60 to 100 degrees</p>', armsScore: 1 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="2">0 to 60 degrees</p>', armsScore: 2 },
-	{ text: document.getElementsByClassName("btn").innerHTML='<p class="questionTxt" id="3">100 degrees or more</p>', armsScore: 3 },
+	{ text: '<p class="questionTxt" id="1">60 to 100 degrees</p>'},
+	{ text: '<p class="questionTxt" id="2">0 to 60 degrees</p>', armsScore: 2 },
+	{ text: '<p class="questionTxt" id="3">100 degrees or more</p>', armsScore: 3 },
+
+	],
+		optional: "Also tick the following box if appropriate:",
+		optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1">Is either arm working across midline or out to side of body?</label>'},
+
+	
 
 	]
 },
