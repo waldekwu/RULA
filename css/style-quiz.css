@@ -29,8 +29,12 @@
 	background-color: green;
 }
 
-h5 {
-	margin-top: 10px;
+h3 {
+	font-weight: 700;
+}
+
+h4 {
+	margin-top: 15px;
 }
 
 .quiz-zone {
@@ -88,6 +92,13 @@ h5 {
 	}
 
 }
+.checkbox {
+	display: inline-block;
+	font-weight: 700;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
 /*
 .stretch box to two columns {
 	grid-column-start: 1;

@@ -9,6 +9,8 @@ const answerBoxesElement = document.getElementById('checkbox');
 
 let currentQuestionIndex;
 let checkId = 0;
+let total = 0;
+let selectedAreaScore = 0;
 // let totalArmsScore = 0;
 // let allArmsScores = [];
 
@@ -59,6 +61,10 @@ if ($('.fadeOutRight')[0]) {
 function setNextQuestion() {
 	
 	resetState();
+	if (currentQuestionIndex >= 0) {
+		console.log(total += selectedAreaScore);
+	}
+
 	//showQuestion(currentQuestionIndex);
 }
 //generates questions using questions array
@@ -110,6 +116,7 @@ function showQuestion(question) {
 
 function resetState() {
 	nextBtn.classList.add('hide');
+
 	answerBoxesElement.classList.add('hide');
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -118,10 +125,17 @@ function resetState() {
 
 function selectAnswer(elem) {
 	//which button user selected
-	const selectedArea = elem.target;
+	
+	selectedAreaScore = parseInt(elem.target.value);
+
+	if (isNaN(selectedAreaScore) === true) {
+		selectedAreaScore = 0;
+	}
 	//assigns id according to score
 	// checkId = selectedArea.value;
-	console.log(selectedArea.value);
+	// total = total + selectedArea;
+	 console.log(selectedAreaScore);
+
 	// const radioValue = document.getElementById(('radio')+score).value;
 	// let radioValue = document.getElementById(('radio')+checkId).value;
 	// console.log(radioValue);
@@ -147,10 +161,12 @@ function selectAnswer(elem) {
 	answerBoxesElement.classList.add('animated', 'fadeIn');
 	nextBtn.classList.remove('hide');
 	nextBtn.classList.add('animated', 'fadeIn');
-	if (currentQuestionIndex.length > currentQuestionIndex) {
+	
+	if (currentQuestionIndex.length < currentQuestionIndex) {
 		//end of questions
 		nextBtn.classList.add('hide');
-	} else if (currentQuestionIndex >= 1) {
+	} 
+	if (currentQuestionIndex >= 1) {
 
 		document.getElementById("checkbox").innerHTML = "";
 	}
