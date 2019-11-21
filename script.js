@@ -75,13 +75,8 @@ function showQuestion(question) {
 	questionElement.innerText = question.question;
 	question.answers.forEach(answer => {
 
-		//creates buttons
 		const button = document.createElement('span');
-		//sets text to buttons
-		// button.innerHTML = answer.text;
-		//adds classes to buttons
 		button.classList.add('btn', 'quiz-zone');
-		//adds id to buttons according to their armsScore
 		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
 
@@ -96,20 +91,13 @@ function showQuestion(question) {
 		label.setAttribute("for", "radioImg");
 		label.classList.add('radioImg', 'img');
 		label.setAttribute("value", answer.armsScore); //if changed, radios will stop working
-		
 		button.appendChild(label);
 		label.innerHTML = answer.text;
 
-		// button.onclick = button.querySelector('input.radio').setAttribute('checked', false);
-
-		//adds click eventlistener to each button
 		button.addEventListener('click' , selectAnswer);
 		//appends button to the 'answer-buttons' element
 		answerButtonsElement.appendChild(button);
-		// button.onclick = checkRadio();
-		//saves scores to array - probably useless, did this just to check - need to define out of scope
-		/*allArmsScores.push(answer.armsScore);
-		console.log(allArmsScores);*/
+
 	})
 	setRadioId();
 }
@@ -124,17 +112,12 @@ function resetState() {
 }
 
 function selectAnswer(elem) {
-	//which button user selected
-	
 	selectedAreaScore = parseInt(elem.target.value);
 
 	if (isNaN(selectedAreaScore) === true) {
 		selectedAreaScore = 0;
 	}
-	//assigns id according to score
-	// checkId = selectedArea.value;
-	// total = total + selectedArea;
-	 console.log(selectedAreaScore);
+	console.log(selectedAreaScore);
 
 	// const radioValue = document.getElementById(('radio')+score).value;
 	// let radioValue = document.getElementById(('radio')+checkId).value;
@@ -158,12 +141,12 @@ function selectAnswer(elem) {
 	//set body status class
 	// setStatusClass(document.body)
 	if (isNaN(selectedAreaScore) === false && selectedAreaScore != 0) {
-	answerBoxesElement.classList.add('animated', 'fadeIn');
-	nextBtn.classList.remove('hide');
-	nextBtn.classList.add('animated', 'fadeIn');
 
+		answerBoxesElement.classList.add('animated', 'fadeIn');
+		nextBtn.classList.remove('hide');
+		nextBtn.classList.add('animated', 'fadeIn');
 
-	if (currentQuestionIndex.length < currentQuestionIndex) {
+		if (currentQuestionIndex.length < currentQuestionIndex) {
 		//end of questions
 		nextBtn.classList.add('hide');
 	} 
@@ -178,11 +161,9 @@ function setRadioId() {
 	let labelFor = document.getElementsByClassName('radioImg');
 	for (var i = 0; i < document.getElementById('answer-buttons').childNodes.length; i++) {
 		inputClass[i].setAttribute("id", "radio"+[i+1]);
-		//inputClass[i].setAttribute("value", [i+1]);
 		labelFor[i].setAttribute("for", "radio"+[i+1]);
 	}	
 }
-
 
 const questions = [
 {
@@ -225,11 +206,5 @@ const questions = [
 }
 
 ]
-//accesses armsScore and adds it to total - spent hours trying to access armsScore value lol
-// function setTotalArmsScore() {
-	
+
 // 	let setArmsScore = questions[0].answers[1]['armsScore'];
-// 	totalArmsScore += setArmsScore;
-// 	console.log(totalArmsScore);
-// }
-// setTotalArmsScore();
