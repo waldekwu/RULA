@@ -71,8 +71,8 @@ function setNextQuestion() {
 }
 //generates questions using questions array
 function showQuestion(question) {
-
 	//sets the question
+		
 	titleElement.innerText = question.title;
 	questionElement.innerText = question.question;
 	question.answers.forEach(answer => {
@@ -103,6 +103,7 @@ function showQuestion(question) {
 
 	})
 	setRadioId();
+
 }
 
 function showOptionalQuestion(optionalQuestion) {
@@ -120,7 +121,8 @@ function showOptionalQuestion(optionalQuestion) {
 	})
 } else {
 	optionalQuestionElement.innerText = "";
-} 
+}
+
 }
 
 
@@ -129,6 +131,7 @@ function showOptionalQuestion(optionalQuestion) {
 function resetState() {
 	nextBtn.classList.add('hide');
 	document.getElementById('optional-fields').classList.add('hide');
+	document.getElementById('question-container').classList.add('hide');
 	//answerBoxesElement.classList.add('hide');
 
 	while (answerButtonsElement.firstChild) {
@@ -172,7 +175,14 @@ function selectAnswer(elem) {
 	if (isNaN(selectedAreaScore) === false && selectedAreaScore != 0) {
 
 		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
-		nextBtn.classList.remove('hide');
+
+		console.log(currentQuestionIndex.length)
+		console.log(currentQuestionIndex)
+		if (currentQuestionIndex >= 2) {
+		//end of questions
+		nextBtn.classList.add('hide');
+	} else {
+		nextBtn.classList.remove('hide'); }
 		document.getElementById('optional-fields').classList.remove('hide');
 		nextBtn.classList.add('animated', 'fadeIn');
 
@@ -181,10 +191,7 @@ function selectAnswer(elem) {
 	// 	document.getElementById('optional-fields').classList.remove('hide');
 	// }
 }
-if (currentQuestionIndex.length > currentQuestionIndex) {
-		//end of questions
-		nextBtn.classList.add('hide');
-	}
+
 }
 
 	function selectCheckbox(event) {
@@ -231,15 +238,15 @@ const questions = [
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
-	{ text: '<p class="questionTxt" id="1">60 to 100 degrees</p>'},
-	{ text: '<p class="questionTxt" id="2">0 to 60 degrees</p>', armsScore: 2 },
-	{ text: '<p class="questionTxt" id="3">100 degrees or more</p>', armsScore: 3 },
+	{ text: '<img src="./media/Q2/manikin_lowerarm1.jpg" alt="manikin lowerarm 60 to 100 degrees" id="1" class="img" height="150px">', armsScore: 2 },
+	{ text: '<img src="./media/Q2/manikin_lowerarm2.jpg" alt="manikin lowerarm 0 to 60 degrees" id="2" class="img" height="150px">', armsScore: 2 },
+	{ text: '<img src="./media/Q2/manikin_lowerarm3.jpg" alt="manikin lowerarm 100 degrees or more" id="3" class="img" height="150px">', armsScore: 3 },
 
 	],
 		optional: "Also tick the following box if appropriate:",
 		optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1">Is either arm working across midline or out to side of body?</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1"><img src="./media/Q2/manikin_lowerarm4.jpg" alt="lowerarm midline or out to side" id="3" class="img" height="150px">Is either arm working across midline or out to side of body?</label>'},
 
 	
 
@@ -247,16 +254,24 @@ const questions = [
 },
 
 {
-	title: 'Full Upper Body Assessment',
-	question: 'Locate Wrist Position:',
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '3. Locate Wrist Position:',
 	answers: [
 
-	{ text: '<p class="questionTxt">0 degrees</p>', armsScore: 10 },
-	{ text: '<p class="questionTxt">-15 to 15 degrees</p>', armsScore: 20 },
-	{ text: '<p class="questionTxt">15 degrees or more</p>', armsScore: 20 },
-	{ text: '<p class="questionTxt">-15 degrees or more</p>', armsScore: 30 },
+	{ text: '<img src="./media/Q3/manikin_wrist1.jpg" alt="wrist 0 degrees" id="1" class="img">', armsScore: 2 },
+	{ text: '<img src="./media/Q3/manikin_wrist2.jpg" alt="wrist 15 down to 15 up degrees" id="2" class="img">', armsScore: 2 },
+	{ text: '<img src="./media/Q3/manikin_wrist3.jpg" alt="wrist 15 degrees down" id="3" class="img">', armsScore: 2 },
+	{ text: '<img src="./media/Q3/manikin_wrist4.jpg" alt="wrist 15 degrees up" id="4" class="img">', armsScore: 2 },
+
+	],
+
+optional: "Also tick the following box if appropriate:",
+		optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1"><img src="./media/Q3/manikin_wrist5.jpg" alt="lowerarm midline or out to side" id="5" class="img" height="150px">Is wrist bent away from midline?</label>'},
 
 	]
+
 }
 
 ]
