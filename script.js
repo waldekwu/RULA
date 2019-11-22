@@ -224,7 +224,7 @@ const questions = [
 	optional: 'Also tick the following boxes if appropriate:',
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raisedd.</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>'},
 	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>'},
 	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck3" value="-1"><label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>'},
 	
