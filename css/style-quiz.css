@@ -1,100 +1,106 @@
 .quiz-zone {
-	color:black;
+	color:grey;
 	border-radius:4px;
 	border:1px solid #bbb;
+
 	transition: all 0.3s linear;
-	margin: 2px;
+	margin-right: 10%;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content : space-evenly;
+    align-content   : center;
+	
 }
 
-/*.quiz-zone:hover {
+.quiz-zone:hover {
 	-webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	-moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	-o-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
 	box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
-	}*/
+}
 
+.btn-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	margin-top: 20px;
+}
+
+
+.custom-control-input:hover {
+	display: grid;
+	background-color: green;
+}
+
+h3 {
+	font-weight: 700;
+}
+
+h4 {
+	margin-top: 15px;
+}
+
+.radio { 
+	height: 2vh;
+	width: 2vh;
+	display: flex;
+	order: 1;
+	justify-content: flex-start;
+
+}
+.img {
+	display: flex;
+	order: 2;
+	margin: 10px 0 10px 0;
+
+
+}
+
+.questionTxt {
+	display: flex;
+	order: 2;
+}
+
+@media screen and (max-width: 575px) {
 	.btn-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		margin-top: 20px;
-	}
-	.custom-control-input:hover {
-		display: grid;
-		background-color: green;
-	}
-
-	h3 {
-		font-weight: 700;
-	}
-
-	h4 {
-		margin-top: 15px;
-	}
-
-	.quiz-zone {
 		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
+		flex-direction: column;
 
-	.radio { 
-		height: 2vh;
-		width: 2vh;
+	}
+	.btn {
+		/*display: block;*/
+
+	}
+	.radio {
 		display: flex;
 		order: 1;
-		margin: 0 80px 0 20px;
-
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		/*margin: 0 10px 0 auto;*/
 	}
 	.img {
 		display: flex;
 		order: 2;
-		margin: 10px 0 10px 0;
+		margin-right: 1vh;
+
+/*		max-width: 50%;
+		max-height: 50%;*/
+		width: auto;
+		height: auto;
 	}
 
-	.questionTxt {
-		display: flex;
-		order: 2;
-	}
-
-	@media screen and (max-width: 575px) {
-		.btn-grid {
-			display: block;
-
-		}
-		.btn {
-			/*display: block;*/
-
-		}
-		.radio {
-			display: flex;
-			order: 1;
-			max-width: 100%;
-			max-height: 100%;
-			width: auto;
-			height: auto;
-			/*margin: 0 10px 0 auto;*/
-		}
-		.img {
-			display: flex;
-			order: 2;
-			margin-right: 1vh;
-
-			max-width: 50%;
-			max-height: 50%;
-			width: auto;
-			height: auto;
-		}
-
-	}
-	.checkbox {
-		display: inline-block;
-		font-weight: 700;
-		text-align: left;
-		margin-bottom: 15px;
-	}
+}
+.checkbox {
+	display: inline-block;
+	font-weight: 700;
+	text-align: left;
+	margin-bottom: 15px;
+}
 
 /*
 .stretch box to two columns {

@@ -78,7 +78,7 @@ function showQuestion(question) {
 	question.answers.forEach(answer => {
 
 		const button = document.createElement('span');
-		button.classList.add('btn', 'quiz-zone');
+		button.classList.add('btn','quiz-zone');
 		button.setAttribute("id", answer.armsScore);
 		button.setAttribute("id", answer.armsScore);
 
