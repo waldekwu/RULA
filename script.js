@@ -15,14 +15,15 @@ let selectedAreaScore = 0;
 let checkboxValuesSum = 0;
 let checkboxValues = [];
 
-let next;
-let prev;
-
+//q1
 let upperArmValue = 0;
 let armAdjValue = 0;
+//q2
 let lowerArmValue = 0;
 let lowerArmAdjValue = 0;
-
+//q3
+let wristValue = 0;
+let wristAdjValue = 0;
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -104,7 +105,7 @@ switch (currentQuestionIndex) {
   	armAdjValue = 0;
 
     upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-		//console.log(radioValue);
+
 		$('input[name="customCheck"]:checked').each(function() {
 			checkboxValues.push($(this).val());
 		});
@@ -118,8 +119,6 @@ switch (currentQuestionIndex) {
 
 		lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		//console.log(radioValue);
-
 		$('input[name="customCheck"]:checked').each(function() {
 			checkboxValues.push($(this).val());
 		});
@@ -130,10 +129,25 @@ switch (currentQuestionIndex) {
 		}
     break;
 
+      case 3:
+  		wristAdjValue = 0;
+
+		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		$('input[name="customCheck"]:checked').each(function() {
+			checkboxValues.push($(this).val());
+		});
+
+		for (let i = 0; i < checkboxValues.length; i++) {
+
+			wristAdjValue += parseInt(checkboxValues[i]);
+		}
+    break;
+
   default:
     console.log('zerrrooo');
 }
-	console.log(upperArmValue, armAdjValue, lowerArmValue, lowerArmAdjValue);
+	console.log(upperArmValue, armAdjValue, lowerArmValue, lowerArmAdjValue, wristValue, wristAdjValue);
 }
 //generates questions using questions array
 function showQuestion(question) {
@@ -170,19 +184,16 @@ function showOptionalQuestion(optionalQuestion) {
 		})
 	} else {
 		optionalQuestionElement.innerText = "";
+		//optionalQuestionElement.classList.add('hide');
 	}
 
 }
-
-
-
 
 function resetState() {
 	nextBtn.classList.add('hide');
 	prevBtn.classList.add('hide');
 	document.getElementById('optional-fields').classList.add('hide');
 	document.getElementById('question-container').classList.add('hide');
-	//answerBoxesElement.classList.add('hide');
 
 	while (answerButtonsElement.firstChild) {
 		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -208,7 +219,7 @@ function selectAnswer(elem) {
 		// console.log(currentQuestionIndex.length)
 		// console.log(currentQuestionIndex)
 
-		if (currentQuestionIndex >= 2) {
+		if (currentQuestionIndex >= 3) {
 		//end of questions
 		nextBtn.classList.add('hide');
 		prevBtn.classList.remove('hide');
@@ -235,11 +246,11 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q1/manikin_upperarm1.jpg" alt="manikin_upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q1/manikin_upperarm2.jpg" alt="manikin_upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q1/manikin_upperarm3.jpg" alt="manikin_upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q1/manikin_upperarm4.jpg" alt="manikin_upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio5"><label for="radio5" class="radioImg img"><img src="./media/Q1/manikin_upperarm5.jpg" alt="manikin_upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q1/upperarm2.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q1/upperarm3.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q1/upperarm4.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio5"><label for="radio5" class="radioImg img"><img src="./media/Q1/upperarm5.jpg" alt="upperarm" class="img"></label></span>'},
 
 	],
 	optional: 'Also tick the following boxes if appropriate:',
@@ -259,15 +270,15 @@ const questions = [
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q2/manikin_lowerarm1.jpg" alt="manikin lowerarm 60 to 100 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q2/manikin_lowerarm2.jpg" alt="manikin lowerarm 0 to 60 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q2/manikin_lowerarm3.jpg" alt="manikin lowerarm 100 degrees or more" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q2/lowerarm1.jpg" alt="manikin lowerarm 60 to 100 degrees" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q2/lowerarm2.jpg" alt="manikin lowerarm 0 to 60 degrees" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q2/lowerarm3.jpg" alt="manikin lowerarm 100 degrees or more" class="img"></label></span>'},
 
 	],
 	optional: "Also tick the following box if appropriate:",
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q2/manikin_lowerarm4.jpg" alt="lowerarm midline or out to side" class="img">Is either arm working across midline or out to side of body?</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q2/lowerarm4.jpg" alt="lowerarm midline or out to side" class="img">Is either arm working across midline or out to side of body?</label>'},
 
 
 
@@ -279,17 +290,17 @@ const questions = [
 	question: '3. Locate Wrist Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img" value="1"><img src="./media/Q3/manikin_wrist1.jpg" alt="wrist 0 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img" value="2"><img src="./media/Q3/manikin_wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img" value="2"><img src="./media/Q3/manikin_wrist3.jpg" alt="wrist 15 degrees down" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img" value="3"><img src="./media/Q3/manikin_wrist4.jpg" alt="wrist 15 degrees up" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q3/wrist1.jpg" alt="wrist 0 degrees" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q3/wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q3/wrist3.jpg" alt="wrist 15 degrees down" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q3/wrist4.jpg" alt="wrist 15 degrees up" class="img"></label></span>'},
 
 	],
 
 	optional: "Also tick the following box if appropriate:",
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1"><img src="./media/Q3/manikin_wrist5.jpg" alt="lowerarm midline or out to side" class="img">Is wrist bent away from midline?</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q3/wrist5.jpg" alt="lowerarm midline or out to side" class="img">Is wrist bent away from midline?</label>'},
 
 	]
 
@@ -300,19 +311,10 @@ const questions = [
 	question: '4. Wrist Twist:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img" value="1"><img src="./media/Q3/manikin_wrist1.jpg" alt="wrist 0 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img" value="2"><img src="./media/Q3/manikin_wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img" value="2"><img src="./media/Q3/manikin_wrist3.jpg" alt="wrist 15 degrees down" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img" value="3"><img src="./media/Q3/manikin_wrist4.jpg" alt="wrist 15 degrees up" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q4/wrist_twist1.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q4/wrist_twist2.jpg" alt="" class="img"></label></span>'},
 
 	],
-
-	optional: "Also tick the following box if appropriate:",
-	optionalAnswers: [
-
-	{ field: '<input type="checkbox" class="custom-control-input" id="customCheck1" value="12"><label class="custom-control-label" for="customCheck1"><img src="./media/Q3/manikin_wrist5.jpg" alt="lowerarm midline or out to side" class="img">Is wrist bent away from midline?</label>'},
-
-	]
 
 },
 
