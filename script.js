@@ -183,8 +183,8 @@ switch (currentQuestionIndex) {
 
   default:
     console.log('zerrrooo');
-}
-	console.log(upperArmValue, armAdjValue, lowerArmValue, lowerArmAdjValue, wristValue, wristAdjValue);
+}	totalA = (upperArmValue + armAdjValue).toString() + (lowerArmValue + lowerArmAdjValue).toString() + (wristValue + wristAdjValue).toString();
+	console.log(totalA);
 }
 //generates questions using questions array
 function showQuestion(question) {
