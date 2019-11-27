@@ -284,7 +284,7 @@ function selectAnswer(elem) {
 		// console.log(currentQuestionIndex.length)
 		// console.log(currentQuestionIndex)
 
-		if (currentQuestionIndex >= 5) {
+		if (currentQuestionIndex >= 3) {
 		//end of questions
 		nextBtn.classList.add('hide');
 		prevBtn.classList.remove('hide');
