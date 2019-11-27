@@ -16,7 +16,7 @@ let checkboxValuesSum = 0;
 let checkboxValues = [];
 
 let tables = [
-  { 
+{ 
   	//Table A
   	//'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
   	//upper arm 0
@@ -48,9 +48,8 @@ let tables = [
   	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
   	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9,}];
 
-let scores = '5241';
 
-console.log(tables[0][scores]);
+  	
 
 //q1
 let upperArmValue = 0;
@@ -61,6 +60,8 @@ let lowerArmAdjValue = 0;
 //q3
 let wristValue = 0;
 let wristAdjValue = 0;
+
+let wristTwistValue = 0;
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -119,29 +120,28 @@ if ($('.fadeOutRight')) {
 function setNextQuestion() {
 	startBtn.classList.add('hide');
 	setScores();
-	countTotals();
+	// countTotals();
 	resetState();
 	//showQuestion(currentQuestionIndex);
 }
 
 function countTotals() {
-
-
-	console.log();
+	AScore = tables[0][totalAValue];
+	console.log(AScore);
 }
 
 
 function setScores() {
 
-switch (currentQuestionIndex) {
-  case 0:
-    console.log('zerrrooo');
-    break;
-  case 1:
+	switch (currentQuestionIndex) {
+		case 0:
+		console.log('zerrrooo');
+		break;
+		case 1:
 
-  	armAdjValue = 0;
+		armAdjValue = 0;
 
-    upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+		upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
 		$('input[name="customCheck"]:checked').each(function() {
 			checkboxValues.push($(this).val());
@@ -149,10 +149,10 @@ switch (currentQuestionIndex) {
 		for (let i = 0; i < checkboxValues.length; i++) {
 			armAdjValue += parseInt(checkboxValues[i]);
 		}
-    break;
+		break;
 
-  case 2:
-  		lowerArmAdjValue = 0;
+		case 2:
+		lowerArmAdjValue = 0;
 
 		lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
@@ -164,10 +164,10 @@ switch (currentQuestionIndex) {
 
 			lowerArmAdjValue += parseInt(checkboxValues[i]);
 		}
-    break;
+		break;
 
-      case 3:
-  		wristAdjValue = 0;
+		case 3:
+		wristAdjValue = 0;
 
 		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
@@ -179,16 +179,43 @@ switch (currentQuestionIndex) {
 
 			wristAdjValue += parseInt(checkboxValues[i]);
 		}
-    break;
+		break;
 
-  default:
-    console.log('zerrrooo');
-}	totalA = (upperArmValue + armAdjValue).toString() + (lowerArmValue + lowerArmAdjValue).toString() + (wristValue + wristAdjValue).toString();
-	console.log(totalA);
+		case 3:
+		wristAdjValue = 0;
+
+		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		$('input[name="customCheck"]:checked').each(function() {
+			checkboxValues.push($(this).val());
+		});
+
+		for (let i = 0; i < checkboxValues.length; i++) {
+
+			wristAdjValue += parseInt(checkboxValues[i]);
+		}
+		break;
+
+		case 4:
+
+		wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+		break;
+
+		default:
+		console.log('zerrrooo');
+	}	
+	totalAValue = (upperArmValue + armAdjValue).toString() + 
+	(lowerArmValue + lowerArmAdjValue).toString() + 
+	(wristValue + wristAdjValue).toString() +
+	wristTwistValue.toString();
+	console.log(totalAValue);
+
+	if (currentQuestionIndex === 4){
+	countTotals();
+}
 }
 //generates questions using questions array
 function showQuestion(question) {
-	//sets the question
 
 	titleElement.innerText = question.title;
 	questionElement.innerHTML = question.question;
@@ -220,6 +247,7 @@ function showOptionalQuestion(optionalQuestion) {
 			checkboxDiv.innerHTML = optionalAnswer.field;
 		})
 	} else {
+
 		optionalQuestionElement.innerText = "";
 		//optionalQuestionElement.classList.add('hide');
 	}
@@ -256,7 +284,7 @@ function selectAnswer(elem) {
 		// console.log(currentQuestionIndex.length)
 		// console.log(currentQuestionIndex)
 
-		if (currentQuestionIndex >= 3) {
+		if (currentQuestionIndex >= 5) {
 		//end of questions
 		nextBtn.classList.add('hide');
 		prevBtn.classList.remove('hide');
