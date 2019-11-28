@@ -399,7 +399,7 @@ const questions = [
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li></ul></label></span>'},
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 3</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
 
 	],
 
@@ -446,7 +446,6 @@ const questions = [
 	optionalAnswers: [
 
 	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q7/trunk5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
-	
 	
 	]
 },
