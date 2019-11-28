@@ -46,10 +46,8 @@ let tables = [
 
   	'6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
   	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
-  	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9,}];
+  	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9,},];
 
-
-  	
 
 //q1
 let upperArmValue = 0;
@@ -60,8 +58,13 @@ let lowerArmAdjValue = 0;
 //q3
 let wristValue = 0;
 let wristAdjValue = 0;
-
+//q4
 let wristTwistValue = 0;
+//q5
+let forceLoadValue = 0;
+let muscleUseValue = 0;
+//Part A total
+let WristArmScore = 0;
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -102,21 +105,21 @@ function changeCard() {
 if ($('.fadeOutRight')) {
 		//delay all actions
 		setTimeout(function() {
-			//remove animation
 			card.classList.remove('fadeOutRight', 'fadeOutLeft');
-			//ad new animation
 			card.classList.add('animated','fadeInLeft');
-
 			startBtn.classList.add('hide');
-
-			// nextBtn.classList.remove('hide');
 			questionContainerElement.classList.remove('hide');
+
 			showQuestion(questions[currentQuestionIndex]);
 			showOptionalQuestion(questions[currentQuestionIndex]);
+
+			//put this in final result function:
+			// if (currentQuestionIndex === 5) {
+			// 	document.getElementById("questionDiv").innerHTML = "Your wrist and arm score is: " + WristArmScore;
+			// }
 		}, delayInMilliseconds);
 	}
 }
-
 function setNextQuestion() {
 	startBtn.classList.add('hide');
 	setScores();
@@ -127,7 +130,13 @@ function setNextQuestion() {
 
 function countTotals() {
 	AScore = tables[0][totalAValue];
-	console.log(AScore);
+	console.log(AScore); 
+}
+
+function countWristArmScore() {
+	WristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
+
+	console.log(WristArmScore);
 }
 
 
@@ -201,18 +210,34 @@ function setScores() {
 		wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 		break;
 
+		case 5:
+		muscleUseValue = 0;
+
+		forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		$('input[name="customCheck"]:checked').each(function() {
+			checkboxValues.push($(this).val());
+		});
+
+		for (let i = 0; i < checkboxValues.length; i++) {
+
+			muscleUseValue += parseInt(checkboxValues[i]);
+		}
+		break;
+
 		default:
-		console.log('zerrrooo');
 	}	
 	totalAValue = (upperArmValue + armAdjValue).toString() + 
 	(lowerArmValue + lowerArmAdjValue).toString() + 
 	(wristValue + wristAdjValue).toString() +
 	wristTwistValue.toString();
-	console.log(totalAValue);
+	// console.log(totalAValue);
 
-	if (currentQuestionIndex === 4){
-	countTotals();
-}
+	if (currentQuestionIndex === 4) {
+		countTotals();
+	} else if (currentQuestionIndex === 5) {
+		countWristArmScore();
+	}
 }
 //generates questions using questions array
 function showQuestion(question) {
@@ -220,15 +245,13 @@ function showQuestion(question) {
 	titleElement.innerText = question.title;
 	questionElement.innerHTML = question.question;
 	question.answers.forEach(answer => {
-
 		const questionDiv = document.createElement('span');
-		questionDiv.setAttribute("id", answer.armsScore);
+		questionDiv.setAttribute("id", "questionDiv");
 
 		questionDiv.addEventListener('click' , selectAnswer);
 		questionDiv.innerHTML = answer.text;
 
 		answerButtonsElement.appendChild(questionDiv);
-
 	})
 
 }
@@ -251,7 +274,6 @@ function showOptionalQuestion(optionalQuestion) {
 		optionalQuestionElement.innerText = "";
 		//optionalQuestionElement.classList.add('hide');
 	}
-
 }
 
 function resetState() {
@@ -269,22 +291,14 @@ function resetState() {
 	}
 }
 
-function selectAnswer(elem) {
-	selectedAreaScore = parseInt(elem.target.value);
+function selectAnswer() {
 
-	if (isNaN(selectedAreaScore) === true) {
-		selectedAreaScore = 0;
-	}
-	// console.log(selectedAreaScore);
-
-	if (isNaN(selectedAreaScore) === false && selectedAreaScore != 0) {
+	if (document.querySelector('input[name="radio"]:checked')) {
 
 		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
 
-		// console.log(currentQuestionIndex.length)
-		// console.log(currentQuestionIndex)
 
-		if (currentQuestionIndex >= 3) {
+		if (currentQuestionIndex >= 6) {
 		//end of questions
 		nextBtn.classList.add('hide');
 		prevBtn.classList.remove('hide');
@@ -298,9 +312,9 @@ function selectAnswer(elem) {
 			prevBtn.classList.add('hide');
 		}
 
-
 		document.getElementById('optional-fields').classList.remove('hide');
 		nextBtn.classList.add('animated', 'fadeIn');
+		prevBtn.classList.add('animated', 'fadeIn');
 	}
 
 }
@@ -324,10 +338,8 @@ const questions = [
 	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>'},
 	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>'},
 	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1"><label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>'},
-
-
+	
 	]
-
 },
 
 {
@@ -343,9 +355,7 @@ const questions = [
 	optional: "Also tick the following box if appropriate:",
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q2/lowerarm4.jpg" alt="lowerarm midline or out to side" class="img">Is either arm working across midline or out to side of body?</label>'},
-
-
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Is either arm working across midline or out to side of body?<br><img src="./media/Q2/lowerarm4.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
 
 	]
 },
@@ -365,10 +375,9 @@ const questions = [
 	optional: "Also tick the following box if appropriate:",
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q3/wrist5.jpg" alt="lowerarm midline or out to side" class="img">Is wrist bent away from midline?</label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Is wrist bent away from midline?<img src="./media/Q3/wrist5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
 
 	]
-
 },
 
 {
@@ -380,7 +389,66 @@ const questions = [
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q4/wrist_twist2.jpg" alt="" class="img"></label></span>'},
 
 	],
+},
 
+{
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '5. Select the force and load that most reflects the working situation:',
+	answers: [
+
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
+
+	],
+
+	optional: "Select this box if it reflects your muscle use:",
+	optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><ul class="checkBoxList"><h5><strong>Score 1</strong></h5>Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.</ul></label>'},
+
+	]
+},
+
+{
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '6. Locate Neck Position:',
+	answers: [
+
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q6/neck1.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q6/neck2.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q6/neck3.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q6/neck4.jpg" alt="upperarm" class="img"></label></span>'},
+
+	],
+	optional: 'Also tick the following boxes if appropriate:',
+	optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q6/neck5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q6/neck6.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+	
+	]
+},
+
+{
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '7. Locate Trunk Position:',
+	answers: [
+
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q7/trunk1.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q7/trunk2.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q7/trunk3.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q7/trunk4.jpg" alt="upperarm" class="img"></label></span>'},
+
+	],
+	optional: 'Also tick the following boxes if appropriate:',
+	optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q7/trunk5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+	
+	
+	]
 },
 
 ]
