@@ -298,7 +298,7 @@ function selectAnswer() {
 		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
 
 
-		if (currentQuestionIndex >= 6) {
+		if (currentQuestionIndex >= 9) {
 		//end of questions
 		nextBtn.classList.add('hide');
 		prevBtn.classList.remove('hide');
@@ -416,17 +416,17 @@ const questions = [
 	question: '6. Locate Neck Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q6/neck1.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q6/neck2.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q6/neck3.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q6/neck4.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q6/neck1.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q6/neck2.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q6/neck3.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q6/neck4.jpg" alt="" class="img"></label></span>'},
 
 	],
 	optional: 'Also tick the following boxes if appropriate:',
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q6/neck5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q6/neck6.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q6/neck5.jpg" alt="" class="checkbox-img"></label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q6/neck6.jpg" alt="" class="checkbox-img"></label>'},
 	
 	]
 },
@@ -436,19 +436,33 @@ const questions = [
 	question: '7. Locate Trunk Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q7/trunk1.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q7/trunk2.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q7/trunk3.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q7/trunk4.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q7/trunk1.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q7/trunk2.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q7/trunk3.jpg" alt="" class="img"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q7/trunk4.jpg" alt="" class="img"></label></span>'},
 
 	],
 	optional: 'Also tick the following boxes if appropriate:',
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q7/trunk5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q7/trunk5.jpg" alt="" class="checkbox-img"></label>'},
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q7/trunk6.jpg" alt="" class="checkbox-img"></label>'},
 	
+
+
 	]
 },
+
+{
+	title: 'Complete Assessment of Left & Right Sides',
+	question: '8. Legs:',
+	answers: [
+{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="">Legs and feet are well supported and in an evenly balanced posture.<br><img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="">Legs and feet are NOT evenly balanced and supported.<br><img src="./media/Q8/legs2.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
+	],
+
+},
+
 
 ]
 

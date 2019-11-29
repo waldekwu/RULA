@@ -30,11 +30,6 @@
 }
 
 
-.custom-control-input:hover {
-	display: grid;
-	background-color: green;
-}
-
 h3 {
 	font-weight: 700;
 }
@@ -43,13 +38,16 @@ h4 {
 	margin-top: 15px;
 }
 
-.radio { 
+/*.radio { 
 	height: 2vh;
 	width: 2vh;
 	display: flex;
 	order: 1;
 	justify-content: flex-start;
 
+}*/
+.custom-radio {
+	
 }
 
 .checkbox {
@@ -64,7 +62,7 @@ h4 {
 	display: flex;
 	order: 2;
 	margin: 10px 0 10px 0;
-	align-items: center;
+	/*align-items: center;*/
 }
 
 .checkbox-img {
@@ -72,8 +70,7 @@ h4 {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 15px;
-	margin-bottom: 5px;
+	margin-bottom: 20px;
 
 }
 
@@ -114,6 +111,8 @@ ul, li {
 		height: auto;
 		/*margin: 0 10px 0 auto;*/
 	}
+
+
 	.img {
 		display: flex;
 		order: 2;
