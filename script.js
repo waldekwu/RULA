@@ -324,7 +324,7 @@ function setScores() {
 	if (currentQuestionIndex === 5) {
 		setAScore();
 
-	} else if (currentQuestionIndex === 6) {
+	} else if (currentQuestionIndex === 7) {
 
 		setWristArmScore();
 
