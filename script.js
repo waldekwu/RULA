@@ -7,6 +7,7 @@ const titleElement = document.getElementById('title');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const answerBoxesElement = document.getElementById('checkbox');
 const optionalQuestionElement = document.getElementById('optional-question');
+const cardBody = document.getElementById('card-body');
 
 let currentQuestionIndex;
 let checkId = 0;
@@ -16,7 +17,7 @@ let checkboxValuesSum = 0;
 let checkboxValues = [];
 
 let tables = [
-{ 
+  { 
   	//Table A
   	//'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
   	//upper arm 0
@@ -46,7 +47,31 @@ let tables = [
 
   	'6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
   	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
-  	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9,},];
+  	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
+  },
+
+  { 
+    //Table B
+    //'012' - 0 is neck, 1 is trunk, 2 are legs
+    '111': 1, '112': 3, '121': 2, '122': 3, '131': 3, '132': 4, '141': 5, '142': 5, '151': 6, '152': 6, '161': 6, '162': 7,
+    '211': 2, '212': 3, '221': 2, '222': 3, '231': 4, '232': 5, '241': 5, '242': 5, '251': 6, '252': 7, '261': 7, '262': 7,
+    '311': 3, '312': 3, '321': 3, '322': 4, '331': 4, '332': 5, '341': 5, '342': 6, '351': 6, '352': 7, '361': 7, '362': 7,
+    '411': 5, '412': 5, '421': 5, '422': 6, '431': 6, '432': 7, '441': 7, '442': 7, '451': 7, '452': 7, '461': 8, '462': 8,
+    '511': 7, '512': 7, '521': 7, '522': 7, '531': 7, '532': 8, '541': 8, '542': 8, '551': 8, '552': 8, '561': 8, '562': 8,
+    '611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9
+  },
+
+  { 
+    //Table C
+    //'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
+    '11': 1, '12': 3, '13': 2, '14': 3, '15': 3, '16': 4, '17': 5,
+    '21': 1, '22': 3, '23': 2, '24': 3, '25': 3, '26': 4, '27': 5,
+    '31': 1, '32': 3, '33': 2, '34': 3, '35': 3, '36': 4, '37': 5,
+    '41': 1, '42': 3, '43': 2, '44': 3, '45': 3, '46': 4, '47': 5,
+    '51': 1, '52': 3, '53': 2, '54': 3, '55': 3, '56': 4, '57': 5,
+    '61': 1, '62': 3, '63': 2, '64': 3, '65': 3, '66': 4, '67': 5,
+    '71': 1, '72': 3, '73': 2, '74': 3, '75': 3, '76': 4, '77': 5,
+    '81': 1, '82': 3, '83': 2, '84': 3, '85': 3, '86': 4, '87': 5},];
 
 
 //q1
@@ -63,8 +88,21 @@ let wristTwistValue = 0;
 //q5
 let forceLoadValue = 0;
 let muscleUseValue = 0;
+//q6
+let neckValue = 0;
+let neckAdjValue = 0;
+//q7
+let trunkValue = 0;
+let trunkAdjValue = 0;
+//q8
+let legsValue = 0;
+//q9
+let forceLoadB = 0;
+let muscleUseB = 0;
 //Part A total
 let WristArmScore = 0;
+//Part B total
+let NeckTrunkLegsScore = 0;
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -128,15 +166,46 @@ function setNextQuestion() {
 	//showQuestion(currentQuestionIndex);
 }
 
-function countTotals() {
+function setAScore() {
+
+console.log('You scored: ' + (upperArmValue + armAdjValue).toString() + 
+			(lowerArmValue + lowerArmAdjValue).toString() + 
+			(wristValue + wristAdjValue).toString() +
+			wristTwistValue.toString())
+
+	totalAValue = (upperArmValue + armAdjValue).toString() + 
+				(lowerArmValue + lowerArmAdjValue).toString() + 
+				(wristValue + wristAdjValue).toString() +
+				wristTwistValue.toString();
+
 	AScore = tables[0][totalAValue];
-	console.log(AScore); 
+	console.log('Therefore AScore = ' + AScore); 
 }
 
-function countWristArmScore() {
+function setBScore() {
+
+	console.log('You scored: ' + (neckValue + neckAdjValue).toString() +
+				  (trunkValue + trunkAdjValue).toString() +
+				  legsValue.toString());
+
+	totalBValue = (neckValue + neckAdjValue).toString() +
+				  (trunkValue + trunkAdjValue).toString() +
+				  legsValue.toString();
+
+	BScore = tables[1][totalBValue];
+	console.log('Therefore BScore = ' + BScore); 
+}
+
+function setWristArmScore() {
 	WristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
 
-	console.log(WristArmScore);
+	console.log("WristArmScore = " + WristArmScore);
+}
+
+function setNeckTrunkLegsScore() {
+	NeckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
+
+	console.log("NeckTrunkLegsScore = " + NeckTrunkLegsScore);
 }
 
 
@@ -144,7 +213,6 @@ function setScores() {
 
 	switch (currentQuestionIndex) {
 		case 0:
-		console.log('zerrrooo');
 		break;
 		case 1:
 
@@ -161,18 +229,10 @@ function setScores() {
 		break;
 
 		case 2:
-		lowerArmAdjValue = 0;
 
 		lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+		lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
 
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
-
-		for (let i = 0; i < checkboxValues.length; i++) {
-
-			lowerArmAdjValue += parseInt(checkboxValues[i]);
-		}
 		break;
 
 		case 3:
@@ -191,18 +251,9 @@ function setScores() {
 		break;
 
 		case 3:
-		wristAdjValue = 0;
-
 		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
-
-		for (let i = 0; i < checkboxValues.length; i++) {
-
-			wristAdjValue += parseInt(checkboxValues[i]);
-		}
+		wristAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+		
 		break;
 
 		case 4:
@@ -211,9 +262,17 @@ function setScores() {
 		break;
 
 		case 5:
-		muscleUseValue = 0;
 
 		forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		muscleUseValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+
+		break;
+
+		case 6:
+		neckAdjValue = 0;
+
+		neckValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
 		$('input[name="customCheck"]:checked').each(function() {
 			checkboxValues.push($(this).val());
@@ -221,25 +280,65 @@ function setScores() {
 
 		for (let i = 0; i < checkboxValues.length; i++) {
 
-			muscleUseValue += parseInt(checkboxValues[i]);
+			neckAdjValue += parseInt(checkboxValues[i]);
 		}
 		break;
 
+		case 7:
+		trunkAdjValue = 0;
+
+		trunkValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		$('input[name="customCheck"]:checked').each(function() {
+			checkboxValues.push($(this).val());
+		});
+
+		for (let i = 0; i < checkboxValues.length; i++) {
+
+			trunkAdjValue += parseInt(checkboxValues[i]);
+		}
+		break;
+
+		case 8:
+
+		legsValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+		break;
+
+		case 9:
+		
+
+		forceLoadB = parseInt(document.querySelector('input[name="radio"]:checked').value);
+
+		muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+
+		const resultsContainer = document.createElement('div');
+		resultsContainer.setAttribute("id", "results-container");
+		cardBody.appendChild(resultsContainer);
+
+		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + WristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + NeckTrunkLegsScore + "</h2><br><h1>RULA Score: </h1>";
+
+		break;
 		default:
 	}	
-	totalAValue = (upperArmValue + armAdjValue).toString() + 
-	(lowerArmValue + lowerArmAdjValue).toString() + 
-	(wristValue + wristAdjValue).toString() +
-	wristTwistValue.toString();
-	// console.log(totalAValue);
+	
+	if (currentQuestionIndex === 5) {
+		setAScore();
 
-	if (currentQuestionIndex === 4) {
-		countTotals();
-	} else if (currentQuestionIndex === 5) {
-		countWristArmScore();
+	} else if (currentQuestionIndex === 6) {
+
+		setWristArmScore();
+
+	} else if (currentQuestionIndex === 8) {
+
+		setBScore();
+
+	} else if (currentQuestionIndex === 9) {
+		setAScore();
+		setWristArmScore();
+		setBScore();
+		setNeckTrunkLegsScore()
 	}
 }
-//generates questions using questions array
 function showQuestion(question) {
 
 	titleElement.innerText = question.title;
@@ -253,9 +352,7 @@ function showQuestion(question) {
 
 		answerButtonsElement.appendChild(questionDiv);
 	})
-
 }
-
 function showOptionalQuestion(optionalQuestion) {
 
 	if (optionalQuestion.optionalAnswers) {
@@ -270,9 +367,7 @@ function showOptionalQuestion(optionalQuestion) {
 			checkboxDiv.innerHTML = optionalAnswer.field;
 		})
 	} else {
-
 		optionalQuestionElement.innerText = "";
-		//optionalQuestionElement.classList.add('hide');
 	}
 }
 
@@ -287,7 +382,6 @@ function resetState() {
 	}
 	while (answerBoxesElement.firstChild) {
 		answerBoxesElement.removeChild(answerBoxesElement.firstChild);
-
 	}
 }
 
@@ -296,13 +390,12 @@ function selectAnswer() {
 	if (document.querySelector('input[name="radio"]:checked')) {
 
 		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
-
-
-		if (currentQuestionIndex >= 9) {
-		//end of questions
-		nextBtn.classList.add('hide');
+		nextBtn.classList.remove('hide');
 		prevBtn.classList.remove('hide');
 
+		if (currentQuestionIndex === 8) {
+		//end of questions
+		nextBtn.innerText = "Results";
 
 	} else {
 		nextBtn.classList.remove('hide');
@@ -321,7 +414,7 @@ function selectAnswer() {
 
 const questions = [
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part A. Arm & Wrist Analysis',
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
@@ -332,7 +425,7 @@ const questions = [
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio5"><label for="radio5" class="radioImg img"><img src="./media/Q1/upperarm5.jpg" alt="upperarm" class="img"></label></span>'},
 
 	],
-	optional: 'Also tick the following boxes if appropriate:',
+	optional: 'Part Also tick the following boxes if appropriate:',
 	optionalAnswers: [
 
 	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>'},
@@ -343,7 +436,7 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part A. Arm & Wrist Analysis',
 	question: '2. Locate Lower Arm Position:',
 	answers: [
 
@@ -361,7 +454,7 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part A. Arm & Wrist Analysis',
 	question: '3. Locate Wrist Position:',
 	answers: [
 
@@ -381,7 +474,7 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part A. Arm & Wrist Analysis',
 	question: '4. Wrist Twist:',
 	answers: [
 
@@ -392,12 +485,12 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part A. Force and Load for the Arm & Wrist',
 	question: '5. Select the force and load that most reflects the working situation:',
 	answers: [
 
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li><h2 style="visibility: hidden;">#</h2></ul></label></span>'},
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 3</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
 
@@ -412,7 +505,7 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part B. Neck, Trunk & Leg Analysis',
 	question: '6. Locate Neck Position:',
 	answers: [
 
@@ -432,7 +525,7 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part B. Neck, Trunk & Leg Analysis',
 	question: '7. Locate Trunk Position:',
 	answers: [
 
@@ -454,11 +547,43 @@ const questions = [
 },
 
 {
-	title: 'Complete Assessment of Left & Right Sides',
+	title: 'Part B. Neck, Trunk & Leg Analysis',
 	question: '8. Legs:',
 	answers: [
-{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="">Legs and feet are well supported and in an evenly balanced posture.<br><img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="">Legs and feet are well supported and in an evenly balanced posture.<br><img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
 	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="">Legs and feet are NOT evenly balanced and supported.<br><img src="./media/Q8/legs2.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
+	],
+
+},
+
+{
+	title: 'Part B. Force and Load for the Neck, Trunk & Legs',
+	question: '9. Select the force and load that most reflects the working situation:',
+	answers: [
+
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li><h2 style="visibility: hidden;">#</h2></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
+	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 3</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
+
+	],
+
+	optional: "Select this box if it reflects your muscle use:",
+	optionalAnswers: [
+
+	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><ul class="checkBoxList"><h5><strong>Score 1</strong></h5>Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.</ul></label>'},
+
+	]
+},
+
+{
+	title: 'RULA Summary',
+	question: '',
+	answers: [
+
+	{ text: '<span class="hide"></span>'},
+
+
 	],
 
 },
