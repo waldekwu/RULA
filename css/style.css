@@ -14,9 +14,9 @@ body {
     grid-template-columns: 100%;
 
 }
-.card-header {
+/*.card-header {
     font-size:2em;
-}
+}*/
 
 .zone {
     color:black;

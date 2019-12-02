@@ -229,34 +229,51 @@ function setfinalResponse() {
 
 	const resultsContainer = document.createElement('div');
 	const scoreContainer = document.createElement('div');
+	const resultsImageContainer = document.createElement('div');
 
 	resultsContainer.setAttribute("id", "results-container");
-	resultsContainer.setAttribute("class", "results-container");
+	resultsContainer.classList.add("results-container", "row", "no-gutters");
+
+	resultsImageContainer.classList.add("image-container");
 
 	scoreContainer.setAttribute("id", "score-container");
+	scoreContainer.classList.add("results-container", );
+
+	cardBody.classList.add("btn-grid");
 
 	cardBody.appendChild(resultsContainer);
+	cardBody.appendChild(resultsImageContainer);
 	cardBody.appendChild(scoreContainer);
+	
 
 	if (finalScore < 3) {
 		resultsContainer.classList.add("acceptable-posture");
-		resultsContainer.innerHTML = "<h3>Table A Score: " + AScore + "</h3><br><h3>Arm & Wrist Score: " + wristArmScore + "</h3><br><h3>Table B Score: " + BScore + "</h3><br><h3>Trunk and Leg Score: " + neckTrunkLegsScore + "</h3><br>";
-		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: green;'>Acceptable posture</h2>";
+		resultsContainer.innerHTML = "<div class = 'col-md-8'><h3>Table A Score: " + AScore + "</h3><br><h3>Arm & Wrist Score: " + wristArmScore + "</h3><br><h3>Table B Score: " + BScore + "</h3><br><h3>Trunk and Leg Score: " + neckTrunkLegsScore + "</h3><br></div>";
+		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+		scoreContainer.innerHTML = "<div class='card text-white bg-success mb-3' style='max-width: 18rem; min-width: 3rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Acceptable posture</strong></h4></div></div>";
+		scoreContainer.classList.add('animated','flipInX');
 	
 	} else if (finalScore > 2 && finalScore < 5) {
 		resultsContainer.classList.add("f-investigation");
 		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
-		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: orange;'>Further investigation required, change may be needed</h2>";
+		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+		scoreContainer.innerHTML = "<div class='card text-white bg-warning mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Further investigation required, change may be needed</strong></h4></div></div>";
+		scoreContainer.classList.add('animated','flipInX');
 	} 
 	else if (finalScore > 4 && finalScore < 7) {
 		resultsContainer.classList.add("change-soon");
 		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
-		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: orange;'>Further investigation required, change soon</h2>";
+		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+		scoreContainer.innerHTML = "<div class='card text-white bg-warning mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Further investigation required, change soon</strong></h4></div></div>";
+		scoreContainer.classList.add('animated','flipInX');
+
 	}
 	else if (finalScore >= 7) {
 		resultsContainer.classList.add("investigate-change");
 		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
-		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: red;'>Investigate and implement change</h2>";
+		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+		scoreContainer.innerHTML = "<div class='card text-white bg-danger mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Investigate and implement change</strong></h4></div></div>";
+		scoreContainer.classList.add('animated','flipInX');
 
 	}
 
@@ -297,12 +314,12 @@ function setScores() {
 				lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
 
 			} else {
-				lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]').value); }
+				lowerArmAdjValue = 0; }
 
 				break;
 
 				case 3:
-
+				checkboxValues = [];
 				wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
 				if (document.querySelector('input[name="customCheck"]:checked')) {
