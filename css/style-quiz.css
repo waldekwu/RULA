@@ -38,17 +38,6 @@ h4 {
 	margin-top: 15px;
 }
 
-/*.radio { 
-	height: 2vh;
-	width: 2vh;
-	display: flex;
-	order: 1;
-	justify-content: flex-start;
-
-}*/
-.custom-radio {
-	
-}
 
 .checkbox {
 	display: inline-block;
@@ -75,6 +64,12 @@ h4 {
 }
 
 ul, li {
+	justify-content: flex-start;
+	text-align: left;
+	color: black;
+}
+
+.results-container {
 	justify-content: flex-start;
 	text-align: left;
 	color: black;

@@ -17,62 +17,72 @@ let checkboxValuesSum = 0;
 let checkboxValues = [];
 
 let tables = [
-  { 
-  	//Table A
-  	//'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
-  	//upper arm 0
-  	'0111': 1, '0112': 2, '0121': 2, '0122': 2, '0131': 2, '0132': 3, '0141': 3, '0142': 3,
-  	'0211': 2, '0212': 2, '0221': 2, '0222': 2, '0231': 3, '0232': 3, '0241': 3, '0242': 3,
-  	'0311': 2, '0312': 3, '0321': 3, '0322': 3, '0331': 3, '0332': 3, '0341': 4, '0342': 4,
-  	//upper arm 1
-  	'1111': 1, '1112': 2, '1121': 2, '1122': 2, '1131': 2, '1132': 3, '1141': 3, '1142': 3, 
-  	'1211': 2, '1212': 2, '1221': 2, '1222': 2, '1231': 3, '1232': 3, '1241': 3, '1242': 3,
-  	'1311': 2, '1312': 3, '1321': 3, '1322': 3, '1331': 3, '1332': 3, '1341': 4, '1342': 4,
-  	//upper arm 2
-  	'2111': 2, '2112': 3, '2121': 3, '2122': 3, '2131': 3, '2132': 4, '2141': 4, '2142': 4,
-  	'2211': 3, '2212': 3, '2221': 3, '2222': 3, '2231': 3, '2232': 4, '2241': 4, '2242': 4,
-  	'2311': 3, '2312': 4, '2321': 4, '2322': 4, '2331': 4, '2332': 4, '2341': 5, '2342': 5,
-  	//upper arm 3
-  	'3111': 3, '3112': 3, '3121': 4, '3122': 4, '3131': 4, '3132': 4, '3141': 5, '3142': 5,
-  	'3211': 3, '3212': 4, '3221': 4, '3222': 4, '3231': 4, '3232': 4, '3241': 5, '3242': 5,
-  	'3311': 4, '3312': 4, '3321': 4, '3322': 4, '3331': 4, '3332': 5, '3341': 5, '3342': 5,
-  	//upper arm 4
-  	'4111': 4, '4112': 4, '4121': 4, '4122': 4, '4131': 4, '4132': 5, '4141': 5, '4142': 5,
-  	'4211': 4, '4212': 4, '4221': 4, '4222': 4, '4231': 4, '4232': 5, '4241': 5, '4242': 5,
-  	'4311': 4, '4312': 4, '4321': 4, '4322': 5, '4331': 5, '4332': 5, '4341': 6, '4342': 6,
-  	//upper arm 5
-  	'5111': 5, '5112': 5, '5121': 5, '5122': 5, '5131': 5, '5132': 6, '5141': 6, '5142': 7,
-  	'5211': 5, '5212': 6, '5221': 6, '5222': 6, '5231': 6, '5232': 7, '5241': 7, '5242': 7,
-  	'5311': 5, '5312': 6, '5321': 6, '5322': 6, '5331': 6, '5332': 7, '5341': 7, '5342': 7,
+{ 
+	//Table A
+	//'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
+	//upper arm 0
+	'0111': 1, '0112': 2, '0121': 2, '0122': 2, '0131': 2, '0132': 3, '0141': 3, '0142': 3,
+	'0211': 2, '0212': 2, '0221': 2, '0222': 2, '0231': 3, '0232': 3, '0241': 3, '0242': 3,
+	'0311': 2, '0312': 3, '0321': 3, '0322': 3, '0331': 3, '0332': 3, '0341': 4, '0342': 4,
+	//upper arm 1
+	'1111': 1, '1112': 2, '1121': 2, '1122': 2, '1131': 2, '1132': 3, '1141': 3, '1142': 3, 
+	'1211': 2, '1212': 2, '1221': 2, '1222': 2, '1231': 3, '1232': 3, '1241': 3, '1242': 3,
+	'1311': 2, '1312': 3, '1321': 3, '1322': 3, '1331': 3, '1332': 3, '1341': 4, '1342': 4,
+	//upper arm 2
+	'2111': 2, '2112': 3, '2121': 3, '2122': 3, '2131': 3, '2132': 4, '2141': 4, '2142': 4,
+	'2211': 3, '2212': 3, '2221': 3, '2222': 3, '2231': 3, '2232': 4, '2241': 4, '2242': 4,
+	'2311': 3, '2312': 4, '2321': 4, '2322': 4, '2331': 4, '2332': 4, '2341': 5, '2342': 5,
+	//upper arm 3
+	'3111': 3, '3112': 3, '3121': 4, '3122': 4, '3131': 4, '3132': 4, '3141': 5, '3142': 5,
+	'3211': 3, '3212': 4, '3221': 4, '3222': 4, '3231': 4, '3232': 4, '3241': 5, '3242': 5,
+	'3311': 4, '3312': 4, '3321': 4, '3322': 4, '3331': 4, '3332': 5, '3341': 5, '3342': 5,
+	//upper arm 4
+	'4111': 4, '4112': 4, '4121': 4, '4122': 4, '4131': 4, '4132': 5, '4141': 5, '4142': 5,
+	'4211': 4, '4212': 4, '4221': 4, '4222': 4, '4231': 4, '4232': 5, '4241': 5, '4242': 5,
+	'4311': 4, '4312': 4, '4321': 4, '4322': 5, '4331': 5, '4332': 5, '4341': 6, '4342': 6,
+	//upper arm 5
+	'5111': 5, '5112': 5, '5121': 5, '5122': 5, '5131': 5, '5132': 6, '5141': 6, '5142': 7,
+	'5211': 5, '5212': 6, '5221': 6, '5222': 6, '5231': 6, '5232': 7, '5241': 7, '5242': 7,
+	'5311': 5, '5312': 6, '5321': 6, '5322': 6, '5331': 6, '5332': 7, '5341': 7, '5342': 7,
 
-  	'6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
-  	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
-  	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
-  },
+	'6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
+	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
+	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
+},
 
-  { 
-    //Table B
-    //'012' - 0 is neck, 1 is trunk, 2 are legs
-    '111': 1, '112': 3, '121': 2, '122': 3, '131': 3, '132': 4, '141': 5, '142': 5, '151': 6, '152': 6, '161': 6, '162': 7,
-    '211': 2, '212': 3, '221': 2, '222': 3, '231': 4, '232': 5, '241': 5, '242': 5, '251': 6, '252': 7, '261': 7, '262': 7,
-    '311': 3, '312': 3, '321': 3, '322': 4, '331': 4, '332': 5, '341': 5, '342': 6, '351': 6, '352': 7, '361': 7, '362': 7,
-    '411': 5, '412': 5, '421': 5, '422': 6, '431': 6, '432': 7, '441': 7, '442': 7, '451': 7, '452': 7, '461': 8, '462': 8,
-    '511': 7, '512': 7, '521': 7, '522': 7, '531': 7, '532': 8, '541': 8, '542': 8, '551': 8, '552': 8, '561': 8, '562': 8,
-    '611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9
-  },
+{ 
+	//Table B
+	//'012' - 0 is neck, 1 is trunk, 2 are legs
+	'111': 1, '112': 3, '121': 2, '122': 3, '131': 3, '132': 4, '141': 5, '142': 5, '151': 6, '152': 6, '161': 6, '162': 7,
+	'211': 2, '212': 3, '221': 2, '222': 3, '231': 4, '232': 5, '241': 5, '242': 5, '251': 6, '252': 7, '261': 7, '262': 7,
+	'311': 3, '312': 3, '321': 3, '322': 4, '331': 4, '332': 5, '341': 5, '342': 6, '351': 6, '352': 7, '361': 7, '362': 7,
+	'411': 5, '412': 5, '421': 5, '422': 6, '431': 6, '432': 7, '441': 7, '442': 7, '451': 7, '452': 7, '461': 8, '462': 8,
+	'511': 7, '512': 7, '521': 7, '522': 7, '531': 7, '532': 8, '541': 8, '542': 8, '551': 8, '552': 8, '561': 8, '562': 8,
+	'611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9, 
+	'672': 9, '772': 9
+},
 
-  { 
-    //Table C
-    //'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
-    '11': 1, '12': 3, '13': 2, '14': 3, '15': 3, '16': 4, '17': 5,
-    '21': 1, '22': 3, '23': 2, '24': 3, '25': 3, '26': 4, '27': 5,
-    '31': 1, '32': 3, '33': 2, '34': 3, '35': 3, '36': 4, '37': 5,
-    '41': 1, '42': 3, '43': 2, '44': 3, '45': 3, '46': 4, '47': 5,
-    '51': 1, '52': 3, '53': 2, '54': 3, '55': 3, '56': 4, '57': 5,
-    '61': 1, '62': 3, '63': 2, '64': 3, '65': 3, '66': 4, '67': 5,
-    '71': 1, '72': 3, '73': 2, '74': 3, '75': 3, '76': 4, '77': 5,
-    '81': 1, '82': 3, '83': 2, '84': 3, '85': 3, '86': 4, '87': 5},];
+{ 
+	//Table C
+	//'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
+	'1x1': 1, '1x2': 2, '1x3': 3, '1x4': 3, '1x5': 4, '1x6': 5, '1x7': 5,    '1x8': 5, '1x9': 5, '1x10': 5, '1x11': 5, '1x12': 5, '1x13': 5,
+	'2x1': 2, '2x2': 2, '2x3': 3, '2x4': 4, '2x5': 4, '2x6': 5, '2x7': 5,    '2x8': 5, '2x9': 5, '2x10': 5, '2x11': 5, '2x12': 5, '2x13': 5,
+	'3x1': 3, '3x2': 3, '3x3': 3, '3x4': 4, '3x5': 4, '3x6': 5, '3x7': 6,    '3x8': 6, '3x9': 6, '3x10': 6, '3x11': 6, '3x12': 6, '3x13': 6,
+	'4x1': 3, '4x2': 3, '4x3': 3, '4x4': 4, '4x5': 5, '4x6': 6, '4x7': 6,    '4x8': 6, '4x9': 6, '4x10': 6, '4x11': 6, '4x12': 6, '4x13': 6,
+	'5x1': 4, '5x2': 4, '5x3': 4, '5x4': 5, '5x5': 6, '5x6': 7, '5x7': 7,    '5x8': 7, '5x9': 7, '5x10': 7, '5x11': 7, '5x12': 7, '5x13': 7,
+	'6x1': 4, '6x2': 4, '6x3': 5, '6x4': 6, '6x5': 6, '6x6': 7, '6x7': 7,    '6x8': 7, '6x9': 7, '6x10': 7, '6x11': 7, '6x12': 7, '6x13': 7,
+	'7x1': 5, '7x2': 5, '7x3': 6, '7x4': 6, '7x5': 7, '7x6': 7, '7x7': 7,    '7x8': 7, '7x9': 7, '7x10': 7, '7x11': 7, '7x12': 7, '7x13': 7,
+	'8x1': 5, '8x2': 5, '8x3': 6, '8x4': 7, '8x5': 7, '8x6': 7, '8x7': 7,    '8x8': 7, '8x9': 7, '8x10': 7, '8x11': 7, '8x12': 7, '8x13': 7,
+	'9x1': 5, '9x2': 5, '9x3': 6, '9x4': 7, '9x5': 7, '9x6': 7, '9x7': 7,    '9x8': 7, '9x9': 7, '9x10': 7, '9x11': 7, '9x12': 7, '9x13': 7,
 
+	'10x1': 5, '10x2': 5, '10x3': 6, '10x4': 7, '10x5': 7, '10x6': 7, '10x7': 7,     '10x8': 7, '10x9': 7, '10x10': 7, '10x11': 7, '10x12': 7, '10x13': 7,
+	'11x1': 5, '11x2': 5, '11x3': 6, '11x4': 7, '11x5': 7, '11x6': 7, '11x7': 7,     '11x8': 7, '11x9': 7, '11x10': 7, '11x11': 7, '11x12': 7, '11x13': 7,
+	'12x1': 5, '12x2': 5, '12x3': 6, '12x4': 7, '12x5': 7, '12x6': 7, '12x7': 7,     '12x8': 7, '12x9': 7, '12x10': 7, '12x11': 7, '12x12': 7, '12x13': 7,
+	'13x1': 5, '13x2': 5, '13x3': 6, '13x4': 7, '13x5': 7, '13x6': 7, '13x7': 7,     '13x8': 7, '13x9': 7, '13x10': 7, '13x11': 7, '13x12': 7, '13x13': 7,
+
+}
+
+];
 
 //q1
 let upperArmValue = 0;
@@ -100,9 +110,11 @@ let legsValue = 0;
 let forceLoadB = 0;
 let muscleUseB = 0;
 //Part A total
-let WristArmScore = 0;
+let wristArmScore = 0;
 //Part B total
-let NeckTrunkLegsScore = 0;
+let neckTrunkLegsScore = 0;
+
+let finalScore = 0;
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -151,32 +163,29 @@ if ($('.fadeOutRight')) {
 			showQuestion(questions[currentQuestionIndex]);
 			showOptionalQuestion(questions[currentQuestionIndex]);
 
-			//put this in final result function:
-			// if (currentQuestionIndex === 5) {
-			// 	document.getElementById("questionDiv").innerHTML = "Your wrist and arm score is: " + WristArmScore;
-			// }
+			if (currentQuestionIndex === 9) {
+				setfinalResponse();
+			}
 		}, delayInMilliseconds);
 	}
 }
 function setNextQuestion() {
 	startBtn.classList.add('hide');
 	setScores();
-	// countTotals();
 	resetState();
-	//showQuestion(currentQuestionIndex);
 }
 
 function setAScore() {
 
-console.log('You scored: ' + (upperArmValue + armAdjValue).toString() + 
-			(lowerArmValue + lowerArmAdjValue).toString() + 
-			(wristValue + wristAdjValue).toString() +
-			wristTwistValue.toString())
+	console.log('You scored: ' + (upperArmValue + armAdjValue).toString() + 
+		(lowerArmValue + lowerArmAdjValue).toString() + 
+		(wristValue + wristAdjValue).toString() +
+		wristTwistValue.toString())
 
 	totalAValue = (upperArmValue + armAdjValue).toString() + 
-				(lowerArmValue + lowerArmAdjValue).toString() + 
-				(wristValue + wristAdjValue).toString() +
-				wristTwistValue.toString();
+	(lowerArmValue + lowerArmAdjValue).toString() + 
+	(wristValue + wristAdjValue).toString() +
+	wristTwistValue.toString();
 
 	AScore = tables[0][totalAValue];
 	console.log('Therefore AScore = ' + AScore); 
@@ -185,27 +194,72 @@ console.log('You scored: ' + (upperArmValue + armAdjValue).toString() +
 function setBScore() {
 
 	console.log('You scored: ' + (neckValue + neckAdjValue).toString() +
-				  (trunkValue + trunkAdjValue).toString() +
-				  legsValue.toString());
+		(trunkValue + trunkAdjValue).toString() +
+		legsValue.toString());
 
 	totalBValue = (neckValue + neckAdjValue).toString() +
-				  (trunkValue + trunkAdjValue).toString() +
-				  legsValue.toString();
+	(trunkValue + trunkAdjValue).toString() +
+	legsValue.toString();
 
 	BScore = tables[1][totalBValue];
 	console.log('Therefore BScore = ' + BScore); 
 }
 
 function setWristArmScore() {
-	WristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
+	wristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
 
-	console.log("WristArmScore = " + WristArmScore);
+	console.log("WristArmScore = " + wristArmScore);
 }
 
 function setNeckTrunkLegsScore() {
-	NeckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
+	neckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
 
-	console.log("NeckTrunkLegsScore = " + NeckTrunkLegsScore);
+	console.log("NeckTrunkLegsScore = " + neckTrunkLegsScore);
+}
+
+function setFinalScore() {
+	let tableCScore = wristArmScore + "x" + neckTrunkLegsScore;
+
+	finalScore = tables[2][tableCScore];
+
+	console.log(tableCScore);
+}
+
+function setfinalResponse() {
+
+	const resultsContainer = document.createElement('div');
+	const scoreContainer = document.createElement('div');
+
+	resultsContainer.setAttribute("id", "results-container");
+	resultsContainer.setAttribute("class", "results-container");
+
+	scoreContainer.setAttribute("id", "score-container");
+
+	cardBody.appendChild(resultsContainer);
+	cardBody.appendChild(scoreContainer);
+
+	if (finalScore < 3) {
+		resultsContainer.classList.add("acceptable-posture");
+		resultsContainer.innerHTML = "<h3>Table A Score: " + AScore + "</h3><br><h3>Arm & Wrist Score: " + wristArmScore + "</h3><br><h3>Table B Score: " + BScore + "</h3><br><h3>Trunk and Leg Score: " + neckTrunkLegsScore + "</h3><br>";
+		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: green;'>Acceptable posture</h2>";
+	
+	} else if (finalScore > 2 && finalScore < 5) {
+		resultsContainer.classList.add("f-investigation");
+		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: orange;'>Further investigation required, change may be needed</h2>";
+	} 
+	else if (finalScore > 4 && finalScore < 7) {
+		resultsContainer.classList.add("change-soon");
+		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: orange;'>Further investigation required, change soon</h2>";
+	}
+	else if (finalScore >= 7) {
+		resultsContainer.classList.add("investigate-change");
+		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+		scoreContainer.innerHTML = "<hr><h1>RULA Score: " + finalScore + "</h1><br><h2 style='color: red;'>Investigate and implement change</h2>";
+
+	}
+
 }
 
 
@@ -214,201 +268,203 @@ function setScores() {
 	switch (currentQuestionIndex) {
 		case 0:
 		break;
+
 		case 1:
 
 		armAdjValue = 0;
+		checkboxValues = [];
 
 		upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
-		for (let i = 0; i < checkboxValues.length; i++) {
-			armAdjValue += parseInt(checkboxValues[i]);
-		}
-		break;
+		if (document.querySelector('input[name="customCheck"]:checked')) {
 
-		case 2:
+			$('input[name="customCheck"]:checked').each(function() {
+				checkboxValues.push($(this).val());
+			});
+			for (let i = 0; i < checkboxValues.length; i++) {
+				armAdjValue += parseInt(checkboxValues[i]);
+			}
+		} else {
+			armAdjValue = 0; }
+			break;
 
-		lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-		lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+			case 2:
 
-		break;
+			lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		case 3:
-		wristAdjValue = 0;
+			if (document.querySelector('input[name="customCheck"]:checked')) {
 
-		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+				lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
 
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
+			} else {
+				lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]').value); }
 
-		for (let i = 0; i < checkboxValues.length; i++) {
+				break;
 
-			wristAdjValue += parseInt(checkboxValues[i]);
-		}
-		break;
+				case 3:
 
-		case 3:
-		wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-		wristAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
-		
-		break;
+				wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		case 4:
+				if (document.querySelector('input[name="customCheck"]:checked')) {
+					wristAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+				} else {
+					wristAdjValue = 0; }
 
-		wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-		break;
+					break;
 
-		case 5:
+					case 4:
 
-		forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+					wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+					break;
 
-		muscleUseValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+					case 5:
 
-		break;
+					forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+					if (document.querySelector('input[name="customCheck"]:checked')) {
+						muscleUseValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+					} else {
+						muscleUseValue = 0; }
 
-		case 6:
-		neckAdjValue = 0;
+						break;
 
-		neckValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+						case 6:
+						neckAdjValue = 0;
+						checkboxValues = [];
+						neckValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
+						if (document.querySelector('input[name="customCheck"]:checked')) {
+							$('input[name="customCheck"]:checked').each(function() {
+								checkboxValues.push($(this).val());
+							});
 
-		for (let i = 0; i < checkboxValues.length; i++) {
+							for (let i = 0; i < checkboxValues.length; i++) {
 
-			neckAdjValue += parseInt(checkboxValues[i]);
-		}
-		break;
+								neckAdjValue += parseInt(checkboxValues[i]);
+							}
+						} else {
+							neckAdjValue = 0; }
+							break;
 
-		case 7:
-		trunkAdjValue = 0;
+							case 7:
+							trunkAdjValue = 0;
+							checkboxValues = [];
+							trunkValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		trunkValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+							if (document.querySelector('input[name="customCheck"]:checked')) {
+								$('input[name="customCheck"]:checked').each(function() {
+									checkboxValues.push($(this).val());
+								});
 
-		$('input[name="customCheck"]:checked').each(function() {
-			checkboxValues.push($(this).val());
-		});
+								for (let i = 0; i < checkboxValues.length; i++) {
+									trunkAdjValue += parseInt(checkboxValues[i]);
+								}
+							} else {
+								trunkAdjValue = 0; }
+								break;
 
-		for (let i = 0; i < checkboxValues.length; i++) {
+								case 8:
 
-			trunkAdjValue += parseInt(checkboxValues[i]);
-		}
-		break;
+								legsValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+								break;
 
-		case 8:
+								case 9:
 
-		legsValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-		break;
+								forceLoadB = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		case 9:
-		
+								if (document.querySelector('input[name="customCheck"]:checked')) {
+									muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+								} else {
+									muscleUseB = 0; }
 
-		forceLoadB = parseInt(document.querySelector('input[name="radio"]:checked').value);
+									break;
+									default:
+								}
 
-		muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+								if (currentQuestionIndex === 9) {
+									setAScore();
+									setWristArmScore();
+									setBScore();
+									setNeckTrunkLegsScore();
+									setFinalScore();
 
-		const resultsContainer = document.createElement('div');
-		resultsContainer.setAttribute("id", "results-container");
-		cardBody.appendChild(resultsContainer);
 
-		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + WristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + NeckTrunkLegsScore + "</h2><br><h1>RULA Score: </h1>";
+								}
+							}
+							function showQuestion(question) {
 
-		break;
-		default:
-	}	
-	
-	if (currentQuestionIndex === 5) {
-		setAScore();
+								titleElement.innerText = question.title;
+								questionElement.innerHTML = question.question;
+								question.answers.forEach(answer => {
+									const questionDiv = document.createElement('span');
+									questionDiv.setAttribute("id", "questionDiv");
 
-	} else if (currentQuestionIndex === 7) {
+									questionDiv.addEventListener('click' , selectAnswer);
+									questionDiv.innerHTML = answer.text;
 
-		setWristArmScore();
+									answerButtonsElement.appendChild(questionDiv);
+								})
+							}
+							function showOptionalQuestion(optionalQuestion) {
 
-	} else if (currentQuestionIndex === 8) {
+								if (optionalQuestion.optionalAnswers) {
 
-		setBScore();
+									optionalQuestionElement.innerText = optionalQuestion.optional;
 
-	} else if (currentQuestionIndex === 9) {
-		setAScore();
-		setWristArmScore();
-		setBScore();
-		setNeckTrunkLegsScore()
-	}
-}
-function showQuestion(question) {
+									optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
 
-	titleElement.innerText = question.title;
-	questionElement.innerHTML = question.question;
-	question.answers.forEach(answer => {
-		const questionDiv = document.createElement('span');
-		questionDiv.setAttribute("id", "questionDiv");
+										const checkboxDiv = document.createElement('div');
+										checkboxDiv.classList.add('custom-control', 'custom-checkbox');
+										answerBoxesElement.appendChild(checkboxDiv);
+										checkboxDiv.innerHTML = optionalAnswer.field;
+									})
+								} else {
+									optionalQuestionElement.innerText = "";
+								}
+							}
 
-		questionDiv.addEventListener('click' , selectAnswer);
-		questionDiv.innerHTML = answer.text;
+							function resetState() {
+								nextBtn.classList.add('hide');
+								prevBtn.classList.add('hide');
+								document.getElementById('optional-fields').classList.add('hide');
+								document.getElementById('question-container').classList.add('hide');
 
-		answerButtonsElement.appendChild(questionDiv);
-	})
-}
-function showOptionalQuestion(optionalQuestion) {
+								while (answerButtonsElement.firstChild) {
+									answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+								}
+								while (answerBoxesElement.firstChild) {
+									answerBoxesElement.removeChild(answerBoxesElement.firstChild);
+								}
+							}
 
-	if (optionalQuestion.optionalAnswers) {
+							function selectAnswer() {
 
-		optionalQuestionElement.innerText = optionalQuestion.optional;
 
-		optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+								if (document.querySelector('input[name="radio"]:checked')) {
 
-			const checkboxDiv = document.createElement('div');
-			checkboxDiv.classList.add('custom-control', 'custom-checkbox');
-			answerBoxesElement.appendChild(checkboxDiv);
-			checkboxDiv.innerHTML = optionalAnswer.field;
-		})
-	} else {
-		optionalQuestionElement.innerText = "";
-	}
-}
+									document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
+									nextBtn.classList.remove('hide');
 
-function resetState() {
-	nextBtn.classList.add('hide');
-	prevBtn.classList.add('hide');
-	document.getElementById('optional-fields').classList.add('hide');
-	document.getElementById('question-container').classList.add('hide');
 
-	while (answerButtonsElement.firstChild) {
-		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-	}
-	while (answerBoxesElement.firstChild) {
-		answerBoxesElement.removeChild(answerBoxesElement.firstChild);
-	}
-}
-
-function selectAnswer() {
-
-	if (document.querySelector('input[name="radio"]:checked')) {
-
-		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
-		nextBtn.classList.remove('hide');
-		prevBtn.classList.remove('hide');
-
-		if (currentQuestionIndex === 8) {
+									if (currentQuestionIndex === 8) {
 		//end of questions
 		nextBtn.innerText = "Results";
+		prevBtn.classList.remove('hide'); 
 
 	} else {
 		nextBtn.classList.remove('hide');
-		prevBtn.classList.remove('hide'); }
-
-		if (currentQuestionIndex === 0) {
-			prevBtn.classList.add('hide');
-		}
-
-		document.getElementById('optional-fields').classList.remove('hide');
-		nextBtn.classList.add('animated', 'fadeIn');
-		prevBtn.classList.add('animated', 'fadeIn');
+		prevBtn.classList.remove('hide'); 
+		nextBtn.innerText = "Next";
 	}
+
+	if (currentQuestionIndex === 0) {
+		prevBtn.classList.add('hide');
+	}
+
+	document.getElementById('optional-fields').classList.remove('hide');
+	nextBtn.classList.add('animated', 'fadeIn');
+
+	prevBtn.classList.add('animated', 'fadeIn');
+}
 
 }
 
@@ -588,7 +644,6 @@ const questions = [
 
 },
 
-
 ]
 
-// 	let setArmsScore = questions[0].answers[1]['armsScore']
+//  let setArmsScore = questions[0].answers[1]['armsScore']
