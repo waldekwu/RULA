@@ -16,6 +16,38 @@ let selectedAreaScore = 0;
 let checkboxValuesSum = 0;
 let checkboxValues = [];
 
+//q1
+let upperArmValue = 0;
+let armAdjValue = 0;
+//q2
+let lowerArmValue = 0;
+let lowerArmAdjValue = 0;
+//q3
+let wristValue = 0;
+let wristAdjValue = 0;
+//q4
+let wristTwistValue = 0;
+//q5
+let forceLoadValue = 0;
+let muscleUseValue = 0;
+//q6
+let neckValue = 0;
+let neckAdjValue = 0;
+//q7
+let trunkValue = 0;
+let trunkAdjValue = 0;
+//q8
+let legsValue = 0;
+//q9
+let forceLoadB = 0;
+let muscleUseB = 0;
+//Part A total
+let wristArmScore = 0;
+//Part B total
+let neckTrunkLegsScore = 0;
+
+let finalScore = 0;
+
 let tables = [
 { 
 	//Table A
@@ -79,42 +111,7 @@ let tables = [
 	'11x1': 5, '11x2': 5, '11x3': 6, '11x4': 7, '11x5': 7, '11x6': 7, '11x7': 7,     '11x8': 7, '11x9': 7, '11x10': 7, '11x11': 7, '11x12': 7, '11x13': 7,
 	'12x1': 5, '12x2': 5, '12x3': 6, '12x4': 7, '12x5': 7, '12x6': 7, '12x7': 7,     '12x8': 7, '12x9': 7, '12x10': 7, '12x11': 7, '12x12': 7, '12x13': 7,
 	'13x1': 5, '13x2': 5, '13x3': 6, '13x4': 7, '13x5': 7, '13x6': 7, '13x7': 7,     '13x8': 7, '13x9': 7, '13x10': 7, '13x11': 7, '13x12': 7, '13x13': 7,
-
-}
-
-];
-
-//q1
-let upperArmValue = 0;
-let armAdjValue = 0;
-//q2
-let lowerArmValue = 0;
-let lowerArmAdjValue = 0;
-//q3
-let wristValue = 0;
-let wristAdjValue = 0;
-//q4
-let wristTwistValue = 0;
-//q5
-let forceLoadValue = 0;
-let muscleUseValue = 0;
-//q6
-let neckValue = 0;
-let neckAdjValue = 0;
-//q7
-let trunkValue = 0;
-let trunkAdjValue = 0;
-//q8
-let legsValue = 0;
-//q9
-let forceLoadB = 0;
-let muscleUseB = 0;
-//Part A total
-let wristArmScore = 0;
-//Part B total
-let neckTrunkLegsScore = 0;
-
-let finalScore = 0;
+} ];
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -135,11 +132,7 @@ function startQuiz() {
 	changeCard();
 	currentQuestionIndex = 0;
 	let armsScore = 0;
-
 }
-
-const card =  document.querySelector('.card');
-card.classList.add('animated', 'fadeInLeft');
 
 function changeCard() {
 
@@ -212,6 +205,7 @@ function setWristArmScore() {
 }
 
 function setNeckTrunkLegsScore() {
+	
 	neckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
 
 	console.log("NeckTrunkLegsScore = " + neckTrunkLegsScore);
