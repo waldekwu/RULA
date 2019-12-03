@@ -238,39 +238,81 @@ function setfinalResponse() {
 	cardBody.appendChild(resultsContainer);
 	cardBody.appendChild(resultsImageContainer);
 	cardBody.appendChild(scoreContainer);
-	
 
-	if (finalScore < 3) {
-		resultsContainer.classList.add("acceptable-posture");
-		resultsContainer.innerHTML = "<div class = 'col-md-8'><h3>Table A Score: " + AScore + "</h3><br><h3>Arm & Wrist Score: " + wristArmScore + "</h3><br><h3>Table B Score: " + BScore + "</h3><br><h3>Trunk and Leg Score: " + neckTrunkLegsScore + "</h3><br></div>";
-		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = "<div class='card text-white bg-success mb-3' style='max-width: 18rem; min-width: 3rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Acceptable posture</strong></h4></div></div>";
-		scoreContainer.classList.add('animated','flipInX');
+
+	totalBValue = (neckValue + neckAdjValue).toString() +
+	(trunkValue + trunkAdjValue).toString() +
+	legsValue.toString();
+
+	function scoresList() {
+		resultsContainer.innerHTML = `<div class = "col-md-8">
+		<h3><strong>Scores:</strong></h3>
+		<ul class="results-list">
+		<li>Upper Arm: ${upperArmValue + armAdjValue}</li>
+		<li>Lower Arm: ${lowerArmValue + lowerArmAdjValue}</li>
+		<li>Wrist: ${wristValue + wristAdjValue}</li>
+		<li>Wrist Twist: ${wristTwistValue}</li>
+		<li>Posture Score A: ${AScore}</li>
+		<li>Muscle Use + Force/Load: ${forceLoadValue + muscleUseValue}</li>
+		<li>Arm & Wrist Score: ${wristArmScore}</li>
+		<li>Neck: ${neckValue + neckAdjValue}</li>
+		<li>Trunk: ${trunkValue + trunkAdjValue}</li>
+		<li>Leg: ${legsValue}</li>
+		<li>Posture Score B: ${BScore}</li>
+		<li>Muscle Use + Force/Load: ${forceLoadB + muscleUseB}</li>
+		<li>Neck, Trunk & Leg Score: ${neckTrunkLegsScore}</li>
+		</ul></div>`;
+	}
 	
-	} else if (finalScore > 2 && finalScore < 5) {
-		resultsContainer.classList.add("f-investigation");
-		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+	if (finalScore < 3) {
+		// resultsContainer.classList.add("acceptable-posture");
+		scoresList();
 		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = "<div class='card text-white bg-warning mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Further investigation required, change may be needed</strong></h4></div></div>";
-		scoreContainer.classList.add('animated','flipInX');
+		scoreContainer.innerHTML = 
+		`<div class='card text-white bg-success mb-3' style='max-width: 18rem; min-width: 3rem;'>
+		<div class='card-body'>
+		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+		<h4 class='card-text'><strong>Acceptable posture</strong></h4>
+		</div>
+		</div>`;
+		
+	} else if (finalScore > 2 && finalScore < 5) {
+		// resultsContainer.classList.add("f-investigation");
+		scoresList();
+		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+		scoreContainer.innerHTML = 
+		`<div class='card text-white bg-warning mb-3' style='max-width: 18rem; min-width: 3rem;'>
+		<div class='card-body'>
+		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+		<h4 class='card-text'><strong>Further investigation required, change may be needed</strong></h4>
+		</div>
+		</div>`;
 	} 
 	else if (finalScore > 4 && finalScore < 7) {
-		resultsContainer.classList.add("change-soon");
-		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+		// resultsContainer.classList.add("change-soon");
+		scoresList();
 		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = "<div class='card text-white bg-warning mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Further investigation required, change soon</strong></h4></div></div>";
-		scoreContainer.classList.add('animated','flipInX');
-
+		scoreContainer.innerHTML = 
+		`<div class='card text-white bg-warning mb-3' style='max-width: 18rem; min-width: 3rem;'>
+		<div class='card-body'>
+		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+		<h4 class='card-text'><strong>Further investigation required, change soon</strong></h4>
+		</div>
+		</div>`;
 	}
 	else if (finalScore >= 7) {
-		resultsContainer.classList.add("investigate-change");
-		resultsContainer.innerHTML = "<h2>Table A Score: " + AScore + "</h2><br><h2>Arm & Wrist Score: " + wristArmScore + "</h2><br><h2>Table B Score: " + BScore + "</h2><br><h2>Trunk and Leg Score: " + neckTrunkLegsScore + "</h2><br>";
+		// resultsContainer.classList.add("investigate-change");
+		scoresList();
 		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = "<div class='card text-white bg-danger mb-3' style='max-width: 18rem;'><div class='card-body'><h2 class='card-title'><strong>RULA Score: " + finalScore + "</strong></h2><h4 class='card-text'><strong>Investigate and implement change</strong></h4></div></div>";
-		scoreContainer.classList.add('animated','flipInX');
-
+		scoreContainer.innerHTML = 
+		`<div class='card text-white bg-danger mb-3' style='max-width: 18rem; min-width: 3rem;'>
+		<div class='card-body'>
+		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+		<h4 class='card-text'><strong>Investigate and implement change</strong></h4>
+		</div>
+		</div>`;
 	}
-
+	scoreContainer.classList.add('animated','flipInX');
 }
 
 
@@ -284,7 +326,7 @@ function setScores() {
 
 		armAdjValue = 0;
 		checkboxValues = [];
-
+		
 		upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
 		if (document.querySelector('input[name="customCheck"]:checked')) {
@@ -401,63 +443,60 @@ function setScores() {
 
 								}
 							}
-							function showQuestion(question) {
+function showQuestion(question) {
 
-								titleElement.innerText = question.title;
-								questionElement.innerHTML = question.question;
-								question.answers.forEach(answer => {
-									const questionDiv = document.createElement('span');
-									questionDiv.setAttribute("id", "questionDiv");
+	titleElement.innerText = question.title;
+	questionElement.innerHTML = question.question;
+	question.answers.forEach(answer => {
+		const questionDiv = document.createElement('span');
+		questionDiv.setAttribute("id", "questionDiv");
 
-									questionDiv.addEventListener('click' , selectAnswer);
-									questionDiv.innerHTML = answer.text;
+		questionDiv.addEventListener('click' , selectAnswer);
+		questionDiv.innerHTML = answer.text;
 
-									answerButtonsElement.appendChild(questionDiv);
-								})
-							}
-							function showOptionalQuestion(optionalQuestion) {
+		answerButtonsElement.appendChild(questionDiv);
+	})
+}
+function showOptionalQuestion(optionalQuestion) {
 
-								if (optionalQuestion.optionalAnswers) {
+	if (optionalQuestion.optionalAnswers) {
 
-									optionalQuestionElement.innerText = optionalQuestion.optional;
+		optionalQuestionElement.innerText = optionalQuestion.optional;
 
-									optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+		optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+			const checkboxDiv = document.createElement('div');
+			checkboxDiv.classList.add('custom-control', 'custom-checkbox');
+			answerBoxesElement.appendChild(checkboxDiv);
+			checkboxDiv.innerHTML = optionalAnswer.field;
+		})
+	} else {
+		optionalQuestionElement.innerText = "";
+			}
+}
 
-										const checkboxDiv = document.createElement('div');
-										checkboxDiv.classList.add('custom-control', 'custom-checkbox');
-										answerBoxesElement.appendChild(checkboxDiv);
-										checkboxDiv.innerHTML = optionalAnswer.field;
-									})
-								} else {
-									optionalQuestionElement.innerText = "";
-								}
-							}
+function resetState() {
+	nextBtn.classList.add('hide');
+	prevBtn.classList.add('hide');
+	document.getElementById('optional-fields').classList.add('hide');
+	document.getElementById('question-container').classList.add('hide');
 
-							function resetState() {
-								nextBtn.classList.add('hide');
-								prevBtn.classList.add('hide');
-								document.getElementById('optional-fields').classList.add('hide');
-								document.getElementById('question-container').classList.add('hide');
+	while (answerButtonsElement.firstChild) {
+		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+	}
+	while (answerBoxesElement.firstChild) {
+		answerBoxesElement.removeChild(answerBoxesElement.firstChild);
+	}
+}
 
-								while (answerButtonsElement.firstChild) {
-									answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-								}
-								while (answerBoxesElement.firstChild) {
-									answerBoxesElement.removeChild(answerBoxesElement.firstChild);
-								}
-							}
+function selectAnswer() {
 
-							function selectAnswer() {
+	if (document.querySelector('input[name="radio"]:checked')) {
 
+		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
+		nextBtn.classList.remove('hide');
 
-								if (document.querySelector('input[name="radio"]:checked')) {
-
-									document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
-									nextBtn.classList.remove('hide');
-
-
-									if (currentQuestionIndex === 8) {
-		//end of questions
+	if (currentQuestionIndex === 8) {
+	//end of questions
 		nextBtn.innerText = "Results";
 		prevBtn.classList.remove('hide'); 
 
@@ -473,10 +512,8 @@ function setScores() {
 
 	document.getElementById('optional-fields').classList.remove('hide');
 	nextBtn.classList.add('animated', 'fadeIn');
-
 	prevBtn.classList.add('animated', 'fadeIn');
-}
-
+	}
 }
 
 const questions = [
@@ -485,19 +522,45 @@ const questions = [
 	question: '1. Locate Upper Arm Position:',
 	answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q1/upperarm2.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q1/upperarm3.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q1/upperarm4.jpg" alt="upperarm" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio5"><label for="radio5" class="radioImg img"><img src="./media/Q1/upperarm5.jpg" alt="upperarm" class="img"></label></span>'},
+	{ text: 
+	`<span class="btn quiz-zone">
+		<input type="radio" name="radio" class="radio" value="1" id="radio1">
+		<label for="radio1" class="radioImg img"><img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img"></label>
+	</span>`},
+	{ text:
+	`<span class="btn quiz-zone">
+		<input type="radio" name="radio" class="radio" value="2" id="radio2">
+		<label for="radio2" class="radioImg img"><img src="./media/Q1/upperarm2.jpg" alt="upperarm" class="img"></label>
+	</span>`},
+	{ text: 
+	`<span class="btn quiz-zone">
+		<input type="radio" name="radio" class="radio" value="2" id="radio3">
+		<label for="radio3" class="radioImg img"><img src="./media/Q1/upperarm3.jpg" alt="upperarm" class="img"></label>
+	</span>`},
+	{ text: 
+	`<span class="btn quiz-zone">
+		<input type="radio" name="radio" class="radio" value="3" id="radio4">
+		<label for="radio4" class="radioImg img"><img src="./media/Q1/upperarm4.jpg" alt="upperarm" class="img"></label>
+	</span>`},
+	{ text:
+	`<span class="btn quiz-zone">
+		<input type="radio" name="radio" class="radio" value="4" id="radio5">
+		<label for="radio5" class="radioImg img"><img src="./media/Q1/upperarm5.jpg" alt="upperarm" class="img"></label>
+	</span>`},
 
 	],
 	optional: 'Part Also tick the following boxes if appropriate:',
 	optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>'},
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>'},
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1"><label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>'},
+	{ field: 
+	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+		<label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>`},
+	{ field: 
+	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
+		<label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>`},
+	{ field: 
+	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1">
+		<label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>`},
 	
 	]
 },
