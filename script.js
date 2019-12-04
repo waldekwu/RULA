@@ -16,29 +16,28 @@ let selectedAreaScore = 0;
 let checkboxValuesSum = 0;
 let checkboxValues = [];
 
-//q1
 let upperArmValue = 0;
 let armAdjValue = 0;
-//q2
+
 let lowerArmValue = 0;
 let lowerArmAdjValue = 0;
-//q3
+
 let wristValue = 0;
 let wristAdjValue = 0;
-//q4
+
 let wristTwistValue = 0;
-//q5
+
 let forceLoadValue = 0;
 let muscleUseValue = 0;
-//q6
+
 let neckValue = 0;
 let neckAdjValue = 0;
-//q7
+
 let trunkValue = 0;
 let trunkAdjValue = 0;
-//q8
+
 let legsValue = 0;
-//q9
+
 let forceLoadB = 0;
 let muscleUseB = 0;
 //Part A total
@@ -50,674 +49,914 @@ let finalScore = 0;
 
 let tables = [
 { 
-	//Table A
-	//'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
-	//upper arm 0
-	'0111': 1, '0112': 2, '0121': 2, '0122': 2, '0131': 2, '0132': 3, '0141': 3, '0142': 3,
-	'0211': 2, '0212': 2, '0221': 2, '0222': 2, '0231': 3, '0232': 3, '0241': 3, '0242': 3,
-	'0311': 2, '0312': 3, '0321': 3, '0322': 3, '0331': 3, '0332': 3, '0341': 4, '0342': 4,
-	//upper arm 1
-	'1111': 1, '1112': 2, '1121': 2, '1122': 2, '1131': 2, '1132': 3, '1141': 3, '1142': 3, 
-	'1211': 2, '1212': 2, '1221': 2, '1222': 2, '1231': 3, '1232': 3, '1241': 3, '1242': 3,
-	'1311': 2, '1312': 3, '1321': 3, '1322': 3, '1331': 3, '1332': 3, '1341': 4, '1342': 4,
-	//upper arm 2
-	'2111': 2, '2112': 3, '2121': 3, '2122': 3, '2131': 3, '2132': 4, '2141': 4, '2142': 4,
-	'2211': 3, '2212': 3, '2221': 3, '2222': 3, '2231': 3, '2232': 4, '2241': 4, '2242': 4,
-	'2311': 3, '2312': 4, '2321': 4, '2322': 4, '2331': 4, '2332': 4, '2341': 5, '2342': 5,
-	//upper arm 3
-	'3111': 3, '3112': 3, '3121': 4, '3122': 4, '3131': 4, '3132': 4, '3141': 5, '3142': 5,
-	'3211': 3, '3212': 4, '3221': 4, '3222': 4, '3231': 4, '3232': 4, '3241': 5, '3242': 5,
-	'3311': 4, '3312': 4, '3321': 4, '3322': 4, '3331': 4, '3332': 5, '3341': 5, '3342': 5,
-	//upper arm 4
-	'4111': 4, '4112': 4, '4121': 4, '4122': 4, '4131': 4, '4132': 5, '4141': 5, '4142': 5,
-	'4211': 4, '4212': 4, '4221': 4, '4222': 4, '4231': 4, '4232': 5, '4241': 5, '4242': 5,
-	'4311': 4, '4312': 4, '4321': 4, '4322': 5, '4331': 5, '4332': 5, '4341': 6, '4342': 6,
-	//upper arm 5
-	'5111': 5, '5112': 5, '5121': 5, '5122': 5, '5131': 5, '5132': 6, '5141': 6, '5142': 7,
-	'5211': 5, '5212': 6, '5221': 6, '5222': 6, '5231': 6, '5232': 7, '5241': 7, '5242': 7,
-	'5311': 5, '5312': 6, '5321': 6, '5322': 6, '5331': 6, '5332': 7, '5341': 7, '5342': 7,
+    //Table A
+    //'0123' - 0 is upper arm, 1 is lower arm, 2 is wrist and 3 is wrist twist 
+    //upper arm 0
+    '0111': 1, '0112': 2, '0121': 2, '0122': 2, '0131': 2, '0132': 3, '0141': 3, '0142': 3,
+    '0211': 2, '0212': 2, '0221': 2, '0222': 2, '0231': 3, '0232': 3, '0241': 3, '0242': 3,
+    '0311': 2, '0312': 3, '0321': 3, '0322': 3, '0331': 3, '0332': 3, '0341': 4, '0342': 4,
+    //upper arm 1
+    '1111': 1, '1112': 2, '1121': 2, '1122': 2, '1131': 2, '1132': 3, '1141': 3, '1142': 3, 
+    '1211': 2, '1212': 2, '1221': 2, '1222': 2, '1231': 3, '1232': 3, '1241': 3, '1242': 3,
+    '1311': 2, '1312': 3, '1321': 3, '1322': 3, '1331': 3, '1332': 3, '1341': 4, '1342': 4,
+    //upper arm 2
+    '2111': 2, '2112': 3, '2121': 3, '2122': 3, '2131': 3, '2132': 4, '2141': 4, '2142': 4,
+    '2211': 3, '2212': 3, '2221': 3, '2222': 3, '2231': 3, '2232': 4, '2241': 4, '2242': 4,
+    '2311': 3, '2312': 4, '2321': 4, '2322': 4, '2331': 4, '2332': 4, '2341': 5, '2342': 5,
+    //upper arm 3
+    '3111': 3, '3112': 3, '3121': 4, '3122': 4, '3131': 4, '3132': 4, '3141': 5, '3142': 5,
+    '3211': 3, '3212': 4, '3221': 4, '3222': 4, '3231': 4, '3232': 4, '3241': 5, '3242': 5,
+    '3311': 4, '3312': 4, '3321': 4, '3322': 4, '3331': 4, '3332': 5, '3341': 5, '3342': 5,
+    //upper arm 4
+    '4111': 4, '4112': 4, '4121': 4, '4122': 4, '4131': 4, '4132': 5, '4141': 5, '4142': 5,
+    '4211': 4, '4212': 4, '4221': 4, '4222': 4, '4231': 4, '4232': 5, '4241': 5, '4242': 5,
+    '4311': 4, '4312': 4, '4321': 4, '4322': 5, '4331': 5, '4332': 5, '4341': 6, '4342': 6,
+    //upper arm 5
+    '5111': 5, '5112': 5, '5121': 5, '5122': 5, '5131': 5, '5132': 6, '5141': 6, '5142': 7,
+    '5211': 5, '5212': 6, '5221': 6, '5222': 6, '5231': 6, '5232': 7, '5241': 7, '5242': 7,
+    '5311': 5, '5312': 6, '5321': 6, '5322': 6, '5331': 6, '5332': 7, '5341': 7, '5342': 7,
 
-	'6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
-	'6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
-	'6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
+    '6111': 7, '6112': 7, '6121': 7, '6122': 7, '6131': 7, '6132': 8, '6141': 8, '6142': 9,
+    '6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
+    '6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
 },
 
 { 
-	//Table B
-	//'012' - 0 is neck, 1 is trunk, 2 are legs
-	'111': 1, '112': 3, '121': 2, '122': 3, '131': 3, '132': 4, '141': 5, '142': 5, '151': 6, '152': 6, '161': 6, '162': 7,
-	'211': 2, '212': 3, '221': 2, '222': 3, '231': 4, '232': 5, '241': 5, '242': 5, '251': 6, '252': 7, '261': 7, '262': 7,
-	'311': 3, '312': 3, '321': 3, '322': 4, '331': 4, '332': 5, '341': 5, '342': 6, '351': 6, '352': 7, '361': 7, '362': 7,
-	'411': 5, '412': 5, '421': 5, '422': 6, '431': 6, '432': 7, '441': 7, '442': 7, '451': 7, '452': 7, '461': 8, '462': 8,
-	'511': 7, '512': 7, '521': 7, '522': 7, '531': 7, '532': 8, '541': 8, '542': 8, '551': 8, '552': 8, '561': 8, '562': 8,
-	'611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9, 
-	'672': 9, '772': 9
+    //Table B
+    //'012' - 0 is neck, 1 is trunk, 2 are legs
+    '111': 1, '112': 3, '121': 2, '122': 3, '131': 3, '132': 4, '141': 5, '142': 5, '151': 6, '152': 6, '161': 6, '162': 7,
+    '211': 2, '212': 3, '221': 2, '222': 3, '231': 4, '232': 5, '241': 5, '242': 5, '251': 6, '252': 7, '261': 7, '262': 7,
+    '311': 3, '312': 3, '321': 3, '322': 4, '331': 4, '332': 5, '341': 5, '342': 6, '351': 6, '352': 7, '361': 7, '362': 7,
+    '411': 5, '412': 5, '421': 5, '422': 6, '431': 6, '432': 7, '441': 7, '442': 7, '451': 7, '452': 7, '461': 8, '462': 8,
+    '511': 7, '512': 7, '521': 7, '522': 7, '531': 7, '532': 8, '541': 8, '542': 8, '551': 8, '552': 8, '561': 8, '562': 8,
+    '611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9, 
+    '672': 9, '772': 9
 },
 
 { 
-	//Table C
-	//'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
-	'1x1': 1, '1x2': 2, '1x3': 3, '1x4': 3, '1x5': 4, '1x6': 5, '1x7': 5,    '1x8': 5, '1x9': 5, '1x10': 5, '1x11': 5, '1x12': 5, '1x13': 5,
-	'2x1': 2, '2x2': 2, '2x3': 3, '2x4': 4, '2x5': 4, '2x6': 5, '2x7': 5,    '2x8': 5, '2x9': 5, '2x10': 5, '2x11': 5, '2x12': 5, '2x13': 5,
-	'3x1': 3, '3x2': 3, '3x3': 3, '3x4': 4, '3x5': 4, '3x6': 5, '3x7': 6,    '3x8': 6, '3x9': 6, '3x10': 6, '3x11': 6, '3x12': 6, '3x13': 6,
-	'4x1': 3, '4x2': 3, '4x3': 3, '4x4': 4, '4x5': 5, '4x6': 6, '4x7': 6,    '4x8': 6, '4x9': 6, '4x10': 6, '4x11': 6, '4x12': 6, '4x13': 6,
-	'5x1': 4, '5x2': 4, '5x3': 4, '5x4': 5, '5x5': 6, '5x6': 7, '5x7': 7,    '5x8': 7, '5x9': 7, '5x10': 7, '5x11': 7, '5x12': 7, '5x13': 7,
-	'6x1': 4, '6x2': 4, '6x3': 5, '6x4': 6, '6x5': 6, '6x6': 7, '6x7': 7,    '6x8': 7, '6x9': 7, '6x10': 7, '6x11': 7, '6x12': 7, '6x13': 7,
-	'7x1': 5, '7x2': 5, '7x3': 6, '7x4': 6, '7x5': 7, '7x6': 7, '7x7': 7,    '7x8': 7, '7x9': 7, '7x10': 7, '7x11': 7, '7x12': 7, '7x13': 7,
-	'8x1': 5, '8x2': 5, '8x3': 6, '8x4': 7, '8x5': 7, '8x6': 7, '8x7': 7,    '8x8': 7, '8x9': 7, '8x10': 7, '8x11': 7, '8x12': 7, '8x13': 7,
-	'9x1': 5, '9x2': 5, '9x3': 6, '9x4': 7, '9x5': 7, '9x6': 7, '9x7': 7,    '9x8': 7, '9x9': 7, '9x10': 7, '9x11': 7, '9x12': 7, '9x13': 7,
+    //Table C
+    //'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
+    '1x1': 1, '1x2': 2, '1x3': 3, '1x4': 3, '1x5': 4, '1x6': 5, '1x7': 5,    '1x8': 5, '1x9': 5, '1x10': 5, '1x11': 5, '1x12': 5, '1x13': 5,
+    '2x1': 2, '2x2': 2, '2x3': 3, '2x4': 4, '2x5': 4, '2x6': 5, '2x7': 5,    '2x8': 5, '2x9': 5, '2x10': 5, '2x11': 5, '2x12': 5, '2x13': 5,
+    '3x1': 3, '3x2': 3, '3x3': 3, '3x4': 4, '3x5': 4, '3x6': 5, '3x7': 6,    '3x8': 6, '3x9': 6, '3x10': 6, '3x11': 6, '3x12': 6, '3x13': 6,
+    '4x1': 3, '4x2': 3, '4x3': 3, '4x4': 4, '4x5': 5, '4x6': 6, '4x7': 6,    '4x8': 6, '4x9': 6, '4x10': 6, '4x11': 6, '4x12': 6, '4x13': 6,
+    '5x1': 4, '5x2': 4, '5x3': 4, '5x4': 5, '5x5': 6, '5x6': 7, '5x7': 7,    '5x8': 7, '5x9': 7, '5x10': 7, '5x11': 7, '5x12': 7, '5x13': 7,
+    '6x1': 4, '6x2': 4, '6x3': 5, '6x4': 6, '6x5': 6, '6x6': 7, '6x7': 7,    '6x8': 7, '6x9': 7, '6x10': 7, '6x11': 7, '6x12': 7, '6x13': 7,
+    '7x1': 5, '7x2': 5, '7x3': 6, '7x4': 6, '7x5': 7, '7x6': 7, '7x7': 7,    '7x8': 7, '7x9': 7, '7x10': 7, '7x11': 7, '7x12': 7, '7x13': 7,
+    '8x1': 5, '8x2': 5, '8x3': 6, '8x4': 7, '8x5': 7, '8x6': 7, '8x7': 7,    '8x8': 7, '8x9': 7, '8x10': 7, '8x11': 7, '8x12': 7, '8x13': 7,
+    '9x1': 5, '9x2': 5, '9x3': 6, '9x4': 7, '9x5': 7, '9x6': 7, '9x7': 7,    '9x8': 7, '9x9': 7, '9x10': 7, '9x11': 7, '9x12': 7, '9x13': 7,
 
-	'10x1': 5, '10x2': 5, '10x3': 6, '10x4': 7, '10x5': 7, '10x6': 7, '10x7': 7,     '10x8': 7, '10x9': 7, '10x10': 7, '10x11': 7, '10x12': 7, '10x13': 7,
-	'11x1': 5, '11x2': 5, '11x3': 6, '11x4': 7, '11x5': 7, '11x6': 7, '11x7': 7,     '11x8': 7, '11x9': 7, '11x10': 7, '11x11': 7, '11x12': 7, '11x13': 7,
-	'12x1': 5, '12x2': 5, '12x3': 6, '12x4': 7, '12x5': 7, '12x6': 7, '12x7': 7,     '12x8': 7, '12x9': 7, '12x10': 7, '12x11': 7, '12x12': 7, '12x13': 7,
-	'13x1': 5, '13x2': 5, '13x3': 6, '13x4': 7, '13x5': 7, '13x6': 7, '13x7': 7,     '13x8': 7, '13x9': 7, '13x10': 7, '13x11': 7, '13x12': 7, '13x13': 7,
+    '10x1': 5, '10x2': 5, '10x3': 6, '10x4': 7, '10x5': 7, '10x6': 7, '10x7': 7,     '10x8': 7, '10x9': 7, '10x10': 7, '10x11': 7, '10x12': 7, '10x13': 7,
+    '11x1': 5, '11x2': 5, '11x3': 6, '11x4': 7, '11x5': 7, '11x6': 7, '11x7': 7,     '11x8': 7, '11x9': 7, '11x10': 7, '11x11': 7, '11x12': 7, '11x13': 7,
+    '12x1': 5, '12x2': 5, '12x3': 6, '12x4': 7, '12x5': 7, '12x6': 7, '12x7': 7,     '12x8': 7, '12x9': 7, '12x10': 7, '12x11': 7, '12x12': 7, '12x13': 7,
+    '13x1': 5, '13x2': 5, '13x3': 6, '13x4': 7, '13x5': 7, '13x6': 7, '13x7': 7,     '13x8': 7, '13x9': 7, '13x10': 7, '13x11': 7, '13x12': 7, '13x13': 7,
 } ];
 
 startBtn.addEventListener('click', startQuiz);
 
 nextBtn.addEventListener('click', () => {
-	currentQuestionIndex++;
-	setNextQuestion();
-	changeCard();
+    currentQuestionIndex++;
+    setNextQuestion();
+    changeCard();
 
 })
 prevBtn.addEventListener('click', () => {
-	currentQuestionIndex--;
-	setNextQuestion();
-	changeCard();
+    currentQuestionIndex--;
+    setNextQuestion();
+    changeCard();
 })
 
 function startQuiz() {
-	setNextQuestion();
-	changeCard();
-	currentQuestionIndex = 0;
-	let armsScore = 0;
+    setNextQuestion();
+    changeCard();
+    currentQuestionIndex = 0;
+    let armsScore = 0;
 }
 
 function changeCard() {
+    const card =  document.querySelector('.card');
+    var delayInMilliseconds = 500;
+    card.classList.remove('fadeInLeft');
+    card.classList.add('animated', 'fadeOutRight');
 
-	const card =  document.querySelector('.card');
-	var delayInMilliseconds = 500;
-	card.classList.remove('fadeInLeft');
-	card.classList.add('animated', 'fadeOutRight');
+    checkboxValues.pop();
 
-	checkboxValues.pop();
-
-	resetState();
+    resetState();
 //if fadeOutRight animation is still there, do this
-if ($('.fadeOutRight')) {
-		//delay all actions
-		setTimeout(function() {
-			card.classList.remove('fadeOutRight', 'fadeOutLeft');
-			card.classList.add('animated','fadeInLeft');
-			startBtn.classList.add('hide');
-			questionContainerElement.classList.remove('hide');
+    if ($('.fadeOutRight')) {
+        //delay all actions
+        setTimeout(function() {
+            card.classList.remove('fadeOutRight', 'fadeOutLeft');
+            card.classList.add('animated','fadeInLeft');
+            startBtn.classList.add('hide');
+            questionContainerElement.classList.remove('hide');
 
-			showQuestion(questions[currentQuestionIndex]);
-			showOptionalQuestion(questions[currentQuestionIndex]);
+            showQuestion(questions[currentQuestionIndex]);
+            showOptionalQuestion(questions[currentQuestionIndex]);
 
-			if (currentQuestionIndex === 9) {
-				setfinalResponse();
-			}
-		}, delayInMilliseconds);
-	}
+            if (currentQuestionIndex === 9) {
+                setfinalResponse();
+            }
+        }, delayInMilliseconds);
+    }
 }
 function setNextQuestion() {
-	startBtn.classList.add('hide');
-	setScores();
-	resetState();
+    startBtn.classList.add('hide');
+    setScores();
+    resetState();
 }
 
 function setAScore() {
+    // console.log('You scored: ' + (upperArmValue + armAdjValue).toString() + 
+    //     (lowerArmValue + lowerArmAdjValue).toString() + 
+    //     (wristValue + wristAdjValue).toString() +
+    //     wristTwistValue.toString())
+    totalAValue = (upperArmValue + armAdjValue).toString() + 
+    (lowerArmValue + lowerArmAdjValue).toString() + 
+    (wristValue + wristAdjValue).toString() +
+    wristTwistValue.toString();
 
-	console.log('You scored: ' + (upperArmValue + armAdjValue).toString() + 
-		(lowerArmValue + lowerArmAdjValue).toString() + 
-		(wristValue + wristAdjValue).toString() +
-		wristTwistValue.toString())
-
-	totalAValue = (upperArmValue + armAdjValue).toString() + 
-	(lowerArmValue + lowerArmAdjValue).toString() + 
-	(wristValue + wristAdjValue).toString() +
-	wristTwistValue.toString();
-
-	AScore = tables[0][totalAValue];
-	console.log('Therefore AScore = ' + AScore); 
+    AScore = tables[0][totalAValue];
+    console.log('Therefore AScore = ' + AScore); 
 }
 
 function setBScore() {
+    // console.log('You scored: ' + (neckValue + neckAdjValue).toString() +
+    //     (trunkValue + trunkAdjValue).toString() +
+    //     legsValue.toString());
+    totalBValue = (neckValue + neckAdjValue).toString() +
+    (trunkValue + trunkAdjValue).toString() +
+    legsValue.toString();
 
-	console.log('You scored: ' + (neckValue + neckAdjValue).toString() +
-		(trunkValue + trunkAdjValue).toString() +
-		legsValue.toString());
-
-	totalBValue = (neckValue + neckAdjValue).toString() +
-	(trunkValue + trunkAdjValue).toString() +
-	legsValue.toString();
-
-	BScore = tables[1][totalBValue];
-	console.log('Therefore BScore = ' + BScore); 
+    BScore = tables[1][totalBValue];
+    console.log('Therefore BScore = ' + BScore); 
 }
 
 function setWristArmScore() {
-	wristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
-
-	console.log("WristArmScore = " + wristArmScore);
+    wristArmScore = AScore + parseInt(forceLoadValue + muscleUseValue);
+    // console.log("WristArmScore = " + wristArmScore);
 }
 
 function setNeckTrunkLegsScore() {
-	
-	neckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
-
-	console.log("NeckTrunkLegsScore = " + neckTrunkLegsScore);
+    neckTrunkLegsScore = BScore + parseInt(forceLoadB + muscleUseB);
+    // console.log("NeckTrunkLegsScore = " + neckTrunkLegsScore);
 }
 
 function setFinalScore() {
-	let tableCScore = wristArmScore + "x" + neckTrunkLegsScore;
+    let tableCScore = wristArmScore + "x" + neckTrunkLegsScore;
 
-	finalScore = tables[2][tableCScore];
+    finalScore = tables[2][tableCScore];
 
-	console.log(tableCScore);
+    // console.log(tableCScore);
 }
-
 function setfinalResponse() {
+    const resultsContainer = document.createElement('div');
+    const scoreContainer = document.createElement('div');
+    const resultsImageContainer = document.createElement('div');
 
-	const resultsContainer = document.createElement('div');
-	const scoreContainer = document.createElement('div');
-	const resultsImageContainer = document.createElement('div');
+    resultsContainer.setAttribute("id", "results-container");
+    resultsContainer.classList.add("results-container", "row", "no-gutters");
 
-	resultsContainer.setAttribute("id", "results-container");
-	resultsContainer.classList.add("results-container", "row", "no-gutters");
+    resultsImageContainer.classList.add("image-container");
 
-	resultsImageContainer.classList.add("image-container");
+    scoreContainer.setAttribute("id", "score-container");
+    scoreContainer.classList.add("results-container", );
 
-	scoreContainer.setAttribute("id", "score-container");
-	scoreContainer.classList.add("results-container", );
+    cardBody.classList.add("btn-grid");
 
-	cardBody.classList.add("btn-grid");
-
-	cardBody.appendChild(resultsContainer);
-	cardBody.appendChild(resultsImageContainer);
-	cardBody.appendChild(scoreContainer);
+    cardBody.appendChild(resultsContainer);
+    cardBody.appendChild(resultsImageContainer);
+    cardBody.appendChild(scoreContainer);
 
 
-	totalBValue = (neckValue + neckAdjValue).toString() +
-	(trunkValue + trunkAdjValue).toString() +
-	legsValue.toString();
+    totalBValue = (neckValue + neckAdjValue).toString() +
+    (trunkValue + trunkAdjValue).toString() +
+    legsValue.toString();
 
-	function scoresList() {
-		resultsContainer.innerHTML = `<div class = "col-md-8">
-		<h3><strong>Scores:</strong></h3>
-		<ul class="results-list">
-		<li>Upper Arm: ${upperArmValue + armAdjValue}</li>
-		<li>Lower Arm: ${lowerArmValue + lowerArmAdjValue}</li>
-		<li>Wrist: ${wristValue + wristAdjValue}</li>
-		<li>Wrist Twist: ${wristTwistValue}</li>
-		<li>Posture Score A: ${AScore}</li>
-		<li>Muscle Use + Force/Load: ${forceLoadValue + muscleUseValue}</li>
-		<li>Arm & Wrist Score: ${wristArmScore}</li>
-		<li>Neck: ${neckValue + neckAdjValue}</li>
-		<li>Trunk: ${trunkValue + trunkAdjValue}</li>
-		<li>Leg: ${legsValue}</li>
-		<li>Posture Score B: ${BScore}</li>
-		<li>Muscle Use + Force/Load: ${forceLoadB + muscleUseB}</li>
-		<li>Neck, Trunk & Leg Score: ${neckTrunkLegsScore}</li>
-		</ul></div>`;
-	}
-	
-	if (finalScore < 3) {
-		// resultsContainer.classList.add("acceptable-posture");
-		scoresList();
-		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = 
-		`<div class='card text-white bg-success mb-3' style='max-width: 18rem; min-width: 3rem;'>
-		<div class='card-body'>
-		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-		<h4 class='card-text'><strong>Acceptable posture</strong></h4>
-		</div>
-		</div>`;
-		
-	} else if (finalScore > 2 && finalScore < 5) {
-		// resultsContainer.classList.add("f-investigation");
-		scoresList();
-		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = 
-		`<div class='card text-white bg-warning mb-3' style='max-width: 18rem; min-width: 3rem;'>
-		<div class='card-body'>
-		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-		<h4 class='card-text'><strong>Further investigation required, change may be needed</strong></h4>
-		</div>
-		</div>`;
-	} 
-	else if (finalScore > 4 && finalScore < 7) {
-		// resultsContainer.classList.add("change-soon");
-		scoresList();
-		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = 
-		`<div class='card text-white bg-warning mb-3' style='max-width: 18rem; min-width: 3rem;'>
-		<div class='card-body'>
-		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-		<h4 class='card-text'><strong>Further investigation required, change soon</strong></h4>
-		</div>
-		</div>`;
-	}
-	else if (finalScore >= 7) {
-		// resultsContainer.classList.add("investigate-change");
-		scoresList();
-		// resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
-		scoreContainer.innerHTML = 
-		`<div class='card text-white bg-danger mb-3' style='max-width: 18rem; min-width: 3rem;'>
-		<div class='card-body'>
-		<h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-		<h4 class='card-text'><strong>Investigate and implement change</strong></h4>
-		</div>
-		</div>`;
-	}
-	scoreContainer.classList.add('animated','flipInX');
+    function scoresList() {
+        resultsContainer.innerHTML = 
+        `<div class = "col-md-8">
+            <h3>Scores:</h3>
+            <ul class="results-list">
+                <li>Upper Arm: ${upperArmValue + armAdjValue}</li>
+                <li>Lower Arm: ${lowerArmValue + lowerArmAdjValue}</li>
+                <li>Wrist: ${wristValue + wristAdjValue}</li>
+                <li>Wrist Twist: ${wristTwistValue}</li>
+                <li>Posture Score A: ${AScore}</li>
+                <li>Muscle Use + Force/Load: ${forceLoadValue + muscleUseValue}</li>
+                <li>Arm & Wrist Score: ${wristArmScore}</li>
+                <li>Neck: ${neckValue + neckAdjValue}</li>
+                <li>Trunk: ${trunkValue + trunkAdjValue}</li>
+                <li>Leg: ${legsValue}</li>
+                <li>Posture Score B: ${BScore}</li>
+                <li>Muscle Use + Force/Load: ${forceLoadB + muscleUseB}</li>
+                <li>Neck, Trunk & Leg Score: ${neckTrunkLegsScore}</li>
+            </ul>
+        </div>`;
+    }
+    
+    if (finalScore < 3) {
+        // resultsContainer.classList.add("acceptable-posture");
+        scoresList();
+        // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+        scoreContainer.innerHTML = 
+        `<div class='card text-white bg-success mb-3 score-card'>
+            <div class='card-body'>
+                <h2 class='card-title'>RULA Score: ${finalScore}</h2>
+                <h4 class='card-text'>
+                    Action level 1:
+                    The posture is acceptable if it is not maintained or repeated for long periods
+                </h4>
+            </div>
+        </div>`;
+        
+    } else if (finalScore > 2 && finalScore < 5) {
+        // resultsContainer.classList.add("f-investigation");
+        scoresList();
+        // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+        scoreContainer.innerHTML = 
+        `<div class='card text-white bg-warning mb-3 score-card'>
+            <div class='card-body'>
+                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+                <h4 class='card-text'>
+                    Action level 2:
+                    Further investigation is needed and changes may be required
+                </h4>
+            </div>
+        </div>`;
+    } 
+    else if (finalScore > 4 && finalScore < 7) {
+        // resultsContainer.classList.add("change-soon");
+        scoresList();
+        // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+        scoreContainer.innerHTML = 
+        `<div class='card text-white bg-warning mb-3 score-card'>
+            <div class='card-body'>
+                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+                <h4 class='card-text'>
+                    Action level 3:
+                    Further investigation and changes are required soon
+                </h4>
+            </div>
+        </div>`;
+    }
+    else if (finalScore >= 7) {
+        // resultsContainer.classList.add("investigate-change");
+        scoresList();
+        // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
+        scoreContainer.innerHTML = 
+        `<div class='card text-white bg-danger mb-3 score-card'>
+            <div class='card-body'>
+                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
+                <h4 class='card-text'>
+                    Action level 4:
+                    Further investigation and changes are required immediately
+                </h4>
+            </div>
+        </div>`;
+    }
+    scoreContainer.classList.add('animated','flipInX');
 }
 
 
 function setScores() {
 
-	switch (currentQuestionIndex) {
-		case 0:
-		break;
+switch (currentQuestionIndex) {
+    case 0:
+        break;
 
-		case 1:
+    case 1:
+    armAdjValue = 0;
+    checkboxValues = [];
+        
+    upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-		armAdjValue = 0;
-		checkboxValues = [];
-		
-		upperArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+        if (document.querySelector('input[name="customCheck"]:checked')) {
 
-		if (document.querySelector('input[name="customCheck"]:checked')) {
+            $('input[name="customCheck"]:checked').each(function() {
+                    checkboxValues.push($(this).val());
+            });
+                for (let i = 0; i < checkboxValues.length; i++) {
+                    armAdjValue += parseInt(checkboxValues[i]);
+                        }
+        } else {
+        armAdjValue = 0; }
+    break;
 
-			$('input[name="customCheck"]:checked').each(function() {
-				checkboxValues.push($(this).val());
-			});
-			for (let i = 0; i < checkboxValues.length; i++) {
-				armAdjValue += parseInt(checkboxValues[i]);
-			}
-		} else {
-			armAdjValue = 0; }
-			break;
+    case 2:
+    lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-			case 2:
+        if (document.querySelector('input[name="customCheck"]:checked')) {
 
-			lowerArmValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+            lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
 
-			if (document.querySelector('input[name="customCheck"]:checked')) {
+        } else {
+            lowerArmAdjValue = 0; }
 
-				lowerArmAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+    break;
 
-			} else {
-				lowerArmAdjValue = 0; }
+    case 3:
+    checkboxValues = [];
+    wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-				break;
+        if (document.querySelector('input[name="customCheck"]:checked')) {
+            wristAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+        } else {
+            wristAdjValue = 0; }
 
-				case 3:
-				checkboxValues = [];
-				wristValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+    break;
 
-				if (document.querySelector('input[name="customCheck"]:checked')) {
-					wristAdjValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
-				} else {
-					wristAdjValue = 0; }
+    case 4:
+    wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+    break;
 
-					break;
+    case 5:
+    forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+        if (document.querySelector('input[name="customCheck"]:checked')) {
+            muscleUseValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+        } else {
+            muscleUseValue = 0; }
+    break;
 
-					case 4:
+    case 6:
+    neckAdjValue = 0;
+    checkboxValues = [];
+    neckValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-					wristTwistValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-					break;
+        if (document.querySelector('input[name="customCheck"]:checked')) {
+            $('input[name="customCheck"]:checked').each(function() {
+                checkboxValues.push($(this).val());
+            });
 
-					case 5:
+            for (let i = 0; i < checkboxValues.length; i++) {
 
-					forceLoadValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-					if (document.querySelector('input[name="customCheck"]:checked')) {
-						muscleUseValue = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
-					} else {
-						muscleUseValue = 0; }
+                neckAdjValue += parseInt(checkboxValues[i]);
+            }
+        } else {
+            neckAdjValue = 0; }
+    break;
 
-						break;
+    case 7:
+    trunkAdjValue = 0;
+    checkboxValues = [];
+    trunkValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-						case 6:
-						neckAdjValue = 0;
-						checkboxValues = [];
-						neckValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+        if (document.querySelector('input[name="customCheck"]:checked')) {
+            $('input[name="customCheck"]:checked').each(function() {
+                checkboxValues.push($(this).val());
+            });
+            for (let i = 0; i < checkboxValues.length; i++) {
+                trunkAdjValue += parseInt(checkboxValues[i]);
+            }
+        } else {
+            trunkAdjValue = 0; }
+    break;
 
-						if (document.querySelector('input[name="customCheck"]:checked')) {
-							$('input[name="customCheck"]:checked').each(function() {
-								checkboxValues.push($(this).val());
-							});
+    case 8:
+    legsValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+    break;
 
-							for (let i = 0; i < checkboxValues.length; i++) {
+    case 9:
+    forceLoadB = parseInt(document.querySelector('input[name="radio"]:checked').value);
 
-								neckAdjValue += parseInt(checkboxValues[i]);
-							}
-						} else {
-							neckAdjValue = 0; }
-							break;
+        if (document.querySelector('input[name="customCheck"]:checked')) {
+            muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
+        } else {
+            muscleUseB = 0; }
 
-							case 7:
-							trunkAdjValue = 0;
-							checkboxValues = [];
-							trunkValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
+    break;
+    default:
+    }
 
-							if (document.querySelector('input[name="customCheck"]:checked')) {
-								$('input[name="customCheck"]:checked').each(function() {
-									checkboxValues.push($(this).val());
-								});
+    if (currentQuestionIndex === 9) {
+    setAScore();
+    setWristArmScore();
+    setBScore();
+    setNeckTrunkLegsScore();
+    setFinalScore();
+    }
+}
 
-								for (let i = 0; i < checkboxValues.length; i++) {
-									trunkAdjValue += parseInt(checkboxValues[i]);
-								}
-							} else {
-								trunkAdjValue = 0; }
-								break;
-
-								case 8:
-
-								legsValue = parseInt(document.querySelector('input[name="radio"]:checked').value);
-								break;
-
-								case 9:
-
-								forceLoadB = parseInt(document.querySelector('input[name="radio"]:checked').value);
-
-								if (document.querySelector('input[name="customCheck"]:checked')) {
-									muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
-								} else {
-									muscleUseB = 0; }
-
-									break;
-									default:
-								}
-
-								if (currentQuestionIndex === 9) {
-									setAScore();
-									setWristArmScore();
-									setBScore();
-									setNeckTrunkLegsScore();
-									setFinalScore();
-
-
-								}
-							}
 function showQuestion(question) {
 
-	titleElement.innerText = question.title;
-	questionElement.innerHTML = question.question;
-	question.answers.forEach(answer => {
-		const questionDiv = document.createElement('span');
-		questionDiv.setAttribute("id", "questionDiv");
+    titleElement.innerText = question.title;
+    questionElement.innerHTML = question.question;
+    question.answers.forEach(answer => {
+        const questionDiv = document.createElement('span');
+        questionDiv.setAttribute("id", "questionDiv");
 
-		questionDiv.addEventListener('click' , selectAnswer);
-		questionDiv.innerHTML = answer.text;
+        questionDiv.addEventListener('click' , selectAnswer);
+        questionDiv.innerHTML = answer.text;
 
-		answerButtonsElement.appendChild(questionDiv);
-	})
+        answerButtonsElement.appendChild(questionDiv);
+    })
 }
 function showOptionalQuestion(optionalQuestion) {
 
-	if (optionalQuestion.optionalAnswers) {
+    if (optionalQuestion.optionalAnswers) {
 
-		optionalQuestionElement.innerText = optionalQuestion.optional;
+        optionalQuestionElement.innerText = optionalQuestion.optional;
 
-		optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
-			const checkboxDiv = document.createElement('div');
-			checkboxDiv.classList.add('custom-control', 'custom-checkbox');
-			answerBoxesElement.appendChild(checkboxDiv);
-			checkboxDiv.innerHTML = optionalAnswer.field;
-		})
-	} else {
-		optionalQuestionElement.innerText = "";
-			}
+        optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+            const checkboxDiv = document.createElement('div');
+            checkboxDiv.classList.add('custom-control', 'custom-checkbox');
+            answerBoxesElement.appendChild(checkboxDiv);
+            checkboxDiv.innerHTML = optionalAnswer.field;
+        })
+    } else {
+        optionalQuestionElement.innerText = "";
+    }
 }
 
 function resetState() {
-	nextBtn.classList.add('hide');
-	prevBtn.classList.add('hide');
-	document.getElementById('optional-fields').classList.add('hide');
-	document.getElementById('question-container').classList.add('hide');
+    nextBtn.classList.add('hide');
+    prevBtn.classList.add('hide');
+    document.getElementById('optional-fields').classList.add('hide');
+    document.getElementById('question-container').classList.add('hide');
 
-	while (answerButtonsElement.firstChild) {
-		answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-	}
-	while (answerBoxesElement.firstChild) {
-		answerBoxesElement.removeChild(answerBoxesElement.firstChild);
-	}
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    }
+    while (answerBoxesElement.firstChild) {
+        answerBoxesElement.removeChild(answerBoxesElement.firstChild);
+    }
 }
 
 function selectAnswer() {
 
-	if (document.querySelector('input[name="radio"]:checked')) {
+    if (document.querySelector('input[name="radio"]:checked')) {
 
-		document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
-		nextBtn.classList.remove('hide');
+        document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
+        nextBtn.classList.remove('hide');
 
-	if (currentQuestionIndex === 8) {
-	//end of questions
-		nextBtn.innerText = "Results";
-		prevBtn.classList.remove('hide'); 
+        if (currentQuestionIndex === 8) {
+        //end of questions
+            nextBtn.innerText = "Results";
+            prevBtn.classList.remove('hide'); 
 
-	} else {
-		nextBtn.classList.remove('hide');
-		prevBtn.classList.remove('hide'); 
-		nextBtn.innerText = "Next";
-	}
+        } else {
+            nextBtn.classList.remove('hide');
+            prevBtn.classList.remove('hide'); 
+            nextBtn.innerText = "Next";
+        }
 
-	if (currentQuestionIndex === 0) {
-		prevBtn.classList.add('hide');
-	}
+        if (currentQuestionIndex === 0) {
+        prevBtn.classList.add('hide');
+         }
 
-	document.getElementById('optional-fields').classList.remove('hide');
-	nextBtn.classList.add('animated', 'fadeIn');
-	prevBtn.classList.add('animated', 'fadeIn');
-	}
+    document.getElementById('optional-fields').classList.remove('hide');
+    nextBtn.classList.add('animated', 'fadeIn');
+    prevBtn.classList.add('animated', 'fadeIn');
+    }
 }
 
 const questions = [
 {
-	title: 'Part A. Arm & Wrist Analysis',
-	question: '1. Locate Upper Arm Position:',
-	answers: [
+    title: 'Part A. Arm & Wrist Analysis',
+    question: '1. Locate Upper Arm Position:',
+    answers: [
 
-	{ text: 
-	`<span class="btn quiz-zone">
-		<input type="radio" name="radio" class="radio" value="1" id="radio1">
-		<label for="radio1" class="radioImg img"><img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img"></label>
-	</span>`},
-	{ text:
-	`<span class="btn quiz-zone">
-		<input type="radio" name="radio" class="radio" value="2" id="radio2">
-		<label for="radio2" class="radioImg img"><img src="./media/Q1/upperarm2.jpg" alt="upperarm" class="img"></label>
-	</span>`},
-	{ text: 
-	`<span class="btn quiz-zone">
-		<input type="radio" name="radio" class="radio" value="2" id="radio3">
-		<label for="radio3" class="radioImg img"><img src="./media/Q1/upperarm3.jpg" alt="upperarm" class="img"></label>
-	</span>`},
-	{ text: 
-	`<span class="btn quiz-zone">
-		<input type="radio" name="radio" class="radio" value="3" id="radio4">
-		<label for="radio4" class="radioImg img"><img src="./media/Q1/upperarm4.jpg" alt="upperarm" class="img"></label>
-	</span>`},
-	{ text:
-	`<span class="btn quiz-zone">
-		<input type="radio" name="radio" class="radio" value="4" id="radio5">
-		<label for="radio5" class="radioImg img"><img src="./media/Q1/upperarm5.jpg" alt="upperarm" class="img"></label>
-	</span>`},
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q1/upperarm2.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <img src="./media/Q1/upperarm3.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <img src="./media/Q1/upperarm4.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="4" id="radio5">
+        <label for="radio5" class="radioImg img">
+            <img src="./media/Q1/upperarm5.jpg" alt="" class="img">
+        </label>
+    </span>`},
 
-	],
-	optional: 'Part Also tick the following boxes if appropriate:',
-	optionalAnswers: [
+    ],
+    optional: 'Also tick the following boxes if appropriate:',
+    optionalAnswers: [
 
-	{ field: 
-	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
-		<label class="custom-control-label" for="customCheck1">Shoulder is raised.</label>`},
-	{ field: 
-	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
-		<label class="custom-control-label" for="customCheck2">Upper Arm is abducted (away from the side of the body).</label>`},
-	{ field: 
-	`<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1">
-		<label class="custom-control-label" for="customCheck3">Leaning or supporting the weight of the arm.</label>`},
-	
-	]
+    { field: 
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        Shoulder is raised.
+    </label>`},
+    { field: 
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
+    <label class="custom-control-label" for="customCheck2">
+        Upper Arm is abducted (away from the side of the body).
+    </label>`},
+    { field: 
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1">
+    <label class="custom-control-label" for="customCheck3">
+        Leaning or supporting the weight of the arm.
+    </label>`},
+    ]
 },
 
 {
-	title: 'Part A. Arm & Wrist Analysis',
-	question: '2. Locate Lower Arm Position:',
-	answers: [
+    title: 'Part A. Arm & Wrist Analysis',
+    question: '2. Locate Lower Arm Position:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q2/lowerarm1.jpg" alt="manikin lowerarm 60 to 100 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q2/lowerarm2.jpg" alt="manikin lowerarm 0 to 60 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q2/lowerarm3.jpg" alt="manikin lowerarm 100 degrees or more" class="img"></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q2/lowerarm1.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q2/lowerarm2.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <img src="./media/Q2/lowerarm3.jpg" alt="" class="img">
+        </label>
+    </span>`},
 
-	],
-	optional: "Also tick the following box if appropriate:",
-	optionalAnswers: [
+    ],
+    optional: "Also tick the following box if appropriate:",
+    optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Is either arm working across midline or out to side of body?<br><img src="./media/Q2/lowerarm4.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+    { field: 
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        Is either arm working across midline or out to side of body?<br>
+        <img src="./media/Q2/lowerarm4.jpg" alt="" class="checkbox-img">
+    </label>`},
 
-	]
+    ]
 },
 
 {
-	title: 'Part A. Arm & Wrist Analysis',
-	question: '3. Locate Wrist Position:',
-	answers: [
+    title: 'Part A. Arm & Wrist Analysis',
+    question: '3. Locate Wrist Position:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q3/wrist1.jpg" alt="wrist 0 degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q3/wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q3/wrist3.jpg" alt="wrist 15 degrees down" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q3/wrist4.jpg" alt="wrist 15 degrees up" class="img"></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q3/wrist1.jpg" alt="wrist 0 degrees" class="img">
+        </label>
+    </span>`},
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q3/wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img">
+        </label>
+    </span>`},
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <img src="./media/Q3/wrist3.jpg" alt="wrist 15 degrees down" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <img src="./media/Q3/wrist4.jpg" alt="wrist 15 degrees up" class="img">
+        </label>
+    </span>`},
 
-	],
+    ],
 
-	optional: "Also tick the following box if appropriate:",
-	optionalAnswers: [
+    optional: "Also tick the following box if appropriate:",
+    optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1">Is wrist bent away from midline?<img src="./media/Q3/wrist5.jpg" alt="lowerarm midline or out to side" class="checkbox-img"></label>'},
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        Is wrist bent away from midline?
+        <img src="./media/Q3/wrist5.jpg" alt="lowerarm midline or out to side" class="checkbox-img">
+    </label>`},
 
-	]
+    ]
 },
 
 {
-	title: 'Part A. Arm & Wrist Analysis',
-	question: '4. Wrist Twist:',
-	answers: [
+    title: 'Part A. Arm & Wrist Analysis',
+    question: '4. Wrist Twist:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q4/wrist_twist1.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q4/wrist_twist2.jpg" alt="" class="img"></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q4/wrist_twist1.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q4/wrist_twist2.jpg" alt="" class="img">
+        </label>
+    </span>`},
 
-	],
+    ],
 },
 
 {
-	title: 'Part A. Force and Load for the Arm & Wrist',
-	question: '5. Select the force and load that most reflects the working situation:',
-	answers: [
+    title: 'Part A. Force and Load for the Arm & Wrist',
+    question: '5. Select the force and load that most reflects the working situation:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li><h2 style="visibility: hidden;">#</h2></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 3</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="0" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <ul>
+                <h5><strong>Score 0</strong></h5>
+                <li>No resistance</li>
+                <li>Less than 2 kg intermittent load or force</li>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <ul>
+                <h5><strong>Score 1</strong></h5>
+                <li>2 - 10 kg intermittent load or force</li>
+            <h2 style="visibility: hidden;">#</h2>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <ul>
+                <h5><strong>Score 2</strong></h5>
+                <li>2 - 10 kg static load</li>
+                <li>2 - 10 kg repeated loads or forces</li>
+                <li>10 kg or more, intermittent load or force</li>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <ul>
+                <h5><strong>Score 3</strong></h5>
+                <li>More than 10 kg static load</li>
+                <li>10+ kg repeated loads or forces</li>
+                <li>Shock or forces with rapid buildup</li>
+            </ul>
+        </label>
+    </span>`},
 
-	],
+    ],
 
-	optional: "Select this box if it reflects your muscle use:",
-	optionalAnswers: [
+    optional: "Select this box if it reflects your muscle use:",
+    optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><ul class="checkBoxList"><h5><strong>Score 1</strong></h5>Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.</ul></label>'},
+    { field: 
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        <ul class="checkBoxList">
+            <h5><strong>Score 1</strong></h5>
+            Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.
+        </ul>
+    </label>`},
 
-	]
+    ]
 },
 
 {
-	title: 'Part B. Neck, Trunk & Leg Analysis',
-	question: '6. Locate Neck Position:',
-	answers: [
+    title: 'Part B. Neck, Trunk & Leg Analysis',
+    question: '6. Locate Neck Position:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q6/neck1.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q6/neck2.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q6/neck3.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q6/neck4.jpg" alt="" class="img"></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q6/neck1.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q6/neck2.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <img src="./media/Q6/neck3.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="4" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <img src="./media/Q6/neck4.jpg" alt="" class="img">
+        </label>
+    </span>`},
 
-	],
-	optional: 'Also tick the following boxes if appropriate:',
-	optionalAnswers: [
+    ],
+    optional: 'Also tick the following boxes if appropriate:',
+    optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q6/neck5.jpg" alt="" class="checkbox-img"></label>'},
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q6/neck6.jpg" alt="" class="checkbox-img"></label>'},
-	
-	]
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        <img src="./media/Q6/neck5.jpg" alt="" class="checkbox-img">
+    </label>`},
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
+    <label class="custom-control-label" for="customCheck2">
+        <img src="./media/Q6/neck6.jpg" alt="" class="checkbox-img">
+    </label>`},
+    
+    ]
 },
 
 {
-	title: 'Part B. Neck, Trunk & Leg Analysis',
-	question: '7. Locate Trunk Position:',
-	answers: [
+    title: 'Part B. Neck, Trunk & Leg Analysis',
+    question: '7. Locate Trunk Position:',
+    answers: [
 
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="radioImg img"><img src="./media/Q7/trunk1.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="radioImg img"><img src="./media/Q7/trunk2.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio3"><label for="radio3" class="radioImg img"><img src="./media/Q7/trunk3.jpg" alt="" class="img"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="4" id="radio4"><label for="radio4" class="radioImg img"><img src="./media/Q7/trunk4.jpg" alt="" class="img"></label></span>'},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <img src="./media/Q7/trunk1.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <img src="./media/Q7/trunk2.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <img src="./media/Q7/trunk3.jpg" alt="" class="img">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="4" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <img src="./media/Q7/trunk4.jpg" alt="" class="img">
+        </label>
+    </span>`},
 
-	],
-	optional: 'Also tick the following boxes if appropriate:',
-	optionalAnswers: [
+    ],
+    optional: 'Also tick the following boxes if appropriate:',
+    optionalAnswers: [
 
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><img src="./media/Q7/trunk5.jpg" alt="" class="checkbox-img"></label>'},
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1"><label class="custom-control-label" for="customCheck2"><img src="./media/Q7/trunk6.jpg" alt="" class="checkbox-img"></label>'},
-	
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        <img src="./media/Q7/trunk5.jpg" alt="" class="checkbox-img">
+    </label>`},
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
+    <label class="custom-control-label" for="customCheck2">
+        <img src="./media/Q7/trunk6.jpg" alt="" class="checkbox-img">
+    </label>`},
+    
+    ]
+},
+{
+    title: 'Part B. Neck, Trunk & Leg Analysis',
+    question: '8. Legs:',
+    answers: [
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <label for="radio1" class="">
+            Legs and feet are well supported and in an evenly balanced posture.<br>
+            <img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto">
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <label for="radio2" class="">
+            Legs and feet are NOT evenly balanced and supported.<br>
+            <img src="./media/Q8/legs2.jpg" alt="" class="img" style="margin: 10px auto 0 auto">
+        </label>
+    </span>`},
+    ],
+},
+{
+    title: 'Part B. Force and Load for the Neck, Trunk & Legs',
+    question: '9. Select the force and load that most reflects the working situation:',
+    answers: [
 
+    { text: 
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="0" id="radio1">
+        <label for="radio1" class="radioImg img">
+            <ul>
+                <h5><strong>Score 0</strong></h5>
+                <li>No resistance</li>
+                <li>Less than 2 kg intermittent load or force</li>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="1" id="radio2">
+        <label for="radio2" class="radioImg img">
+            <ul>
+                <h5><strong>Score 1</strong></h5>
+                <li>2 - 10 kg intermittent load or force</li>
+                <h2 style="visibility: hidden;">#</h2>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <label for="radio3" class="radioImg img">
+            <ul>
+                <h5><strong>Score 2</strong></h5>
+                <li>2 - 10 kg static load</li>
+                <li>2 - 10 kg repeated loads or forces</li>
+                <li>10 kg or more, intermittent load or force</li>
+            </ul>
+        </label>
+    </span>`},
+    { text:
+    `<span class="btn quiz-zone">
+        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <label for="radio4" class="radioImg img">
+            <ul>
+                <h5><strong>Score 3</strong></h5>
+                <li>More than 10 kg static load</li>
+                <li>10+ kg repeated loads or forces</li>
+                <li>Shock or forces with rapid buildup</li>
+            </ul>
+        </label>
+    </span>`},
+    ],
 
-	]
+    optional: "Select this box if it reflects your muscle use:",
+    optionalAnswers: [
+
+    { field:
+    `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1">
+    <label class="custom-control-label" for="customCheck1">
+        <ul class="checkBoxList">
+            <h5><strong>Score 1</strong></h5>
+            Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.
+        </ul>
+    </label>`},
+    ]
 },
 
 {
-	title: 'Part B. Neck, Trunk & Leg Analysis',
-	question: '8. Legs:',
-	answers: [
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio1"><label for="radio1" class="">Legs and feet are well supported and in an evenly balanced posture.<br><img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio2"><label for="radio2" class="">Legs and feet are NOT evenly balanced and supported.<br><img src="./media/Q8/legs2.jpg" alt="" class="img" style="margin: 10px auto 0 auto"></label></span>'},
-	],
+    title: 'RULA Summary',
+    question: '',
+    answers: [
 
-},
+    { text: '<span class="hide"></span>'},
 
-{
-	title: 'Part B. Force and Load for the Neck, Trunk & Legs',
-	question: '9. Select the force and load that most reflects the working situation:',
-	answers: [
-
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="0" id="radio1"><label for="radio1" class="radioImg img"><ul><h5><strong>Score 0</strong></h5><li>No resistance</li><li>Less than 2 kg intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="1" id="radio2"><label for="radio2" class="radioImg img"><ul><h5><strong>Score 1</strong></h5><li>2 - 10 kg intermittent load or force</li><h2 style="visibility: hidden;">#</h2></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="2" id="radio3"><label for="radio3" class="radioImg img"><ul><h5><strong>Score 2</strong></h5><li>2 - 10 kg static load</li><li>2 - 10 kg repeated loads or forces</li><li>10 kg or more, intermittent load or force</li></ul></label></span>'},
-	{ text: '<span class="btn quiz-zone"><input type="radio" name="radio" class="radio" value="3" id="radio4"><label for="radio4" class="radioImg img"><ul><h5><strong>Score 3</strong></h5><li>More than 10 kg static load</li><li>10+ kg repeated loads or forces</li><li>Shock or forces with rapid buildup</li></ul></label></span>'},
-
-	],
-
-	optional: "Select this box if it reflects your muscle use:",
-	optionalAnswers: [
-
-	{ field: '<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1" value="1"><label class="custom-control-label" for="customCheck1"><ul class="checkBoxList"><h5><strong>Score 1</strong></h5>Posture is mainly static, e.g. held for longer than 1 minute or repeated more than 4 times per minute.</ul></label>'},
-
-	]
-},
-
-{
-	title: 'RULA Summary',
-	question: '',
-	answers: [
-
-	{ text: '<span class="hide"></span>'},
-
-
-	],
-
+    ],
 },
 
 ]
-
 //  let setArmsScore = questions[0].answers[1]['armsScore']

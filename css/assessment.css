@@ -1,0 +1,141 @@
+.quiz-zone {
+	color:grey;
+	border-radius:4px;
+	border:1px solid #bbb;
+
+	transition: all 0.3s linear;
+	margin-right: 10%;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content : space-evenly;
+	align-content   : center;
+}
+
+.quiz-zone:hover {
+	-webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
+	-moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
+	-o-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
+	box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
+}
+
+.btn-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(1, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	margin-top: 20px;
+}
+
+h4 {
+	margin-top: 15px;
+}
+
+.checkbox {
+	display: inline-block;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+.img {
+	display: flex;
+	order: 2;
+	margin: 10px 0 10px 0;
+}
+
+.checkbox-img {
+	order: 2;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+ul, li {
+	justify-content: flex-start;
+	text-align: left;
+	color: black;
+}
+
+.results-container {
+	justify-content: flex-start;
+	text-align: left;
+	color: black;
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+#score-container {
+	grid-area: 1 / 2 / 2 / 3;
+	animation-delay: 0.5s;
+}
+
+.score-card {
+	margin-left: 0px;
+	max-width: 21rem; 
+	min-width: 3rem;
+}
+
+.checkBoxList {
+	max-width: 500px;
+}
+
+#prev-btn {
+	text-transform: uppercase;
+}
+
+.questionTxt {
+	display: flex;
+	order: 2;
+}
+
+.image-container {
+	grid-area: 3 / 2 / 4 / 3;
+	max-height: 297px;
+	max-width: 223px;
+}
+.card-img {
+	text-align: right;
+}
+
+.results-list {
+	list-style: none;
+	padding: 0;
+}
+
+.results-list > li {
+	padding: 5px 10px;
+	background-color: #EEEEEE;
+	border: 1px solid #DDDDDD;
+	margin-left: 20px;
+}
+
+.hide {
+	display: none;
+}
+
+@media screen and (max-width: 575px) {
+	.btn-grid {
+		display: flex;
+		flex-direction: column;
+
+	}
+	.radio {
+		display: flex;
+		order: 1;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+	}
+
+
+	.img {
+		display: flex;
+		order: 2;
+		margin-right: 1vh;
+		width: auto;
+		height: auto;
+	}
+
+}

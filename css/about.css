@@ -1,0 +1,12 @@
+.mb-3 {
+	border: none;
+}
+.card-body {
+	padding: 0px;
+
+}
+.card-text {
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
