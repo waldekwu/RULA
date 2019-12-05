@@ -55,23 +55,23 @@ let tables = [
     '0111': 1, '0112': 2, '0121': 2, '0122': 2, '0131': 2, '0132': 3, '0141': 3, '0142': 3,
     '0211': 2, '0212': 2, '0221': 2, '0222': 2, '0231': 3, '0232': 3, '0241': 3, '0242': 3,
     '0311': 2, '0312': 3, '0321': 3, '0322': 3, '0331': 3, '0332': 3, '0341': 4, '0342': 4,
-    //upper arm 1
+
     '1111': 1, '1112': 2, '1121': 2, '1122': 2, '1131': 2, '1132': 3, '1141': 3, '1142': 3, 
     '1211': 2, '1212': 2, '1221': 2, '1222': 2, '1231': 3, '1232': 3, '1241': 3, '1242': 3,
     '1311': 2, '1312': 3, '1321': 3, '1322': 3, '1331': 3, '1332': 3, '1341': 4, '1342': 4,
-    //upper arm 2
+
     '2111': 2, '2112': 3, '2121': 3, '2122': 3, '2131': 3, '2132': 4, '2141': 4, '2142': 4,
     '2211': 3, '2212': 3, '2221': 3, '2222': 3, '2231': 3, '2232': 4, '2241': 4, '2242': 4,
     '2311': 3, '2312': 4, '2321': 4, '2322': 4, '2331': 4, '2332': 4, '2341': 5, '2342': 5,
-    //upper arm 3
+
     '3111': 3, '3112': 3, '3121': 4, '3122': 4, '3131': 4, '3132': 4, '3141': 5, '3142': 5,
     '3211': 3, '3212': 4, '3221': 4, '3222': 4, '3231': 4, '3232': 4, '3241': 5, '3242': 5,
     '3311': 4, '3312': 4, '3321': 4, '3322': 4, '3331': 4, '3332': 5, '3341': 5, '3342': 5,
-    //upper arm 4
+
     '4111': 4, '4112': 4, '4121': 4, '4122': 4, '4131': 4, '4132': 5, '4141': 5, '4142': 5,
     '4211': 4, '4212': 4, '4221': 4, '4222': 4, '4231': 4, '4232': 5, '4241': 5, '4242': 5,
     '4311': 4, '4312': 4, '4321': 4, '4322': 5, '4331': 5, '4332': 5, '4341': 6, '4342': 6,
-    //upper arm 5
+
     '5111': 5, '5112': 5, '5121': 5, '5122': 5, '5131': 5, '5132': 6, '5141': 6, '5142': 7,
     '5211': 5, '5212': 6, '5221': 6, '5222': 6, '5231': 6, '5232': 7, '5241': 7, '5242': 7,
     '5311': 5, '5312': 6, '5321': 6, '5322': 6, '5331': 6, '5332': 7, '5341': 7, '5342': 7,
@@ -130,7 +130,6 @@ function startQuiz() {
     setNextQuestion();
     changeCard();
     currentQuestionIndex = 0;
-    let armsScore = 0;
 }
 
 function changeCard() {
@@ -262,11 +261,11 @@ function setfinalResponse() {
         scoreContainer.innerHTML = 
         `<div class='card text-white bg-success mb-3 score-card'>
             <div class='card-body'>
-                <h2 class='card-title'>RULA Score: ${finalScore}</h2>
-                <h4 class='card-text'>
+                <h3 class='card-title'>RULA Score: ${finalScore}</h3>
+                <h5 class='card-text'>
                     Action level 1:
                     The posture is acceptable if it is not maintained or repeated for long periods
-                </h4>
+                </h5>
             </div>
         </div>`;
         
@@ -277,11 +276,11 @@ function setfinalResponse() {
         scoreContainer.innerHTML = 
         `<div class='card text-white bg-warning mb-3 score-card'>
             <div class='card-body'>
-                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-                <h4 class='card-text'>
+                <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
+                <h5 class='card-text'>
                     Action level 2:
                     Further investigation is needed and changes may be required
-                </h4>
+                </h5>
             </div>
         </div>`;
     } 
@@ -292,11 +291,11 @@ function setfinalResponse() {
         scoreContainer.innerHTML = 
         `<div class='card text-white bg-warning mb-3 score-card'>
             <div class='card-body'>
-                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-                <h4 class='card-text'>
+                <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
+                <h5 class='card-text'>
                     Action level 3:
                     Further investigation and changes are required soon
-                </h4>
+                </h5>
             </div>
         </div>`;
     }
@@ -307,11 +306,11 @@ function setfinalResponse() {
         scoreContainer.innerHTML = 
         `<div class='card text-white bg-danger mb-3 score-card'>
             <div class='card-body'>
-                <h2 class='card-title'><strong>RULA Score: ${finalScore}</strong></h2>
-                <h4 class='card-text'>
+                <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
+                <h5 class='card-text'>
                     Action level 4:
                     Further investigation and changes are required immediately
-                </h4>
+                </h5>
             </div>
         </div>`;
     }
@@ -789,7 +788,6 @@ const questions = [
             <img src="./media/Q6/neck4.jpg" alt="" class="img">
         </label>
     </span>`},
-
     ],
     optional: 'Also tick the following boxes if appropriate:',
     optionalAnswers: [
@@ -804,7 +802,6 @@ const questions = [
     <label class="custom-control-label" for="customCheck2">
         <img src="./media/Q6/neck6.jpg" alt="" class="checkbox-img">
     </label>`},
-    
     ]
 },
 
@@ -841,7 +838,6 @@ const questions = [
             <img src="./media/Q7/trunk4.jpg" alt="" class="img">
         </label>
     </span>`},
-
     ],
     optional: 'Also tick the following boxes if appropriate:',
     optionalAnswers: [
@@ -856,7 +852,6 @@ const questions = [
     <label class="custom-control-label" for="customCheck2">
         <img src="./media/Q7/trunk6.jpg" alt="" class="checkbox-img">
     </label>`},
-    
     ]
 },
 {
