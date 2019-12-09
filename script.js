@@ -8,6 +8,7 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const answerBoxesElement = document.getElementById('checkbox');
 const optionalQuestionElement = document.getElementById('optional-question');
 const cardBody = document.getElementById('card-body');
+const footerElement = document.getElementById('card-footer');
 
 let currentQuestionIndex;
 let checkId = 0;
@@ -112,7 +113,9 @@ let tables = [
     '13x1': 5, '13x2': 5, '13x3': 6, '13x4': 7, '13x5': 7, '13x6': 7, '13x7': 7,     '13x8': 7, '13x9': 7, '13x10': 7, '13x11': 7, '13x12': 7, '13x13': 7,
 } ];
 
-startBtn.addEventListener('click', startQuiz);
+// startBtn.addEventListener('click', startQuiz);
+
+startQuiz();
 
 nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
@@ -135,7 +138,8 @@ function startQuiz() {
 
 function changeCard() {
     const card =  document.querySelector('.card');
-    var delayInMilliseconds = 500;
+    let delayInMilliseconds = 500;
+
     card.classList.remove('fadeInLeft');
     card.classList.add('animated', 'fadeOutRight');
 
@@ -165,6 +169,7 @@ function showQuestion(question) {
 
     titleElement.innerText = question.title;
     questionElement.innerHTML = question.question;
+    footerElement.innerHTML = question.footer;
     question.answers.forEach(answer => {
         const questionDiv = document.createElement('span');
         questionDiv.setAttribute("id", "questionDiv");
@@ -259,7 +264,6 @@ function setfinalResponse() {
     cardBody.appendChild(resultsContainer);
     cardBody.appendChild(resultsImageContainer);
     cardBody.appendChild(scoreContainer);
-
 
     totalBValue = (neckValue + neckAdjValue).toString() +
     (trunkValue + trunkAdjValue).toString() +
@@ -519,7 +523,11 @@ function selectAnswer() {
 const questions = [
 {
     title: 'Part A. Arm & Wrist Analysis',
-    question: '1. Locate Upper Arm Position:',
+    question: 'Step 1: Locate Upper Arm Position',
+    footer:
+    `<p>Progress:</p><div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+	</div>`,
     answers: [
 
     { text: 
@@ -559,7 +567,7 @@ const questions = [
     </span>`},
 
     ],
-    optional: 'Also tick the following boxes if appropriate:',
+    optional: 'Step 1a: Also tick the following boxes if appropriate',
     optionalAnswers: [
 
     { field: 
@@ -578,11 +586,17 @@ const questions = [
         Leaning or supporting the weight of the arm.
     </label>`},
     ]
+    
 },
 
 {
     title: 'Part A. Arm & Wrist Analysis',
-    question: '2. Locate Lower Arm Position:',
+    question: 'Step 2: Locate Lower Arm Position',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100">11%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -608,7 +622,7 @@ const questions = [
     </span>`},
 
     ],
-    optional: "Also tick the following box if appropriate:",
+    optional: "Step 2a: Also tick the following box if appropriate",
     optionalAnswers: [
 
     { field: 
@@ -623,7 +637,12 @@ const questions = [
 
 {
     title: 'Part A. Arm & Wrist Analysis',
-    question: '3. Locate Wrist Position:',
+    question: 'Step 3: Locate Wrist Position',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100">22%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -657,7 +676,7 @@ const questions = [
 
     ],
 
-    optional: "Also tick the following box if appropriate:",
+    optional: "Step 3a: Also tick the following box if appropriate",
     optionalAnswers: [
 
     { field:
@@ -672,7 +691,12 @@ const questions = [
 
 {
     title: 'Part A. Arm & Wrist Analysis',
-    question: '4. Wrist Twist:',
+    question: 'Step 4: Wrist Twist',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -695,7 +719,12 @@ const questions = [
 
 {
     title: 'Part A. Force and Load for the Arm & Wrist',
-    question: '5. Select the force and load that most reflects the working situation:',
+    question: 'Step 5: Select the force and load that most reflects the working situation',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 44%" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100">44%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -747,7 +776,7 @@ const questions = [
 
     ],
 
-    optional: "Select this box if it reflects your muscle use:",
+    optional: "Step 5a: Select this box if it reflects your muscle use",
     optionalAnswers: [
 
     { field: 
@@ -764,7 +793,12 @@ const questions = [
 
 {
     title: 'Part B. Neck, Trunk & Leg Analysis',
-    question: '6. Locate Neck Position:',
+    question: 'Step 6: Locate Neck Position',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -796,7 +830,7 @@ const questions = [
         </label>
     </span>`},
     ],
-    optional: 'Also tick the following boxes if appropriate:',
+    optional: 'Step 6a: Also tick the following boxes if appropriate',
     optionalAnswers: [
 
     { field:
@@ -814,7 +848,12 @@ const questions = [
 
 {
     title: 'Part B. Neck, Trunk & Leg Analysis',
-    question: '7. Locate Trunk Position:',
+    question: 'Step 7: Locate Trunk Position',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">67%</div>
+	</div>`,
     answers: [
 
     { text:
@@ -846,7 +885,7 @@ const questions = [
         </label>
     </span>`},
     ],
-    optional: 'Also tick the following boxes if appropriate:',
+    optional: 'Step 7a: Also tick the following boxes if appropriate',
     optionalAnswers: [
 
     { field:
@@ -863,7 +902,12 @@ const questions = [
 },
 {
     title: 'Part B. Neck, Trunk & Leg Analysis',
-    question: '8. Legs:',
+    question: 'Step 8: Legs',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">78%</div>
+	</div>`,
     answers: [
     { text:
     `<span class="btn quiz-zone">
@@ -885,7 +929,12 @@ const questions = [
 },
 {
     title: 'Part B. Force and Load for the Neck, Trunk & Legs',
-    question: '9. Select the force and load that most reflects the working situation:',
+    question: 'Step 9: Select the force and load that most reflects the working situation',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100">89%</div>
+	</div>`,
     answers: [
 
     { text: 
@@ -936,7 +985,7 @@ const questions = [
     </span>`},
     ],
 
-    optional: "Select this box if it reflects your muscle use:",
+    optional: "Step 9a: Select this box if it reflects your muscle use",
     optionalAnswers: [
 
     { field:
@@ -953,6 +1002,11 @@ const questions = [
 {
     title: 'RULA Summary',
     question: '',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+	</div>`,
     answers: [
 
     { text: '<span class="hide"></span>'},
