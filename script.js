@@ -570,7 +570,7 @@ const questions = [
     { field: 
     `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2" value="1">
     <label class="custom-control-label" for="customCheck2">
-        Upper Arm is abducted (away from the side of the body).
+        Upper arm is abducted (away from the side of the body).
     </label>`},
     { field: 
     `<input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3" value="-1">
