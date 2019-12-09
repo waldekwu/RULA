@@ -100,7 +100,7 @@ p {
 .footerTxt {
     text-align: center;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 635px) {
   .button-text {
     visibility: hidden;
     display: none;

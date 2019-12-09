@@ -1,8 +1,7 @@
 .quiz-zone {
 	color:grey;
-	border-radius:4px;
-	border:1px solid #bbb;
-
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	min-width: 250px;
 	transition: all 0.3s linear;
 	margin-right: 10%;
 	margin-bottom: 10px;
@@ -13,10 +12,9 @@
 }
 
 .quiz-zone:hover {
-	-webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
-	-moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
-	-o-box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
-	box-shadow:rgba(0,0,0,0.7) 0px 5px 10px, inset rgba(0,0,0,0.15) 0px -5px 10px;
+	-webkit-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
+	-moz-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
+	box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
 }
 
 .btn-grid {
@@ -38,10 +36,15 @@ h4 {
 	margin-bottom: 15px;
 }
 
+.custom-control-label {
+	cursor: pointer;
+}
+
 .img {
 	display: flex;
 	order: 2;
-	margin: 10px 0 10px 0;
+	margin: 10px 0 5px 0;
+	cursor: pointer;
 }
 
 .checkbox-img {
@@ -110,25 +113,61 @@ ul, li {
 	margin-left: 20px;
 }
 
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  min-height: 15px;
+  min-width: 15px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  color: #fff;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0);
+  -moz-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0);
+  box-shadow: 0px 0px 0px 3px rgba(1,124,255,0);
+
+}
+.option-input:hover {
+  background: #9faab7;
+  cursor: pointer;
+}
+.option-input:checked {
+  	background: white;
+	border: 4px solid #017cff;
+	-webkit-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
+	-moz-box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
+	box-shadow: 0px 0px 0px 3px rgba(1,124,255,0.25);
+}
+
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
 .hide {
 	display: none;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 600px) {
 	.btn-grid {
 		display: flex;
 		flex-direction: column;
 
 	}
-	.radio {
-		display: flex;
-		order: 1;
-		max-width: 100%;
-		max-height: 100%;
-		width: auto;
-		height: auto;
-	}
-
 
 	.img {
 		display: flex;

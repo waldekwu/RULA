@@ -517,35 +517,35 @@ const questions = [
 
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q1/upperarm1.jpg" alt="upperarm" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q1/upperarm2.jpg" alt="" class="img">
         </label>
     </span>`},
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio3">
         <label for="radio3" class="radioImg img">
             <img src="./media/Q1/upperarm3.jpg" alt="" class="img">
         </label>
     </span>`},
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio4">
         <label for="radio4" class="radioImg img">
             <img src="./media/Q1/upperarm4.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="4" id="radio5">
+        <input type="radio" name="radio" class="radio option-input" value="4" id="radio5">
         <label for="radio5" class="radioImg img">
             <img src="./media/Q1/upperarm5.jpg" alt="" class="img">
         </label>
@@ -580,21 +580,21 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q2/lowerarm1.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q2/lowerarm2.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio3">
         <label for="radio3" class="radioImg img">
             <img src="./media/Q2/lowerarm3.jpg" alt="" class="img">
         </label>
@@ -621,28 +621,28 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q3/wrist1.jpg" alt="wrist 0 degrees" class="img">
         </label>
     </span>`},
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q3/wrist2.jpg" alt="wrist 15 down to 15 up degrees" class="img">
         </label>
     </span>`},
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio3">
         <label for="radio3" class="radioImg img">
             <img src="./media/Q3/wrist3.jpg" alt="wrist 15 degrees down" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio4">
         <label for="radio4" class="radioImg img">
             <img src="./media/Q3/wrist4.jpg" alt="wrist 15 degrees up" class="img">
         </label>
@@ -670,14 +670,14 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q4/wrist_twist1.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q4/wrist_twist2.jpg" alt="" class="img">
         </label>
@@ -693,7 +693,7 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="0" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="0" id="radio1">
         <label for="radio1" class="radioImg img">
             <ul>
                 <h5><strong>Score 0</strong></h5>
@@ -704,7 +704,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio2">
         <label for="radio2" class="radioImg img">
             <ul>
                 <h5><strong>Score 1</strong></h5>
@@ -715,7 +715,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio3">
         <label for="radio3" class="radioImg img">
             <ul>
                 <h5><strong>Score 2</strong></h5>
@@ -727,7 +727,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio4">
         <label for="radio4" class="radioImg img">
             <ul>
                 <h5><strong>Score 3</strong></h5>
@@ -762,28 +762,28 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="option-input radio" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q6/neck1.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="option-input radio" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q6/neck2.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <input type="radio" name="radio" class="option-input radio" value="3" id="radio3">
         <label for="radio3" class="radioImg img">
             <img src="./media/Q6/neck3.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="4" id="radio4">
+        <input type="radio" name="radio" class="option-input radio" value="4" id="radio4">
         <label for="radio4" class="radioImg img">
             <img src="./media/Q6/neck4.jpg" alt="" class="img">
         </label>
@@ -812,28 +812,28 @@ const questions = [
 
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="radioImg img">
             <img src="./media/Q7/trunk1.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="radioImg img">
             <img src="./media/Q7/trunk2.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio3">
         <label for="radio3" class="radioImg img">
             <img src="./media/Q7/trunk3.jpg" alt="" class="img">
         </label>
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="4" id="radio4">
+        <input type="radio" name="radio" class="radio option-input" value="4" id="radio4">
         <label for="radio4" class="radioImg img">
             <img src="./media/Q7/trunk4.jpg" alt="" class="img">
         </label>
@@ -860,7 +860,7 @@ const questions = [
     answers: [
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio1">
         <label for="radio1" class="">
             Legs and feet are well supported and in an evenly balanced posture.<br>
             <img src="./media/Q8/legs1.jpg" alt="" class="img" style="margin: 10px auto 0 auto">
@@ -868,7 +868,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio2">
         <label for="radio2" class="">
             Legs and feet are NOT evenly balanced and supported.<br>
             <img src="./media/Q8/legs2.jpg" alt="" class="img" style="margin: 10px auto 0 auto">
@@ -883,7 +883,7 @@ const questions = [
 
     { text: 
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="0" id="radio1">
+        <input type="radio" name="radio" class="radio option-input" value="0" id="radio1">
         <label for="radio1" class="radioImg img">
             <ul>
                 <h5><strong>Score 0</strong></h5>
@@ -894,7 +894,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="1" id="radio2">
+        <input type="radio" name="radio" class="radio option-input" value="1" id="radio2">
         <label for="radio2" class="radioImg img">
             <ul>
                 <h5><strong>Score 1</strong></h5>
@@ -905,7 +905,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="2" id="radio3">
+        <input type="radio" name="radio" class="radio option-input" value="2" id="radio3">
         <label for="radio3" class="radioImg img">
             <ul>
                 <h5><strong>Score 2</strong></h5>
@@ -917,7 +917,7 @@ const questions = [
     </span>`},
     { text:
     `<span class="btn quiz-zone">
-        <input type="radio" name="radio" class="radio" value="3" id="radio4">
+        <input type="radio" name="radio" class="radio option-input" value="3" id="radio4">
         <label for="radio4" class="radioImg img">
             <ul>
                 <h5><strong>Score 3</strong></h5>
