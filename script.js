@@ -130,6 +130,7 @@ function startQuiz() {
     setNextQuestion();
     changeCard();
     currentQuestionIndex = 0;
+    titleElement.classList.add("grey-title");
 }
 
 function changeCard() {
@@ -159,6 +160,38 @@ function changeCard() {
         }, delayInMilliseconds);
     }
 }
+
+function showQuestion(question) {
+
+    titleElement.innerText = question.title;
+    questionElement.innerHTML = question.question;
+    question.answers.forEach(answer => {
+        const questionDiv = document.createElement('span');
+        questionDiv.setAttribute("id", "questionDiv");
+
+        questionDiv.addEventListener('click' , selectAnswer);
+        questionDiv.innerHTML = answer.text;
+
+        answerButtonsElement.appendChild(questionDiv);
+    })
+}
+function showOptionalQuestion(optionalQuestion) {
+
+    if (optionalQuestion.optionalAnswers) {
+
+        optionalQuestionElement.innerText = optionalQuestion.optional;
+
+        optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
+            const checkboxDiv = document.createElement('div');
+            checkboxDiv.classList.add('custom-control', 'custom-checkbox');
+            answerBoxesElement.appendChild(checkboxDiv);
+            checkboxDiv.innerHTML = optionalAnswer.field;
+        })
+    } else {
+        optionalQuestionElement.innerText = "";
+    }
+}
+
 function setNextQuestion() {
     startBtn.classList.add('hide');
     setScores();
@@ -428,44 +461,18 @@ switch (currentQuestionIndex) {
     }
 
     if (currentQuestionIndex === 9) {
-    setAScore();
+    titleElement.classList.remove("grey-title");
+    insertScores();
+    }
+}
+
+	function insertScores() {
+	setAScore();
     setWristArmScore();
     setBScore();
     setNeckTrunkLegsScore();
     setFinalScore();
-    }
-}
-
-function showQuestion(question) {
-
-    titleElement.innerText = question.title;
-    questionElement.innerHTML = question.question;
-    question.answers.forEach(answer => {
-        const questionDiv = document.createElement('span');
-        questionDiv.setAttribute("id", "questionDiv");
-
-        questionDiv.addEventListener('click' , selectAnswer);
-        questionDiv.innerHTML = answer.text;
-
-        answerButtonsElement.appendChild(questionDiv);
-    })
-}
-function showOptionalQuestion(optionalQuestion) {
-
-    if (optionalQuestion.optionalAnswers) {
-
-        optionalQuestionElement.innerText = optionalQuestion.optional;
-
-        optionalQuestion.optionalAnswers.forEach(optionalAnswer => {
-            const checkboxDiv = document.createElement('div');
-            checkboxDiv.classList.add('custom-control', 'custom-checkbox');
-            answerBoxesElement.appendChild(checkboxDiv);
-            checkboxDiv.innerHTML = optionalAnswer.field;
-        })
-    } else {
-        optionalQuestionElement.innerText = "";
-    }
-}
+	}
 
 function resetState() {
     nextBtn.classList.add('hide');
