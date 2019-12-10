@@ -1,4 +1,4 @@
-const startBtn = document.getElementById('start-btn');
+// const startBtn = document.getElementById('start-btn');
 const nextBtn = document.getElementById('next-btn');
 const prevBtn = document.getElementById('prev-btn');
 const questionContainerElement = document.getElementById('question-container');
@@ -152,7 +152,7 @@ function changeCard() {
         setTimeout(function() {
             card.classList.remove('fadeOutRight', 'fadeOutLeft');
             card.classList.add('animated','fadeInLeft');
-            startBtn.classList.add('hide');
+            // startBtn.classList.add('hide');
             questionContainerElement.classList.remove('hide');
 
             showQuestion(questions[currentQuestionIndex]);
@@ -198,7 +198,7 @@ function showOptionalQuestion(optionalQuestion) {
 }
 
 function setNextQuestion() {
-    startBtn.classList.add('hide');
+    // startBtn.classList.add('hide');
     setScores();
     resetState();
 }
