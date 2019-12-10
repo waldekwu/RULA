@@ -10,3 +10,8 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+.pdf-download {
+	text-decoration: underline;
+	color: blue;
+}
