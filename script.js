@@ -249,12 +249,12 @@ function setFinalScore() {
 function setfinalResponse() {
     const resultsContainer = document.createElement('div');
     const scoreContainer = document.createElement('div');
-    const resultsImageContainer = document.createElement('div');
+    const formContainer = document.createElement('div');
 
     resultsContainer.setAttribute("id", "results-container");
     resultsContainer.classList.add("results-container", "row", "no-gutters");
 
-    resultsImageContainer.classList.add("image-container");
+    formContainer.classList.add("form-container");
 
     scoreContainer.setAttribute("id", "score-container");
     scoreContainer.classList.add("results-container", );
@@ -262,7 +262,7 @@ function setfinalResponse() {
     cardBody.classList.add("btn-grid");
 
     cardBody.appendChild(resultsContainer);
-    cardBody.appendChild(resultsImageContainer);
+    cardBody.appendChild(formContainer);
     cardBody.appendChild(scoreContainer);
 
     totalBValue = (neckValue + neckAdjValue).toString() +
@@ -271,22 +271,22 @@ function setfinalResponse() {
 
     function scoresList() {
         resultsContainer.innerHTML = 
-        `<div class = "col-md-8">
+        `<div class ="col-md-8">
             <h3>Scores:</h3>
             <ul class="results-list">
-                <li>Upper Arm: ${upperArmValue + armAdjValue}</li>
-                <li>Lower Arm: ${lowerArmValue + lowerArmAdjValue}</li>
-                <li>Wrist: ${wristValue + wristAdjValue}</li>
-                <li>Wrist Twist: ${wristTwistValue}</li>
-                <li>Posture Score A: ${AScore}</li>
-                <li>Muscle Use + Force/Load: ${forceLoadValue + muscleUseValue}</li>
-                <li>Arm & Wrist Score: ${wristArmScore}</li>
-                <li>Neck: ${neckValue + neckAdjValue}</li>
-                <li>Trunk: ${trunkValue + trunkAdjValue}</li>
-                <li>Leg: ${legsValue}</li>
-                <li>Posture Score B: ${BScore}</li>
-                <li>Muscle Use + Force/Load: ${forceLoadB + muscleUseB}</li>
-                <li>Neck, Trunk & Leg Score: ${neckTrunkLegsScore}</li>
+                <li class="item"><div>Upper Arm: </div><div class="score">${upperArmValue + armAdjValue}</div></li>
+                <li class="item"><div>Lower Arm: </div><div class="score">${lowerArmValue + lowerArmAdjValue}</div></li>
+                <li class="item"><div>Wrist: </div><div class="score">${wristValue + wristAdjValue}</div></li>
+                <li class="item"><div>Wrist Twist: </div><div class="score">${wristTwistValue}</div></li>
+                <li class="item"><div>Posture Score A: </div><div class="score">${AScore}</div></li>
+                <li class="item"><div>Muscle Use + Force/Load: </div><div class="score">${forceLoadValue + muscleUseValue}</div></li>
+                <li class="item"><div>Arm & Wrist Score: </div><div class="score">${wristArmScore}</div></li>
+                <li class="item"><div>Neck: </div><div class="score">${neckValue + neckAdjValue}</div></li>
+                <li class="item"><div>Trunk: </div><div class="score">${trunkValue + trunkAdjValue}</div></li>
+                <li class="item"><div>Leg: </div><div class="score">${legsValue}</div></li>
+                <li class="item"><div>Posture Score B: </div><div class="score">${BScore}</div></li>
+                <li class="item"><div>Muscle Use + Force/Load: </div><div class="score">${forceLoadB + muscleUseB}</div></li>
+                <li class="item"><div>Neck, Trunk & Leg Score: </div><div class="score">${neckTrunkLegsScore}</div></li>
             </ul>
         </div>`;
     }
@@ -352,6 +352,23 @@ function setfinalResponse() {
         </div>`;
     }
     scoreContainer.classList.add('animated','flipInX');
+    formContainer.innerHTML = `
+        <div class="form-container hide">
+        <h3>Download a PDF:</h3>
+        <form>
+            <div class="form-group">
+                <input type="email" class="form-control" id="form-email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Subject" id="form-subject">
+            <div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Scorer" id="form-scorer">
+            <div>
+            <button type="submit" class="btn btn-primary mb-2 form-btn">Submit</button>
+        </form>
+        </div>`;
+    
 }
 
 
