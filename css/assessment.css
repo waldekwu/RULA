@@ -102,11 +102,7 @@ ul, li {
 	grid-area: 2 / 2 / 3 / 3;
 	max-width: 21rem;
 	min-width: 3rem;
-}
-
-.form-container {
-	display: flex;
-	justify-content: left;
+	text-align: left;
 }
 
 .form-group {
@@ -118,6 +114,12 @@ ul, li {
 	text-transform: uppercase;
 	
 }
+
+.form-label {
+	display: flex;
+	justify-content: left;
+}
+
 .card-img {
 	text-align: right;
 }
@@ -186,7 +188,7 @@ ul, li {
 	color: #bbb;
 }
 
-.item {
+.item, #input-container {
 	display: flex;
 	justify-content : space-between;
 }

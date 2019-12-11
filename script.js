@@ -9,6 +9,7 @@ const answerBoxesElement = document.getElementById('checkbox');
 const optionalQuestionElement = document.getElementById('optional-question');
 const cardBody = document.getElementById('card-body');
 const footerElement = document.getElementById('card-footer');
+const submitBtn = document.getElementById("submit-btn");
 
 let currentQuestionIndex;
 let checkId = 0;
@@ -48,6 +49,10 @@ let neckTrunkLegsScore = 0;
 
 let finalScore = 0;
 
+let inputEmail;
+let inputSubject;
+let inputScorer;
+
 let tables = [
 { 
     //Table A
@@ -81,7 +86,6 @@ let tables = [
     '6211': 8, '6212': 8, '6221': 8, '6222': 8, '6231': 8, '6232': 9, '6241': 9, '6242': 9,
     '6311': 9, '6312': 9, '6321': 9, '6322': 9, '6331': 9, '6332': 9, '6341': 9, '6342': 9
 },
-
 { 
     //Table B
     //'012' - 0 is neck, 1 is trunk, 2 are legs
@@ -93,7 +97,6 @@ let tables = [
     '611': 8, '612': 8, '621': 8, '622': 8, '631': 8, '632': 8, '641': 8, '642': 9, '651': 9, '652': 9, '661': 9, '662': 9, 
     '672': 9, '772': 9
 },
-
 { 
     //Table C
     //'01' - 0 is Wrist&Arm score, 1 is NeckTrunk&Leg score
@@ -129,10 +132,17 @@ prevBtn.addEventListener('click', () => {
     changeCard();
 })
 
+submitBtn.addEventListener('click', () => {
+    getInput();
+    currentQuestionIndex++;
+    setNextQuestion();
+    changeCard();
+    })
+
 function startQuiz() {
     setNextQuestion();
     changeCard();
-    currentQuestionIndex = 0;
+    currentQuestionIndex = 8;
     titleElement.classList.add("grey-title");
 }
 
@@ -158,7 +168,7 @@ function changeCard() {
             showQuestion(questions[currentQuestionIndex]);
             showOptionalQuestion(questions[currentQuestionIndex]);
 
-            if (currentQuestionIndex === 9) {
+            if (currentQuestionIndex === 10) {
                 setfinalResponse();
             }
         }, delayInMilliseconds);
@@ -249,12 +259,10 @@ function setFinalScore() {
 function setfinalResponse() {
     const resultsContainer = document.createElement('div');
     const scoreContainer = document.createElement('div');
-    const formContainer = document.createElement('div');
+    
 
     resultsContainer.setAttribute("id", "results-container");
     resultsContainer.classList.add("results-container", "row", "no-gutters");
-
-    formContainer.classList.add("form-container");
 
     scoreContainer.setAttribute("id", "score-container");
     scoreContainer.classList.add("results-container", );
@@ -262,17 +270,43 @@ function setfinalResponse() {
     cardBody.classList.add("btn-grid");
 
     cardBody.appendChild(resultsContainer);
-    cardBody.appendChild(formContainer);
+    
     cardBody.appendChild(scoreContainer);
 
     totalBValue = (neckValue + neckAdjValue).toString() +
     (trunkValue + trunkAdjValue).toString() +
     legsValue.toString();
 
+    submitBtn.classList.add("hide");
+
+    const inputContainer = document.createElement('div');
+    
+    inputContainer.setAttribute("id", "input-container");
+    inputContainer.classList.add("input-container");
+
+    inputContainer.innerHTML =
+    `
+    <h4>Email: ${inputEmail}</h4>
+    <h4>Subject: ${inputSubject}</h4>
+    <h4>Scorer: ${inputScorer}</h4>
+    `
+    questionContainerElement.appendChild(inputContainer);
+
+    //<script type="text/javascript" defer src="./jspdf.min.js"></script>
+    // let head = document.getElementsByTagName('head')[0];
+    // let jsPDF = document.createElement("script");
+    // jsPDF.type = "text/javascript";
+    // jsPDF.src = "./jspdf.min.js";
+
+    // head.appendChild(jsPDF);
+
+    // document.getElementById('submit-btn').classList.add('hide');
+    // document.getElementById('generate-btn').classList.remove('hide');
+
     function scoresList() {
         resultsContainer.innerHTML = 
         `<div class ="col-md-8">
-            <h3>Scores:</h3>
+            <h4 style="text-align: left;">Scores:</h4>
             <ul class="results-list">
                 <li class="item"><div>Upper Arm: </div><div class="score">${upperArmValue + armAdjValue}</div></li>
                 <li class="item"><div>Lower Arm: </div><div class="score">${lowerArmValue + lowerArmAdjValue}</div></li>
@@ -290,6 +324,7 @@ function setfinalResponse() {
             </ul>
         </div>`;
     }
+
     
     if (finalScore < 3) {
         // resultsContainer.classList.add("acceptable-posture");
@@ -351,26 +386,62 @@ function setfinalResponse() {
             </div>
         </div>`;
     }
+
     scoreContainer.classList.add('animated','flipInX');
-    formContainer.innerHTML = `
-        <div class="form-container hide">
-        <h3>Download a PDF:</h3>
-        <form>
-            <div class="form-group">
-                <input type="email" class="form-control" id="form-email" placeholder="name@example.com">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Subject" id="form-subject">
-            <div>
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Scorer" id="form-scorer">
-            <div>
-            <button type="submit" class="btn btn-primary mb-2 form-btn">Submit</button>
-        </form>
-        </div>`;
-    
 }
 
+function getInput() {
+
+    inputEmail = document.getElementById('form-email').value;
+    inputSubject = document.getElementById('form-subject').value;
+    inputScorer = document.getElementById('form-scorer').value;
+
+    console.log(inputEmail, inputSubject, inputScorer);
+}
+
+
+
+// $(document).ready(function(){
+// $('#generate-btn').click(function(){
+//         document.getElementById("card-body"), {
+//             onrendered: function(canvas) {
+
+//                 var imgData = canvas.toDataURL('image/png');
+//                 console.log('Report Image URL: '+imgData);
+//                 var doc = new jsPDF('p', 'mm', [297, 210]); //210mm wide and 297mm high
+                
+//                 doc.addImage(imgData, 'PNG', 10, 10);
+//                 doc.save('sample.pdf');
+//             }
+//         };
+// });
+// })
+
+function getPDF() {
+    let doc = new jsPDF('p', 'pt', 'a4');
+    let margins = {
+        top:    15,
+        bottom: 40,
+        left:   30,
+        width:  550
+    };
+    let elementHandler = {
+      '#ignorePDF': function (element, renderer) {
+        return true;
+      }
+    };
+    let source = document.getElementsByTagName("main")[0];
+
+    doc.fromHTML(source,
+    margins.left, // x coord
+    margins.top,
+    {
+      // y coord
+    width: margins.width,// max width of content on PDF
+    'elementHandlers': elementHandler
+    });
+    doc.save("test.pdf");
+}
 
 function setScores() {
 
@@ -477,11 +548,15 @@ switch (currentQuestionIndex) {
         } else {
             muscleUseB = 0; }
 
+    case 10:
+    submitBtn.classList.remove('hide');
+
+        //<button type="button" class="btn btn-success mb-2 form-btn hide" id="generate-btn" onclick="getPDF()">Generate</button>
     break;
     default:
     }
 
-    if (currentQuestionIndex === 9) {
+    if (currentQuestionIndex === 10) {
     titleElement.classList.remove("grey-title");
     insertScores();
     }
@@ -516,7 +591,7 @@ function selectAnswer() {
         document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
         nextBtn.classList.remove('hide');
 
-        if (currentQuestionIndex === 8) {
+        if (currentQuestionIndex === 10) {
         //end of questions
             nextBtn.innerText = "Results";
             prevBtn.classList.remove('hide'); 
@@ -1018,12 +1093,44 @@ const questions = [
 
 {
     title: 'RULA Summary',
-    question: '',
+    question: `
+    <div class="form-container">
+        <form id="form">
+            <div class="form-group">
+                <label for="form-email" class="form-label">Your email address</label>
+                <input type="email" class="form-control" id="form-email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="form-subject" class="form-label">Subject</label>
+                <input class="form-control" type="text" placeholder="John Doe" id="form-subject">
+            <div>
+            <div class="form-group">
+                <label for="form-scorer" class="form-label">Scorer</label>
+                <input class="form-control" type="text" placeholder="Jane Doe" id="form-scorer">
+            </div>
+            
+        </form>
+        </div>`,
     footer:
     `<p>Progress:</p>
     <div class="progress">
   	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
 	</div>`,
+    answers: [
+
+    { text: '<span class="hide"></span>'},
+
+    ],
+},
+
+{
+    title: 'RULA Summary',
+    question: '',
+    footer:
+    `<p>Progress:</p>
+    <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+    </div>`,
     answers: [
 
     { text: '<span class="hide"></span>'},
