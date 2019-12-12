@@ -257,25 +257,35 @@ function setFinalScore() {
     // console.log(tableCScore);
 }
 function setfinalResponse() {
+
     const resultsContainer = document.createElement('div');
     const scoreContainer = document.createElement('div');
     const generateContainer = document.createElement('div');
     
 
     resultsContainer.setAttribute("id", "results-container");
-    resultsContainer.classList.add("results-container", "row", "no-gutters");
+    resultsContainer.classList.add("results-container");
 
     scoreContainer.setAttribute("id", "score-container");
-    scoreContainer.classList.add("results-container", );
+    scoreContainer.classList.add("score-container");
 
     generateContainer.classList.add("generate-container");
 
+    submitBtn.classList.add("hide");
+     const generateBtn = document.createElement('div');
+     generateBtn.setAttribute("id", "generate-btn");
 
+    generateBtn.innerHTML =
+    `
+    <button class="btn btn-primary" onclick="getPDF()">Generate PDF</button>
+    `;
+
+    cardBody.appendChild(generateBtn);
 
 
     //<button id="generate-btn" class="btn btn-primary generate-btn" onclick="getPDF()">Generate</button>
 
-    cardBody.classList.add("btn-grid");
+    cardBody.classList.add("results-grid");
 
     cardBody.appendChild(resultsContainer);
     
@@ -285,7 +295,7 @@ function setfinalResponse() {
     (trunkValue + trunkAdjValue).toString() +
     legsValue.toString();
 
-    submitBtn.classList.add("hide");
+
 
     const inputContainer = document.createElement('div');
     
@@ -294,13 +304,14 @@ function setfinalResponse() {
 
     inputContainer.innerHTML =
     `
-    <ul>
-    <li><h4>Email: ${inputEmail}</h4></li>
-    <li><h4>Subject: ${inputSubject}</h4></li>
-    <li><h4>Scorer: ${inputScorer}</h4></li>
+    <ul style="padding: 0px;">
+    <li><h4>Your details:</h4></li>
+    <li><h5>Email: ${inputEmail}</h5></li>
+    <li><h5>Subject: ${inputSubject}</h5></li>
+    <li><h5>Scorer: ${inputScorer}</h5></li>
     </ul>
-    `
-    questionContainerElement.appendChild(inputContainer);
+    `;
+    cardBody.appendChild(inputContainer);
 
     questionDiv.classList.add('generate-div');
 
@@ -321,7 +332,7 @@ function setfinalResponse() {
         resultsContainer.innerHTML = 
         `<div class ="col-md-8">
             <ul class="results-list">
-            <h4>Scores:</h4>
+                <li><h4>Scores:</h4></li>
                 <li class="item"><div>Upper Arm: </div><div class="score">${upperArmValue + armAdjValue}</div></li>
                 <li class="item"><div>Lower Arm: </div><div class="score">${lowerArmValue + lowerArmAdjValue}</div></li>
                 <li class="item"><div>Wrist: </div><div class="score">${wristValue + wristAdjValue}</div></li>
@@ -346,7 +357,8 @@ function setfinalResponse() {
         scoresList();
         // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
         scoreContainer.innerHTML = 
-        `<div class='card text-white bg-success mb-3 score-card'>
+        `<h4>Final score:</h4>
+        <div class='card text-white bg-success mb-3 score-card'>
             <div class='card-body'>
                 <h3 class='card-title'>RULA Score: ${finalScore}</h3>
                 <h5 class='card-text'>
@@ -362,7 +374,8 @@ function setfinalResponse() {
         scoresList();
         // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
         scoreContainer.innerHTML = 
-        `<div class='card text-white bg-warning mb-3 score-card'>
+        `<h4>Final results:</h4>
+        <div class='card text-white bg-warning mb-3 score-card'>
             <div class='card-body'>
                 <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
                 <h5 class='card-text'>
@@ -378,7 +391,8 @@ function setfinalResponse() {
         scoresList();
         // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
         scoreContainer.innerHTML = 
-        `<div class='card text-white bg-warning mb-3 score-card'>
+        `<h4>Final results:</h4>
+        <div class='card text-white bg-warning mb-3 score-card'>
             <div class='card-body'>
                 <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
                 <h5 class='card-text'>
@@ -394,7 +408,8 @@ function setfinalResponse() {
         scoresList();
         // resultsImageContainer.innerHTML = "<img src='media/manikin_logo.png' class='card-img'>"
         scoreContainer.innerHTML = 
-        `<div class='card text-white bg-danger mb-3 score-card'>
+        `<h4>Final results:</h4>
+        <div class='card text-white bg-danger mb-3 score-card'>
             <div class='card-body'>
                 <h3 class='card-title'><strong>RULA Score: ${finalScore}</strong></h3>
                 <h5 class='card-text'>
@@ -1110,7 +1125,7 @@ const questions = [
 },
 
 {
-    title: 'RULA Summary',
+    title: 'Your details',
     question: `
     <div class="form-container">
         <form id="form">
@@ -1145,10 +1160,7 @@ const questions = [
     title: 'RULA Summary',
     question: '',
     footer:
-    `<p>Progress:</p>
-    <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
-    </div>`,
+    ``,
     answers: [
 
     { text: '<span class="hide"></span>'},

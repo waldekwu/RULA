@@ -61,39 +61,50 @@ h4 {
     height:auto;
 }
 
-ul, li {
+ li {
 	justify-content: flex-start;
 	text-align: left;
 	color: black;
 	list-style: none;
+	min-width: auto;
+	max-width: auto;
 }
 
+.results-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 2fr 2fr 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	margin-left: 20px;
+}
+}
 
 #score-container {
-	grid-area: 2 / 1 / 3 / 2;
 	animation-delay: 0.5s;
-	display: flex;
-	justify-content: flex-start;
+	grid-area: 1 / 1 / 2 / 2;
 }
 
-.results-container {
-	justify-content: flex-start;
-	text-align: left;
+#results-container {
 	color: black;
 	grid-area: 1 / 2 / 3 / 3;
 	
 }
 
 #input-container {
-	display: flex;
-	justify-content : left;
-	grid-area: 1 / 1 / 2 / 2;	
+	grid-area: 2 / 1 / 2 / 2;
+}
+#generate-btn {
+	margin-top: auto;
+	margin-bottom: auto;
+	grid-area: 3 / 1 / 4 / 3;
 }
 
 .score-card {
 	margin-left: 0px;
 	max-width: 21rem; 
 	min-width: 3rem;
+	text-align: left;
 }
 
 .checkBoxList {
@@ -138,17 +149,9 @@ ul, li {
 	text-align: right;
 }
 
-
 .results-list {
 	list-style: none;
 	padding: 0;
-}
-
-.results-list > li {
-	padding: 5px 10px;
-	background-color: #EEEEEE;
-	border: 1px solid #DDDDDD;
-	margin-left: 20px;
 }
 
 .option-input {
@@ -198,6 +201,17 @@ ul, li {
 .progress {
 	margin-bottom: 10px;
 }
+
+h4 {
+    margin: 0px 0 20px 0px;
+    text-align: left;
+    font-weight: bold;
+}
+
+h5 {
+	text-align: left;
+}
+
 .card-footer p {
 	color: #bbb;
 }
@@ -205,6 +219,12 @@ ul, li {
 .item {
 	display: flex;
 	justify-content : space-between;
+	background-color: white;
+	border: 1px solid #d8d8d8;
+	padding: 5px;
+	border-radius: 4px;
+	max-width: auto;
+	min-width: 250px;
 }
 
 
@@ -222,6 +242,38 @@ ul, li {
 		display: flex;
 		flex-direction: column;
 
+	}
+
+	.results-grid {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+	}
+
+	#score-container {
+		display: flex;
+		flex-direction: column;
+		order: 3;
+	}
+
+	#results-container {
+		display: flex;
+		order: 2;
+	}
+
+	#input-container {
+		display: flex;
+		order: 1;
+	}
+	#generate-btn {
+		display: flex;
+		order: 4;
+
+	}
+
+	.col-md-8 {
+		padding: 0px;
 	}
 
 	.img {
