@@ -71,11 +71,11 @@ ul, li {
 	justify-content: flex-start;
 	text-align: left;
 	color: black;
-	grid-area: 1 / 1 / 3 / 2;
+	grid-area: 1 / 1 / 2 / 2;
 }
 
 #score-container {
-	grid-area: 1 / 2 / 2 / 3;
+	grid-area: 1 / 2 / 3 / 3;
 	animation-delay: 0.5s;
 }
 
@@ -102,7 +102,6 @@ ul, li {
 	grid-area: 2 / 2 / 3 / 3;
 	max-width: 21rem;
 	min-width: 3rem;
-	text-align: left;
 }
 
 .form-group {
@@ -188,9 +187,15 @@ ul, li {
 	color: #bbb;
 }
 
-.item, #input-container {
+.item {
 	display: flex;
-	justify-content : space-between;
+	justify-content : left;
+}
+
+#input-container {
+	display: flex;
+	justify-content : left;
+	grid-area: 1 / 1 / 2 / 2;
 }
 
 .score {

@@ -142,7 +142,7 @@ submitBtn.addEventListener('click', () => {
 function startQuiz() {
     setNextQuestion();
     changeCard();
-    currentQuestionIndex = 8;
+    currentQuestionIndex = 0;
     titleElement.classList.add("grey-title");
 }
 
@@ -286,9 +286,11 @@ function setfinalResponse() {
 
     inputContainer.innerHTML =
     `
-    <h4>Email: ${inputEmail}</h4>
-    <h4>Subject: ${inputSubject}</h4>
-    <h4>Scorer: ${inputScorer}</h4>
+    <ul>
+    <li><h4>Email: ${inputEmail}</h4></li>
+    <li><h4>Subject: ${inputSubject}</h4></li>
+    <li><h4>Scorer: ${inputScorer}</h4></li>
+    </ul>
     `
     questionContainerElement.appendChild(inputContainer);
 
