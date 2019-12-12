@@ -81,6 +81,8 @@ h4 {
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
+
 }
 .results-container {
 	color: black;
@@ -246,13 +248,16 @@ h5 {
 	.btn-grid {
 		display: flex;
 		flex-direction: column;
-
+	}
+	.btn {
+		margin: 5px 0 5px 0;
 	}
 
 	.results-grid {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		align-content: center;
 
 	}
 
