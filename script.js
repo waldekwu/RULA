@@ -308,8 +308,8 @@ function setfinalResponse() {
     function scoresList() {
         resultsContainer.innerHTML = 
         `<div class ="col-md-8">
-            <h4 style="text-align: left;">Scores:</h4>
             <ul class="results-list">
+            <h4>Scores:</h4>
                 <li class="item"><div>Upper Arm: </div><div class="score">${upperArmValue + armAdjValue}</div></li>
                 <li class="item"><div>Lower Arm: </div><div class="score">${lowerArmValue + lowerArmAdjValue}</div></li>
                 <li class="item"><div>Wrist: </div><div class="score">${wristValue + wristAdjValue}</div></li>

@@ -65,18 +65,29 @@ ul, li {
 	justify-content: flex-start;
 	text-align: left;
 	color: black;
+	list-style: none;
+}
+
+
+#score-container {
+	grid-area: 2 / 1 / 3 / 2;
+	animation-delay: 0.5s;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .results-container {
 	justify-content: flex-start;
 	text-align: left;
 	color: black;
-	grid-area: 1 / 1 / 2 / 2;
+	grid-area: 1 / 2 / 3 / 3;
+	
 }
 
-#score-container {
-	grid-area: 1 / 2 / 3 / 3;
-	animation-delay: 0.5s;
+#input-container {
+	display: flex;
+	justify-content : left;
+	grid-area: 1 / 1 / 2 / 2;	
 }
 
 .score-card {
@@ -189,14 +200,10 @@ ul, li {
 
 .item {
 	display: flex;
-	justify-content : left;
+	justify-content : space-between;
 }
 
-#input-container {
-	display: flex;
-	justify-content : left;
-	grid-area: 1 / 1 / 2 / 2;
-}
+
 
 .score {
 	font-weight: bold;
