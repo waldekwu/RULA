@@ -142,7 +142,7 @@ submitBtn.addEventListener('click', () => {
 function startQuiz() {
     setNextQuestion();
     changeCard();
-    currentQuestionIndex = 0;
+    currentQuestionIndex = 8;
     titleElement.classList.add("grey-title");
 }
 
@@ -330,7 +330,7 @@ function setfinalResponse() {
 
     function scoresList() {
         resultsContainer.innerHTML = 
-        `<div class ="col-md-8">
+        `
             <ul class="results-list">
                 <li><h4>Scores:</h4></li>
                 <li class="item"><div>Upper Arm: </div><div class="score">${upperArmValue + armAdjValue}</div></li>
@@ -347,7 +347,6 @@ function setfinalResponse() {
                 <li class="item"><div>Muscle Use + Force/Load: </div><div class="score">${forceLoadB + muscleUseB}</div></li>
                 <li class="item"><div>Neck, Trunk & Leg Score: </div><div class="score">${neckTrunkLegsScore}</div></li>
             </ul>
-        </div>
         `;
     }
 
@@ -421,7 +420,7 @@ function setfinalResponse() {
         `;
     }
 
-    scoreContainer.classList.add('animated','flipInX');
+    cardBody.classList.add('animated','fadeIn');
 }
 
 function getInput() {
@@ -589,7 +588,7 @@ switch (currentQuestionIndex) {
     default:
     }
 
-    if (currentQuestionIndex === 10) {
+    if (currentQuestionIndex === 9) {
     titleElement.classList.remove("grey-title");
     insertScores();
     }
@@ -619,21 +618,14 @@ function resetState() {
 
 function selectAnswer() {
 
-    if (document.querySelector('input[name="radio"]:checked')) {
+    if (document.querySelector('input[name="radio"]:checked') || currentQuestionIndex === 9) {
 
         document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
         nextBtn.classList.remove('hide');
 
-        if (currentQuestionIndex === 10) {
-        //end of questions
-            nextBtn.innerText = "Results";
-            prevBtn.classList.remove('hide'); 
-
-        } else {
             nextBtn.classList.remove('hide');
             prevBtn.classList.remove('hide'); 
-            nextBtn.innerText = "Next";
-        }
+  
 
         if (currentQuestionIndex === 0) {
         prevBtn.classList.add('hide');
@@ -1125,23 +1117,31 @@ const questions = [
 },
 
 {
-    title: 'Your details',
+    title: 'Your details*',
     question: `
     <div class="form-container">
         <form id="form">
             <div class="form-group">
-                <label for="form-email" class="form-label">Your email address*</label>
+                <label for="form-email" class="form-label"><h4>Email address</h4></label>
                 <input type="email" class="form-control" id="form-email" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label for="form-subject" class="form-label">Subject*</label>
+                <label for="form-subject" class="form-label"><h4>Subject</h4></label>
                 <input class="form-control" type="text" placeholder="John Doe" id="form-subject">
             <div>
             <div class="form-group">
-                <label for="form-scorer" class="form-label">Scorer*</label>
+                <label for="form-scorer" class="form-label"><h4>Scorer</h4></label>
                 <input class="form-control" type="text" placeholder="Jane Doe" id="form-scorer">
             </div>
-            <p class="form-label">*This step is optional for a beta version. Your details are passed into the PDF file for your use only. No data is retained.<br>Leave blank to skip.</p>
+            <div class="form-group">
+                <label for="form-department" class="form-label"><h4>Department</h4></label>
+                <input class="form-control" type="text" placeholder="HR" id="form-department">
+            </div>
+            <div class="form-group">
+                <label for="form-company" class="form-label"><h4>Company</h4></label>
+                <input class="form-control" type="text" placeholder="Lorem Ipsum Ltd" id="form-company">
+            </div>
+            <p style="text-align: left;"><strong>*This step is optional for a beta version.</strong><br>Your details are passed into the PDF file for your use only.<br>No data is retained.<br><br>Leave fields blank to skip.</p>
         </form>
         </div>`,
     footer:
