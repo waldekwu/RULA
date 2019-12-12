@@ -116,9 +116,6 @@ h4 {
 #prev-btn {
 	text-transform: uppercase;
 }
-.generate-container {
-	grid-area: 3 / 1 / 4 / 2;
-}
 
 .questionTxt {
 	display: flex;
