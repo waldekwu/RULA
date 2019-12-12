@@ -142,7 +142,7 @@ submitBtn.addEventListener('click', () => {
 function startQuiz() {
     setNextQuestion();
     changeCard();
-    currentQuestionIndex = 8;
+    currentQuestionIndex = 0;
     titleElement.classList.add("grey-title");
 }
 
