@@ -75,32 +75,36 @@ h4 {
 .results-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 2fr 2fr 1fr;
+	grid-template-rows: 34% 46% 20%;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 	margin-left: 20px;
 	margin-right: 20px;
 }
 }
-
-#score-container {
-	grid-area: 1 / 1 / 2 / 2;
-}
-
-#results-container {
+.results-container {
 	color: black;
 	grid-area: 1 / 2 / 3 / 3;
 	
+}
+
+.score-container {
+	grid-area: 1 / 1 / 2 / 2;
 }
 
 #input-container {
 	grid-area: 2 / 1 / 2 / 2;
 }
 #generate-btn {
-	margin-top: auto;
-	margin-bottom: auto;
+	/*margin-top: auto;
+	margin-bottom: auto;*/
 	grid-area: 3 / 1 / 4 / 3;
 }
+.container {
+	grid-area: 3 / 2 / 4 / 3;
+}
+
+
 
 .score-card {
 	margin-left: 0px;
@@ -213,7 +217,7 @@ h5 {
 }
 
 .card-footer {
-	padding: 0 100px 20px 100px;
+	padding: 0 15% 2% 15%;
 }
 
 .card-footer p {

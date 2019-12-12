@@ -52,6 +52,8 @@ let finalScore = 0;
 let inputEmail;
 let inputSubject;
 let inputScorer;
+let inputDepartment;
+let inputCompany;
 
 let tables = [
 { 
@@ -168,8 +170,14 @@ function changeCard() {
             showQuestion(questions[currentQuestionIndex]);
             showOptionalQuestion(questions[currentQuestionIndex]);
 
+            if (currentQuestionIndex === 9) {
+                submitBtn.classList.remove('hide');
+                document.getElementById("container").classList.add("form-container");
+            }
+
             if (currentQuestionIndex === 10) {
                 setfinalResponse();
+                document.getElementById("container").classList.remove("form-container");
             }
         }, delayInMilliseconds);
     }
@@ -257,50 +265,28 @@ function setFinalScore() {
     // console.log(tableCScore);
 }
 function setfinalResponse() {
-
     const resultsContainer = document.createElement('div');
     const scoreContainer = document.createElement('div');
     const generateContainer = document.createElement('div');
-    
+    const inputContainer = document.createElement('div');
+    const generateBtn = document.createElement('div');
 
     resultsContainer.setAttribute("id", "results-container");
-    resultsContainer.classList.add("results-container");
-
     scoreContainer.setAttribute("id", "score-container");
-    scoreContainer.classList.add("score-container");
+    inputContainer.setAttribute("id", "input-container");
+    generateBtn.setAttribute("id", "generate-btn");
 
+    resultsContainer.classList.add("results-container");
+    scoreContainer.classList.add("score-container");
+    inputContainer.classList.add("input-container");
     generateContainer.classList.add("generate-container");
 
-    submitBtn.classList.add("hide");
-     const generateBtn = document.createElement('div');
-     generateBtn.setAttribute("id", "generate-btn");
-
+    cardBody.classList.add("results-grid");
+     
     generateBtn.innerHTML =
     `
     <button class="btn btn-primary" onclick="getPDF()">Generate PDF</button>
     `;
-
-    cardBody.appendChild(generateBtn);
-
-
-    //<button id="generate-btn" class="btn btn-primary generate-btn" onclick="getPDF()">Generate</button>
-
-    cardBody.classList.add("results-grid");
-
-    cardBody.appendChild(resultsContainer);
-    
-    cardBody.appendChild(scoreContainer);
-
-    totalBValue = (neckValue + neckAdjValue).toString() +
-    (trunkValue + trunkAdjValue).toString() +
-    legsValue.toString();
-
-
-
-    const inputContainer = document.createElement('div');
-    
-    inputContainer.setAttribute("id", "input-container");
-    inputContainer.classList.add("input-container");
 
     inputContainer.innerHTML =
     `
@@ -309,24 +295,16 @@ function setfinalResponse() {
     <li><h5>Email: ${inputEmail}</h5></li>
     <li><h5>Subject: ${inputSubject}</h5></li>
     <li><h5>Scorer: ${inputScorer}</h5></li>
+    <li><h5>Department: ${inputDepartment}</h5></li>
+    <li><h5>Company: ${inputCompany}</h5></li>
     </ul>
     `;
+
+    cardBody.appendChild(resultsContainer);
+    cardBody.appendChild(scoreContainer);
     cardBody.appendChild(inputContainer);
-
-    questionDiv.classList.add('generate-div');
-
-
-
-    //<script type="text/javascript" defer src="./jspdf.min.js"></script>
-    // let head = document.getElementsByTagName('head')[0];
-    // let jsPDF = document.createElement("script");
-    // jsPDF.type = "text/javascript";
-    // jsPDF.src = "./jspdf.min.js";
-
-    // head.appendChild(jsPDF);
-
-    // document.getElementById('submit-btn').classList.add('hide');
-    // document.getElementById('generate-btn').classList.remove('hide');
+    cardBody.appendChild(generateBtn);
+    
 
     function scoresList() {
         resultsContainer.innerHTML = 
@@ -428,6 +406,8 @@ function getInput() {
     inputEmail = document.getElementById('form-email').value;
     inputSubject = document.getElementById('form-subject').value;
     inputScorer = document.getElementById('form-scorer').value;
+    inputDepartment = document.getElementById('form-department').value;
+    inputCompany = document.getElementById('form-company').value;
 
     console.log(inputEmail, inputSubject, inputScorer);
 }
@@ -451,10 +431,10 @@ function getInput() {
 function getPDF() {
     let doc = new jsPDF('p', 'pt', 'a4');
     let margins = {
-        top:    15,
-        bottom: 40,
-        left:   30,
-        width:  550
+        top:    5,
+        bottom: 5,
+        left:   5,
+        width:  1000
     };
     let elementHandler = {
       '#ignorePDF': function (element, renderer) {
@@ -578,12 +558,11 @@ switch (currentQuestionIndex) {
             muscleUseB = parseInt(document.querySelector('input[name="customCheck"]:checked').value);
         } else {
             muscleUseB = 0; }
-
+    break;
     case 10:
-    submitBtn.classList.remove('hide');
-    document.getElementById("container").classList.add("form-container");
-
+    submitBtn.classList.add("hide");
         //<button type="button" class="btn btn-success mb-2 form-btn hide" id="generate-btn" onclick="getPDF()">Generate</button>
+    break;
     break;
     default:
     }
@@ -617,8 +596,7 @@ function resetState() {
 }
 
 function selectAnswer() {
-
-    if (document.querySelector('input[name="radio"]:checked') || currentQuestionIndex === 9) {
+    if (document.querySelector('input[name="radio"]:checked')) {
 
         document.getElementById('optional-fields').classList.add('animated', 'fadeIn');
         nextBtn.classList.remove('hide');
@@ -1158,7 +1136,7 @@ const questions = [
 
 {
     title: 'RULA Summary',
-    question: '',
+    question: '<div style="display: none"></div>',
     footer:
     ``,
     answers: [
