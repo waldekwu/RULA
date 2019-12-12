@@ -103,6 +103,9 @@ ul, li {
 #prev-btn {
 	text-transform: uppercase;
 }
+.generate-container {
+	grid-area: 3 / 1 / 4 / 2;
+}
 
 .questionTxt {
 	display: flex;
@@ -113,6 +116,7 @@ ul, li {
 	grid-area: 2 / 2 / 3 / 3;
 	max-width: 21rem;
 	min-width: 3rem;
+	justify-content: center;
 }
 
 .form-group {

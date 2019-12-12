@@ -259,6 +259,7 @@ function setFinalScore() {
 function setfinalResponse() {
     const resultsContainer = document.createElement('div');
     const scoreContainer = document.createElement('div');
+    const generateContainer = document.createElement('div');
     
 
     resultsContainer.setAttribute("id", "results-container");
@@ -266,6 +267,13 @@ function setfinalResponse() {
 
     scoreContainer.setAttribute("id", "score-container");
     scoreContainer.classList.add("results-container", );
+
+    generateContainer.classList.add("generate-container");
+
+
+
+
+    //<button id="generate-btn" class="btn btn-primary generate-btn" onclick="getPDF()">Generate</button>
 
     cardBody.classList.add("btn-grid");
 
@@ -293,6 +301,10 @@ function setfinalResponse() {
     </ul>
     `
     questionContainerElement.appendChild(inputContainer);
+
+    questionDiv.classList.add('generate-div');
+
+
 
     //<script type="text/javascript" defer src="./jspdf.min.js"></script>
     // let head = document.getElementsByTagName('head')[0];
@@ -324,7 +336,8 @@ function setfinalResponse() {
                 <li class="item"><div>Muscle Use + Force/Load: </div><div class="score">${forceLoadB + muscleUseB}</div></li>
                 <li class="item"><div>Neck, Trunk & Leg Score: </div><div class="score">${neckTrunkLegsScore}</div></li>
             </ul>
-        </div>`;
+        </div>
+        `;
     }
 
     
@@ -341,7 +354,8 @@ function setfinalResponse() {
                     The posture is acceptable if it is not maintained or repeated for long periods
                 </h5>
             </div>
-        </div>`;
+        </div>
+        `;
         
     } else if (finalScore > 2 && finalScore < 5) {
         // resultsContainer.classList.add("f-investigation");
@@ -356,7 +370,8 @@ function setfinalResponse() {
                     Further investigation is needed and changes may be required
                 </h5>
             </div>
-        </div>`;
+        </div>
+        `;
     } 
     else if (finalScore > 4 && finalScore < 7) {
         // resultsContainer.classList.add("change-soon");
@@ -371,7 +386,8 @@ function setfinalResponse() {
                     Further investigation and changes are required soon
                 </h5>
             </div>
-        </div>`;
+        </div>
+        `;
     }
     else if (finalScore >= 7) {
         // resultsContainer.classList.add("investigate-change");
@@ -386,7 +402,8 @@ function setfinalResponse() {
                     Further investigation and changes are required immediately
                 </h5>
             </div>
-        </div>`;
+        </div>
+        `;
     }
 
     scoreContainer.classList.add('animated','flipInX');
@@ -400,8 +417,6 @@ function getInput() {
 
     console.log(inputEmail, inputSubject, inputScorer);
 }
-
-
 
 // $(document).ready(function(){
 // $('#generate-btn').click(function(){
@@ -552,6 +567,7 @@ switch (currentQuestionIndex) {
 
     case 10:
     submitBtn.classList.remove('hide');
+    document.getElementById("container").classList.add("form-container");
 
         //<button type="button" class="btn btn-success mb-2 form-btn hide" id="generate-btn" onclick="getPDF()">Generate</button>
     break;
@@ -1099,18 +1115,18 @@ const questions = [
     <div class="form-container">
         <form id="form">
             <div class="form-group">
-                <label for="form-email" class="form-label">Your email address</label>
+                <label for="form-email" class="form-label">Your email address*</label>
                 <input type="email" class="form-control" id="form-email" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label for="form-subject" class="form-label">Subject</label>
+                <label for="form-subject" class="form-label">Subject*</label>
                 <input class="form-control" type="text" placeholder="John Doe" id="form-subject">
             <div>
             <div class="form-group">
-                <label for="form-scorer" class="form-label">Scorer</label>
+                <label for="form-scorer" class="form-label">Scorer*</label>
                 <input class="form-control" type="text" placeholder="Jane Doe" id="form-scorer">
             </div>
-            
+            <p class="form-label">*This step is optional for a beta version. Your details are passed into the PDF file for your use only. No data is retained.<br>Leave blank to skip.</p>
         </form>
         </div>`,
     footer:
